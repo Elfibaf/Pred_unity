@@ -1,4 +1,8 @@
 sceneSetups:
+<<<<<<< HEAD
 - path: Assets/_Scenes/RelaxingEnv1/RelaxingEnv1.unity
+=======
+- path: Assets/_Scenes/Ganzfeld.unity
+>>>>>>> 17d22dcce187a5035b6c452c5764e09f23b7d23c
   isLoaded: 1
   isActive: 1
