@@ -21,6 +21,16 @@ public class HandleButton : MonoBehaviour {
         isAnimOver = false;
         isActivated = false;
         animName = "circle_button";
+
+        //transform.gameObject.GetComponentInChildren<SpriteRenderer>().color = col;
+
+        foreach (Transform child in transform)
+        {
+            if (child.tag == "circle")
+            {
+                child.GetComponent<SpriteRenderer>().color = col;
+            }
+        }
 	}
 
     public void setState(bool b)
