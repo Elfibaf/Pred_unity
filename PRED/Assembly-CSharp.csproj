@@ -39,10 +39,10 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="UnityEngine">
-      <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+      <HintPath>D:/Logiciels/Unity5/Editor/Data/Managed/UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
-      <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+      <HintPath>D:/Logiciels/Unity5/Editor/Data/Managed/UnityEditor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -68,6 +68,7 @@
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\NoiseEffectShaderRGB.shader" />
      <None Include="Assets\Standard Assets\Effects\ToonShading\Shaders\ToonBasic.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\SeparableWeightedBlurDof34.shader" />
+     <None Include="Assets\Palm Trees\Shaders\WavingDoublePassNoCullBackface.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\ShowAlphaChannel.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\SunShaftsComposite.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\ColorCorrectionCurves.shader" />
@@ -137,8 +138,8 @@
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\Tonemapper.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BrightPassFilter.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\FXAA2.shader" />
+     <None Include="Assets\Palm Trees\Shaders\WavingDoublePassCullBackface.shader" />
      <None Include="Assets\Standard Assets\Cameras\CameraGuidelines.txt" />
-<<<<<<< HEAD
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\ColorCorrection3DLut.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\LensFlareCreate.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\EdgeDetectNormals.shader" />
@@ -154,53 +155,23 @@
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\FXAAPreset2.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlurAndFlares.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendForBloom.shader" />
-=======
-     <None Include="Assets\_Scenes\HomeRoom\Standard Assets\Effects\ImageEffects\Shaders\ColorCorrection3DLut.shader" />
-     <None Include="Assets\_Scenes\HomeRoom\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\LensFlareCreate.shader" />
-     <None Include="Assets\_Scenes\HomeRoom\Standard Assets\Effects\ImageEffects\Shaders\EdgeDetectNormals.shader" />
-     <None Include="Assets\_Scenes\HomeRoom\Standard Assets\Effects\ImageEffects\Shaders\PrepareSunShaftsBlur.shader" />
-     <None Include="Assets\_Scenes\HomeRoom\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\Blend.shader" />
-     <None Include="Assets\_Scenes\HomeRoom\Standard Assets\Effects\ImageEffects\Shaders\BlendModesOverlay.shader" />
-     <None Include="Assets\_Scenes\HomeRoom\Standard Assets\Environment\Water\Water4\Shaders\WaterInclude.cginc" />
-     <None Include="Assets\_Scenes\HomeRoom\Standard Assets\Environment\Water\Water4\Shaders\FXWater4Advanced.shader" />
-     <None Include="Assets\_Scenes\HomeRoom\Standard Assets\Effects\ImageEffects\Shaders\SimpleClear.shader" />
-     <None Include="Assets\_Scenes\HomeRoom\Standard Assets\ParticleSystems\Shaders\PriorityParticleAdd.shader" />
-     <None Include="Assets\_Scenes\HomeRoom\Standard Assets\Effects\TessellationShaders\Shaders\BumpedSpecularDisplacement.shader" />
-     <None Include="Assets\_Scenes\HomeRoom\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\FXAA3Console.shader" />
-     <None Include="Assets\_Scenes\HomeRoom\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\FXAAPreset2.shader" />
-     <None Include="Assets\_Scenes\HomeRoom\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlurAndFlares.shader" />
-     <None Include="Assets\_Scenes\HomeRoom\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendForBloom.shader" />
->>>>>>> 17d22dcce187a5035b6c452c5764e09f23b7d23c
  <Reference Include="UnityEngine.UI">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ <HintPath>D:/Logiciels/Unity5/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ <HintPath>D:/Logiciels/Unity5/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.PlaymodeTestsRunner">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/PlaymodeTestsRunner/UnityEngine.PlaymodeTestsRunner.dll</HintPath>
+ <HintPath>D:/Logiciels/Unity5/Editor/Data/UnityExtensions/Unity/PlaymodeTestsRunner/UnityEngine.PlaymodeTestsRunner.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Analytics">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
+ <HintPath>D:/Logiciels/Unity5/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.HoloLens">
-<<<<<<< HEAD
  <HintPath>D:/Logiciels/Unity5/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
-=======
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
->>>>>>> 17d22dcce187a5035b6c452c5764e09f23b7d23c
  </Reference>
  <Reference Include="UnityEngine.VR">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
- </Reference>
- <Reference Include="Mono.Cecil">
- <HintPath>C:/Program Files/Unity/Editor/Data/Managed/Mono.Cecil.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.iOS.Extensions.Xcode">
- <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.iOS.Extensions.Common">
- <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Common.dll</HintPath>
+ <HintPath>D:/Logiciels/Unity5/Editor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>
