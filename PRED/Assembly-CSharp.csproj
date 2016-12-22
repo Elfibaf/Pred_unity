@@ -65,6 +65,7 @@
      <Compile Include="Assets\_Scenes\HomeRoom\Standard Assets\CrossPlatformInput\Scripts\TouchPad.cs" />
      <Compile Include="Assets\_Scenes\HomeRoom\Standard Assets\CrossPlatformInput\Scripts\VirtualInput.cs" />
      <Compile Include="Assets\_Scenes\HomeRoom\UIRaycast.cs" />
+     <Compile Include="Assets\_Scenes\RelaxingEnv1\MapBehaviour.cs" />
      <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendOneOne.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\NoiseEffectShaderRGB.shader" />
