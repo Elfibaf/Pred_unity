@@ -7,6 +7,11 @@ public class CameraFollow : MonoBehaviour {
 	public Transform playerTransform;
 	public int depth = 0;
 
+    void Start()
+    {
+        
+    }
+
 	// Update is called once per frame
 	void Update()
 	{

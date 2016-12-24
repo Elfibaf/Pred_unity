@@ -8,7 +8,7 @@ public class TherapistController : NetworkBehaviour {
 	public float h_speed = 2.0f;
 	public float v_speed = 2.0f;
 
-	private float yaw = 0.0f;
+	private float yaw = -100.5f;
 	private float pitch = 0.0f;
 
 	// Update is called once per frame
@@ -32,6 +32,8 @@ public class TherapistController : NetworkBehaviour {
 
 	public override void OnStartLocalPlayer()
 	{
+        gameObject.transform.position = new Vector3(-115.7f, 26.5f, 113.63f);
+       
 		Camera.main.GetComponent<CameraFollow>().setTarget(gameObject.transform);
 	}
 }
