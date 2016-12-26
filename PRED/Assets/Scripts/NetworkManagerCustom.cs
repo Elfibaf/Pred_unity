@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.Networking.NetworkSystem;
 using UnityEngine.UI;
+using VoiceChat.Networking;
+using VoiceChat.Demo;
+
 
 public class NetworkManagerCustom : NetworkManager {
 
@@ -37,6 +40,8 @@ public class NetworkManagerCustom : NetworkManager {
 
 		// Call Add player and pass the message
 		ClientScene.AddPlayer(conn, 0, msg);
+		// VOICE CHAT
+		VoiceChatNetworkProxy.OnManagerClientConnect(conn);
 	}
 
 
@@ -99,7 +104,50 @@ public class NetworkManagerCustom : NetworkManager {
 		GameObject.Find ("ButtonDisconnect").GetComponent<Button>().onClick.AddListener (NetworkManager.singleton.StopHost);*/
 	}
 
+	/***** VOICE CHAT *****/
 
+	public override void OnStartClient(NetworkClient client)
+	{
+
+		VoiceChatNetworkProxy.OnManagerStartClient (client);
+
+		//gameObject.AddComponent<VoiceChatUi> ();
+	
+	}
+
+	public override void OnStopClient()
+	{
+		VoiceChatNetworkProxy.OnManagerStopClient();
+
+		/*if (client != null)
+			Destroy(GetComponent<VoiceChatUi>());*/
+	}
+
+	public override void OnServerDisconnect(NetworkConnection conn)
+	{
+		base.OnServerDisconnect(conn);
+
+		VoiceChatNetworkProxy.OnManagerServerDisconnect(conn);
+	}
+
+	public override void OnStartServer()
+	{
+		VoiceChatNetworkProxy.OnManagerStartServer();
+
+		gameObject.AddComponent<VoiceChatServerUi>();
+
+		gameObject.AddComponent<VoiceChatUi> ();
+	}
+
+	public override void OnStopServer()
+	{
+		VoiceChatNetworkProxy.OnManagerStopServer();
+
+		Destroy(GetComponent<VoiceChatServerUi>());
+
+		if (client != null)
+			Destroy(GetComponent<VoiceChatUi>());
+	}
 
 
 
