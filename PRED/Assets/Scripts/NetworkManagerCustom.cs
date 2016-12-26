@@ -69,7 +69,8 @@ public class NetworkManagerCustom : NetworkManager {
 	void SetIPAddress()
 	{
 		string ipAdress = GameObject.Find ("InputFieldIPAddress").transform.FindChild ("Text").GetComponent<Text> ().text;
-		NetworkManager.singleton.networkAddress = ipAdress;
+        NetworkManager.singleton.networkAddress = ipAdress;
+        print(ipAdress);
 	}
 
 	void SetPort()
@@ -119,8 +120,8 @@ public class NetworkManagerCustom : NetworkManager {
 	{
 		VoiceChatNetworkProxy.OnManagerStopClient();
 
-		/*if (client != null)
-			Destroy(GetComponent<VoiceChatUi>());*/
+		//if (client != null)
+			//Destroy(GetComponent<VoiceChatUi>());
 	}
 
 	public override void OnServerDisconnect(NetworkConnection conn)

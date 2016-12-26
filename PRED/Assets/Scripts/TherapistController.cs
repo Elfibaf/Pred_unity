@@ -10,6 +10,7 @@ public class TherapistController : NetworkBehaviour {
 
 	private float yaw = -100.5f;
 	private float pitch = 0.0f;
+    private bool patientDetected = false;
 
 	// Update is called once per frame
 	void Update () {
@@ -28,6 +29,12 @@ public class TherapistController : NetworkBehaviour {
 
 		transform.eulerAngles = new Vector3(pitch, yaw, 0.0f);
 		transform.Translate(x, 0, z);
+
+        if(GameObject.FindGameObjectWithTag("Patient") != null && !patientDetected)
+        {
+            patientDetected = true;
+            Camera.main.GetComponent<CameraFollow>().setTarget(GameObject.FindGameObjectWithTag("Patient").transform);
+        }
 	}
 
 	public override void OnStartLocalPlayer()
