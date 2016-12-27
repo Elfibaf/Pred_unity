@@ -20,20 +20,21 @@ public class TherapistController : NetworkBehaviour {
 			return;
 		}
 
-		var x = Input.GetAxis("Horizontal") * Time.deltaTime * 150.0f;
-		var z = Input.GetAxis("Vertical") * Time.deltaTime * 150.0f;
+		/*var x = Input.GetAxis("Horizontal") * Time.deltaTime * 150.0f;
+		var z = Input.GetAxis("Vertical") * Time.deltaTime * 150.0f;*/
 
 		yaw += h_speed * Input.GetAxis("Mouse X");
 		pitch -= v_speed * Input.GetAxis("Mouse Y");
 
 
-		transform.eulerAngles = new Vector3(pitch, yaw, 0.0f);
-		transform.Translate(x, 0, z);
+		//transform.eulerAngles = new Vector3(pitch, yaw, 0.0f);
+		//transform.Translate(x, 0, z);
 
         if(GameObject.FindGameObjectWithTag("Patient") != null && !patientDetected)
         {
             patientDetected = true;
             Camera.main.GetComponent<CameraFollow>().setTarget(GameObject.FindGameObjectWithTag("Patient").transform);
+            GameObject.FindGameObjectWithTag("Patient").GetComponent<GyroControl>().enabled = false; // we disable the gyroControl component on the host (therapist)
         }
 	}
 

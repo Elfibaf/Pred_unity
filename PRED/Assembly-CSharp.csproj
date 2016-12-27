@@ -50,6 +50,7 @@
      <Compile Include="Assets\Day Night Cycle\Scripts\DemoScripts\RoatateCamera.cs" />
      <Compile Include="Assets\Scripts\CameraController.cs" />
      <Compile Include="Assets\Scripts\CameraFollow.cs" />
+     <Compile Include="Assets\Scripts\GyroControl.cs" />
      <Compile Include="Assets\Scripts\NetworkManagerCustom.cs" />
      <Compile Include="Assets\Scripts\PatientController.cs" />
      <Compile Include="Assets\Scripts\ReceiveMindwave.cs" />
@@ -78,7 +79,6 @@
      <Compile Include="Assets\VoiceChat\Scripts\VoiceChatSettings.cs" />
      <Compile Include="Assets\VoiceChat\Scripts\VoiceChatUtils.cs" />
      <Compile Include="Assets\_Scenes\HomeRoom\Billboard.cs" />
-     <Compile Include="Assets\_Scenes\HomeRoom\GyroControl.cs" />
      <Compile Include="Assets\_Scenes\HomeRoom\HandleButton.cs" />
      <Compile Include="Assets\_Scenes\HomeRoom\Standard Assets\CrossPlatformInput\Scripts\AxisTouchButton.cs" />
      <Compile Include="Assets\_Scenes\HomeRoom\Standard Assets\CrossPlatformInput\Scripts\ButtonHandler.cs" />
