@@ -7,7 +7,7 @@ using UnityEngine.Networking;
 public class MapBehaviour : NetworkBehaviour {
 
     [SyncVar(hook = "OnChangeAgitation")]
-    private float agitation = 0.0f;
+    public float agitation = 0.0f;
 
     public RectTransform agitationBar;
 
@@ -29,6 +29,12 @@ public class MapBehaviour : NetworkBehaviour {
 
     public void setAgitation(float a)
     {
+		/*if (!isServer)
+		{
+			return;
+		}*/
+
+
         agitation = a;
         if (agitation > 1.0f) agitation = 1.0f;
         if (agitation < 0.0f) agitation = 0.0f;

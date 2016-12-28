@@ -27,8 +27,28 @@ public class PatientController : NetworkBehaviour {
 
 		transform.eulerAngles = new Vector3(pitch, yaw, 0.0f);
 		//transform.Translate(0, x, z);
+	
 
-        transform.GetComponent<MapBehaviour>().setAgitation(0.2f);
+		if (Input.GetKeyDown(KeyCode.Space))
+		{
+			CmdChangeAgitation();
+			print (GetComponent<MapBehaviour> ().agitation);
+		}
+	}
+
+	[Command]
+	public void CmdChangeAgitation()
+	{
+		Debug.Log ("coucouuuuu");
+		if (GetComponent<MapBehaviour> ().agitation < 0.5f) {
+			GetComponent<MapBehaviour> ().setAgitation (0.5f);
+		} else if (GetComponent<MapBehaviour> ().agitation == 0.5f) {
+			GetComponent<MapBehaviour> ().setAgitation (1.0f);
+		} else 
+		{
+			GetComponent<MapBehaviour> ().setAgitation (0.0f);
+		}
+
 	}
 
 	public override void OnStartLocalPlayer()
