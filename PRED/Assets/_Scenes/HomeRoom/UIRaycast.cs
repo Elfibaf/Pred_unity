@@ -45,12 +45,18 @@ public class UIRaycast : MonoBehaviour {
                     }
                 }  
             }
+            else if(hit.collider.name == "button_OK")
+            {
+                hit.transform.gameObject.GetComponent<HandleOK>().setState(true);
+            }
             else // hit but not on a circle_button
             {
                 foreach (GameObject button in circle_buttons)
                 {
                     button.GetComponent<HandleButton>().setState(false);
-                }  
+                }
+
+                GameObject.Find("button_OK").GetComponent<HandleOK>().setState(false);
             }
         }
         else // no collision
@@ -59,6 +65,8 @@ public class UIRaycast : MonoBehaviour {
             {
                 button.GetComponent<HandleButton>().setState(false);
             }
+
+            GameObject.Find("button_OK").GetComponent<HandleOK>().setState(false);
         }
 
 

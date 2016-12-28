@@ -18,6 +18,7 @@ public class NetworkManagerCustom : NetworkManager {
 		public int chosenClass;
 	}
 
+    // triggered only on the server app
 	public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerId, NetworkReader extraMessageReader) {
 
 		// Read client message and receive index
@@ -25,7 +26,10 @@ public class NetworkManagerCustom : NetworkManager {
 		chosenCharacter = stream.value;
 
 		//Select the prefab from the spawnable objects list
-		var playerPrefab = spawnPrefabs[chosenCharacter];       
+		var playerPrefab = spawnPrefabs[chosenCharacter];
+
+        if (chosenCharacter == 1) print("patient instanciation");
+        if (chosenCharacter == 0) print("therapist instanciation");
 
 		// Create player object with prefab
 		var player = Instantiate(playerPrefab, playerPrefab.transform.position, Quaternion.identity) as GameObject;        
@@ -34,9 +38,12 @@ public class NetworkManagerCustom : NetworkManager {
 		NetworkServer.AddPlayerForConnection(conn, player, playerControllerId);
 	}
 
-	public override void OnClientConnect(NetworkConnection conn) {
+	public override void OnClientConnect(NetworkConnection conn) { // triggered when client is connecting (on Server or Client app)
 		// Create message to set the player
-		IntegerMessage msg = new IntegerMessage(chosenCharacter);      
+		IntegerMessage msg = new IntegerMessage(chosenCharacter);
+
+        if (chosenCharacter == 1) print("patient connection");
+        if (chosenCharacter == 0) print("therapist connection");
 
 		// Call Add player and pass the message
 		ClientScene.AddPlayer(conn, 0, msg);
@@ -55,6 +62,10 @@ public class NetworkManagerCustom : NetworkManager {
 		}
 		else if (player.tag == "Patient") {
 			player.GetComponent<PatientController> ().OnStartLocalPlayer ();
+            /*if(sceneName == "RelaxingEnv1")
+            {
+                player.GetComponent<MapBehaviour>().enabled = true;
+            }*/
 		}
 	
 	}

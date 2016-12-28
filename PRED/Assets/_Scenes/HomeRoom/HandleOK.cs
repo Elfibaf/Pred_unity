@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HandleButton : MonoBehaviour {
+public class HandleOK : MonoBehaviour
+{
 
     private bool state;
     private bool isAnimOver;
@@ -15,8 +16,9 @@ public class HandleButton : MonoBehaviour {
     private float duration = 5;
     private float t;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         state = false;
         isAnimOver = false;
         isActivated = false;
@@ -31,7 +33,7 @@ public class HandleButton : MonoBehaviour {
                 child.GetComponent<SpriteRenderer>().color = col;
             }
         }
-	}
+    }
 
     public void setState(bool b)
     {
@@ -50,18 +52,21 @@ public class HandleButton : MonoBehaviour {
 
     private void action()
     {
-        lastCol = GameObject.FindGameObjectWithTag("HomeRoomLight").GetComponent<Light>().color;
+        GameObject.Find("NetworkManager").GetComponent<NetworkManagerCustom>().ServerChangeScene("RelaxingEnv1");
+        GameObject.FindGameObjectWithTag("Patient").GetComponent<MapBehaviour>().enabled = true; // <<< inutile, ne marche pas
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
 
         //print(isAnimOver);
         foreach (Transform child in transform)
         {
-            if (child.tag == "circle")
+            if (child.tag == "square")
             {
-                if(state) // button is focused
+                
+                if (state) // button is focused
                 {
                     if (!child.gameObject.GetComponent<Animation>().IsPlaying(animName) && !isAnimOver) // we play animation if it is not already playing
                     {
@@ -70,12 +75,12 @@ public class HandleButton : MonoBehaviour {
                         child.gameObject.GetComponent<Animation>().Play();
                     }
                 }
-                else if(!isActivated)
+                else if (!isActivated)
                 {
                     Animation anim = child.gameObject.GetComponent<Animation>();
                     anim[animName].speed = -1f;
                     //anim["circle_button"].time = anim["circle_button"].length;
-                    child.gameObject.GetComponent<Animation>().Play(); 
+                    child.gameObject.GetComponent<Animation>().Play();
                 }
 
                 // check if anim is over
@@ -88,7 +93,7 @@ public class HandleButton : MonoBehaviour {
                     anim2[animName].time = anim2[animName].length;
                     isActivated = true;
                     Camera.main.GetComponent<UIRaycast>().activatedButton = transform.gameObject;
-                    action();   
+                    action();
                 }
                 else
                 {
@@ -103,12 +108,11 @@ public class HandleButton : MonoBehaviour {
                     t = 0;
                 }
 
-                if(isActivated) // If isActivated
+                if (isActivated) // If isActivated
                 {
-                    GameObject.FindGameObjectWithTag("HomeRoomLight").GetComponent<Light>().color = Color.Lerp(lastCol, col, t);
-                    t += Time.deltaTime / duration; 
+                    
                 }
-            } 
+            }
         }
-	}
+    }
 }

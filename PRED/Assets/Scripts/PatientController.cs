@@ -64,6 +64,8 @@ public class PatientController : NetworkBehaviour {
 
 		Camera.main.GetComponent<CameraFollow>().setTarget(gameObject.transform);
 
+        //gameObject.GetComponent<MapBehaviour>().enabled = false;
+
         //GameObject.Find("MapBehaviour").GetComponent<MapBehaviour>().setAgitation(0.0f);
         
 	}

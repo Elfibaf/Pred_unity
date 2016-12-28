@@ -19,6 +19,7 @@ public class TherapistUI : MonoBehaviour {
 		{
 			print ("Got a click");
 			GetComponent<NetworkManagerCustom> ().ServerChangeScene ("Ganzfeld");
+            GameObject.FindGameObjectWithTag("Patient").GetComponent<MapBehaviour>().enabled = false;
 		}
 	}
 }

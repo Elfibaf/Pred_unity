@@ -81,6 +81,7 @@
      <Compile Include="Assets\VoiceChat\Scripts\VoiceChatUtils.cs" />
      <Compile Include="Assets\_Scenes\HomeRoom\Billboard.cs" />
      <Compile Include="Assets\_Scenes\HomeRoom\HandleButton.cs" />
+     <Compile Include="Assets\_Scenes\HomeRoom\HandleOK.cs" />
      <Compile Include="Assets\_Scenes\HomeRoom\Standard Assets\CrossPlatformInput\Scripts\AxisTouchButton.cs" />
      <Compile Include="Assets\_Scenes\HomeRoom\Standard Assets\CrossPlatformInput\Scripts\ButtonHandler.cs" />
      <Compile Include="Assets\_Scenes\HomeRoom\Standard Assets\CrossPlatformInput\Scripts\CrossPlatformInputManager.cs" />
@@ -202,11 +203,7 @@
  <HintPath>D:/Logiciels/Unity5/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.HoloLens">
-<<<<<<< HEAD
  <HintPath>D:/Logiciels/Unity5/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
-=======
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
->>>>>>> 0a33151fdbd5451add8e732567d4b7deb1fdbef5
  </Reference>
  <Reference Include="UnityEngine.VR">
  <HintPath>D:/Logiciels/Unity5/Editor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>

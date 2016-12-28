@@ -20,8 +20,6 @@ public class TherapistController : NetworkBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		print (patientDetected);
-
 		if (!isLocalPlayer) 
 		{
 			return;
@@ -36,12 +34,6 @@ public class TherapistController : NetworkBehaviour {
 
 		//transform.eulerAngles = new Vector3(pitch, yaw, 0.0f);
 		//transform.Translate(x, 0, z);
-
-<<<<<<< HEAD
-		//print (Camera.main.GetComponent<CameraFollow>().playerTransform);
-=======
-
->>>>>>> 0a33151fdbd5451add8e732567d4b7deb1fdbef5
 
         if(GameObject.FindGameObjectWithTag("Patient") != null && !patientDetected)
         {
