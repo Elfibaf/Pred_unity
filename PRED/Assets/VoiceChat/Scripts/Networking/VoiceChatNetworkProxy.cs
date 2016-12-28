@@ -24,6 +24,12 @@ namespace VoiceChat.Networking
 
         VoiceChatPlayer player = null;
 
+		void Awake()
+		{
+			DontDestroyOnLoad (this);
+		}
+
+
         void Start()
         {
             if (isMine)

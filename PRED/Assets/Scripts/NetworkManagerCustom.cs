@@ -47,6 +47,7 @@ public class NetworkManagerCustom : NetworkManager {
 
 	public override void OnClientSceneChanged(NetworkConnection conn) {
 		var player = conn.playerControllers [0].gameObject;
+		//VoiceChatNetworkProxy.OnManagerClientConnect(conn);
 
 		if (player.tag == "Therapist") 
 		{
@@ -131,7 +132,7 @@ public class NetworkManagerCustom : NetworkManager {
 
 	public override void OnStopClient()
 	{
-		VoiceChatNetworkProxy.OnManagerStopClient();
+		//VoiceChatNetworkProxy.OnManagerStopClient();
 
 		//if (client != null)
 		//	Destroy(GetComponent<VoiceChatUi>());
@@ -141,7 +142,7 @@ public class NetworkManagerCustom : NetworkManager {
 	{
 		base.OnServerDisconnect(conn);
 
-		VoiceChatNetworkProxy.OnManagerServerDisconnect(conn);
+		//VoiceChatNetworkProxy.OnManagerServerDisconnect(conn);
 	}
 
 	public override void OnStartServer()
