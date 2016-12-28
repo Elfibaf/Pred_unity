@@ -12,6 +12,11 @@ public class TherapistController : NetworkBehaviour {
 	private float pitch = 0.0f;
     private bool patientDetected = false;
 
+	void Awake()
+	{
+		DontDestroyOnLoad (this);
+	}
+
 	// Update is called once per frame
 	void Update () {
 
@@ -30,8 +35,11 @@ public class TherapistController : NetworkBehaviour {
 		//transform.eulerAngles = new Vector3(pitch, yaw, 0.0f);
 		//transform.Translate(x, 0, z);
 
+		print (Camera.main.GetComponent<CameraFollow>().playerTransform);
+
         if(GameObject.FindGameObjectWithTag("Patient") != null && !patientDetected)
         {
+			
             patientDetected = true;
             Camera.main.GetComponent<CameraFollow>().setTarget(GameObject.FindGameObjectWithTag("Patient").transform);
             GameObject.FindGameObjectWithTag("Patient").GetComponent<GyroControl>().enabled = false; // we disable the gyroControl component on the host (therapist)
@@ -42,6 +50,7 @@ public class TherapistController : NetworkBehaviour {
 	public override void OnStartLocalPlayer()
 	{
         gameObject.transform.position = new Vector3(-115.7f, 26.5f, 113.63f);
+		patientDetected = false;
        
 		Camera.main.GetComponent<CameraFollow>().setTarget(gameObject.transform);    
 	}

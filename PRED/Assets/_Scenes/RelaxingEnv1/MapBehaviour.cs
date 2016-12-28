@@ -7,7 +7,13 @@ using UnityEngine.Networking;
 public class MapBehaviour : NetworkBehaviour {
 
     [SyncVar(hook = "OnChangeAgitation")]
-    public float agitation = 0.0f;
+	private float agitation;
+
+	public float Agitation {
+		get { return agitation; }
+		private set { agitation = value; }
+	}
+		
 
     public RectTransform agitationBar;
 
@@ -22,6 +28,7 @@ public class MapBehaviour : NetworkBehaviour {
         foreach(GameObject tree in GameObject.FindGameObjectsWithTag("tree"))
         {
             tree.GetComponent<Animator>().ForceStateNormalizedTime(UnityEngine.Random.Range(0.0f, 1.0f));
+			agitation = 0.0f;
         }
 
         //setAgitation(0.5f);
