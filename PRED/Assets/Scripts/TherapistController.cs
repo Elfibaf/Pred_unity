@@ -36,12 +36,13 @@ public class TherapistController : NetworkBehaviour {
             Camera.main.GetComponent<CameraFollow>().setTarget(GameObject.FindGameObjectWithTag("Patient").transform);
             GameObject.FindGameObjectWithTag("Patient").GetComponent<GyroControl>().enabled = false; // we disable the gyroControl component on the host (therapist)
         }
+
 	}
 
 	public override void OnStartLocalPlayer()
 	{
         gameObject.transform.position = new Vector3(-115.7f, 26.5f, 113.63f);
        
-		Camera.main.GetComponent<CameraFollow>().setTarget(gameObject.transform);
+		Camera.main.GetComponent<CameraFollow>().setTarget(gameObject.transform);    
 	}
 }

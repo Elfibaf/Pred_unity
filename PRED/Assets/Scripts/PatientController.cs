@@ -27,6 +27,8 @@ public class PatientController : NetworkBehaviour {
 
 		transform.eulerAngles = new Vector3(pitch, yaw, 0.0f);
 		//transform.Translate(0, x, z);
+
+        transform.GetComponent<MapBehaviour>().setAgitation(0.2f);
 	}
 
 	public override void OnStartLocalPlayer()
@@ -35,5 +37,8 @@ public class PatientController : NetworkBehaviour {
         gameObject.transform.position = new Vector3(-115.7f, 26.5f, 113.63f);
 
 		Camera.main.GetComponent<CameraFollow>().setTarget(gameObject.transform);
+
+        //GameObject.Find("MapBehaviour").GetComponent<MapBehaviour>().setAgitation(0.0f);
+        
 	}
 }

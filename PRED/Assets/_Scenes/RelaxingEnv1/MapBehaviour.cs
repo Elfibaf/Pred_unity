@@ -1,10 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class MapBehaviour : MonoBehaviour {
+public class MapBehaviour : NetworkBehaviour {
 
-    private float agitation;
+    [SyncVar(hook = "OnChangeAgitation")]
+    private float agitation = 0.0f;
+
+    public RectTransform agitationBar;
 
     private float lastIntensity;
     private float lastCloudRotationSpeed;
@@ -13,13 +18,13 @@ public class MapBehaviour : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        agitation = 0.0f;
-        if (transform.tag == "tree")
+
+        foreach(GameObject tree in GameObject.FindGameObjectsWithTag("tree"))
         {
-            this.GetComponent<Animator>().ForceStateNormalizedTime(UnityEngine.Random.Range(0.0f, 1.0f));
+            tree.GetComponent<Animator>().ForceStateNormalizedTime(UnityEngine.Random.Range(0.0f, 1.0f));
         }
 
-        setAgitation(1.0f);
+        //setAgitation(0.5f);
 	}
 
     public void setAgitation(float a)
@@ -28,21 +33,39 @@ public class MapBehaviour : MonoBehaviour {
         if (agitation > 1.0f) agitation = 1.0f;
         if (agitation < 0.0f) agitation = 0.0f;
 
-        if(transform.tag == "tree")
+        foreach (GameObject tree in GameObject.FindGameObjectsWithTag("tree"))
         {
-            Animator anim = transform.gameObject.GetComponent<Animator>();
+            Animator anim = tree.GetComponent<Animator>();
             anim.speed = 0.8f + agitation * 2.0f;
         }
 
-        if (transform.tag == "sea")
-        {
-            Animator anim = transform.gameObject.GetComponent<Animator>();
-            anim.speed = 0.2f + agitation * 0.5f;
-        }
+        Animator anim_s = GameObject.FindGameObjectWithTag("sea").GetComponent<Animator>();
+        anim_s.speed = 0.2f + agitation * 0.5f;
 
         t = 0.0f;
         lastIntensity = GameObject.FindGameObjectWithTag("DirectionalLight").GetComponent<Light>().intensity;
         lastCloudRotationSpeed = GameObject.FindGameObjectWithTag("DayNight").GetComponent<DayNightController>().cloudRotationSpeed;
+
+        // update the agitation value on the UI
+        GameObject.Find("AgitationValue").GetComponent<Text>().text = agitation.ToString();
+        if(agitationBar != null)
+        {
+            agitationBar.sizeDelta = new Vector2(agitation*100.0f, agitationBar.sizeDelta.y);
+        }
+        
+    }
+
+    void OnChangeAgitation(float newAgitation)
+    {
+        print("ONCHANGEAGITATION (" + newAgitation + ")");
+        // update the agitation value on the UI
+        GameObject.Find("AgitationValue").GetComponent<Text>().text = newAgitation.ToString();
+        if (agitationBar != null)
+        {
+            agitationBar.sizeDelta = new Vector2(newAgitation * 100.0f, agitationBar.sizeDelta.y);
+        }
+
+        setAgitation(newAgitation);
     }
 	
 	// Update is called once per frame
