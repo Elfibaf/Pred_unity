@@ -31,6 +31,8 @@ public class MapBehaviour : NetworkBehaviour {
 			agitation = 0.0f;
         }
 
+        agitationBar = GameObject.Find("Foreground").GetComponent<RectTransform>();
+
         //setAgitation(0.5f);
 	}
 
@@ -42,7 +44,7 @@ public class MapBehaviour : NetworkBehaviour {
 		}*/
 
 
-        agitation = a;
+        Agitation = a;
         if (agitation > 1.0f) agitation = 1.0f;
         if (agitation < 0.0f) agitation = 0.0f;
 
@@ -68,7 +70,7 @@ public class MapBehaviour : NetworkBehaviour {
         
     }
 
-    void OnChangeAgitation(float newAgitation)
+    void OnChangeAgitation(float newAgitation) // called on client
     {
         print("ONCHANGEAGITATION (" + newAgitation + ")");
         // update the agitation value on the UI

@@ -42,7 +42,7 @@ public class PatientController : NetworkBehaviour {
 		}
 	}
 
-	[Command]
+	[Command] // calls the function only server-side
 	public void CmdChangeAgitation()
 	{
 		Debug.Log ("coucouuuuu");
