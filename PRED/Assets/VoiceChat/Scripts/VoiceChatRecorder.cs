@@ -6,6 +6,10 @@ namespace VoiceChat
 {
     public class VoiceChatRecorder : MonoBehaviour
     {
+		void Awake()
+		{
+			DontDestroyOnLoad (this);
+		}
         #region Instance
         static VoiceChatRecorder instance;
 

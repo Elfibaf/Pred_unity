@@ -6,6 +6,10 @@ namespace VoiceChat.Demo
 {
     public class VoiceChatUi : MonoBehaviour
     {
+		void Awake()
+		{
+			DontDestroyOnLoad (this);
+		}
         void Start()
         {
             Application.RequestUserAuthorization(UserAuthorization.Microphone);
