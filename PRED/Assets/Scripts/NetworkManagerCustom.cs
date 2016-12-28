@@ -46,7 +46,20 @@ public class NetworkManagerCustom : NetworkManager {
 
 
 	public override void OnClientSceneChanged(NetworkConnection conn) {
-		//base.OnClientSceneChanged(conn);
+		var player = conn.playerControllers [0].gameObject;
+
+		if (player.tag == "Therapist") 
+		{
+			player.GetComponent<TherapistController> ().OnStartLocalPlayer ();
+		}
+		else if (player.tag == "Patient") {
+			player.GetComponent<PatientController> ().OnStartLocalPlayer ();
+		}
+	
+	}
+
+	public override void OnServerSceneChanged(string sceneName) {
+		
 	}
 
 	// Therapist's button
@@ -121,7 +134,7 @@ public class NetworkManagerCustom : NetworkManager {
 		VoiceChatNetworkProxy.OnManagerStopClient();
 
 		//if (client != null)
-			//Destroy(GetComponent<VoiceChatUi>());
+		//	Destroy(GetComponent<VoiceChatUi>());
 	}
 
 	public override void OnServerDisconnect(NetworkConnection conn)
@@ -138,6 +151,8 @@ public class NetworkManagerCustom : NetworkManager {
 		gameObject.AddComponent<VoiceChatServerUi>();
 
 		gameObject.AddComponent<VoiceChatUi> ();
+
+		gameObject.AddComponent<TherapistUI> ();
 	}
 
 	public override void OnStopServer()
@@ -145,6 +160,8 @@ public class NetworkManagerCustom : NetworkManager {
 		VoiceChatNetworkProxy.OnManagerStopServer();
 
 		Destroy(GetComponent<VoiceChatServerUi>());
+
+		Destroy (GetComponent<TherapistUI> ());
 
 		if (client != null)
 			Destroy(GetComponent<VoiceChatUi>());

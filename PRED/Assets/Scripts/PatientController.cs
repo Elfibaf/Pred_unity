@@ -10,6 +10,12 @@ public class PatientController : NetworkBehaviour {
 
     private float yaw = -100.5f;
 	private float pitch = 0.0f;
+
+
+	void Awake()
+	{
+		DontDestroyOnLoad (this);
+	}
 	
 	// Update is called once per frame
 	void Update () {
@@ -32,7 +38,7 @@ public class PatientController : NetworkBehaviour {
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
 			CmdChangeAgitation();
-			print (GetComponent<MapBehaviour> ().agitation);
+			print (GetComponent<MapBehaviour> ().Agitation);
 		}
 	}
 
@@ -40,9 +46,9 @@ public class PatientController : NetworkBehaviour {
 	public void CmdChangeAgitation()
 	{
 		Debug.Log ("coucouuuuu");
-		if (GetComponent<MapBehaviour> ().agitation < 0.5f) {
+		if (GetComponent<MapBehaviour> ().Agitation < 0.5f) {
 			GetComponent<MapBehaviour> ().setAgitation (0.5f);
-		} else if (GetComponent<MapBehaviour> ().agitation == 0.5f) {
+		} else if (GetComponent<MapBehaviour> ().Agitation == 0.5f) {
 			GetComponent<MapBehaviour> ().setAgitation (1.0f);
 		} else 
 		{
@@ -61,4 +67,6 @@ public class PatientController : NetworkBehaviour {
         //GameObject.Find("MapBehaviour").GetComponent<MapBehaviour>().setAgitation(0.0f);
         
 	}
+
+
 }
