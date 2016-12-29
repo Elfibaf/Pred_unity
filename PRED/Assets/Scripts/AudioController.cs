@@ -7,20 +7,23 @@ using UnityEngine.Networking;
 public class AudioController : NetworkBehaviour {
 	private AudioSource whiteNoiseSource;
 	private AudioClip whiteNoise;
+	private Object[] clipArray;
+
 
 	void Start()
 	{
+		clipArray = Resources.LoadAll ("Audio");
 		whiteNoiseSource = GetComponent<AudioSource> ();
-		whiteNoise = whiteNoiseSource.clip;
-		print(whiteNoise);
+		whiteNoise = (AudioClip)clipArray [0];
+		whiteNoiseSource.clip = whiteNoise;
+		whiteNoiseSource.Play ();
 	}
 
 	[ClientRpc]
-	public void RpcPlaySound(string soundName)
+	public void RpcPlaySoundFromButton(int soundNum)
 	{
-		whiteNoise = Resources.Load<AudioClip> ("Audio/" + soundName);
+		whiteNoise = (AudioClip)clipArray [soundNum];
 		whiteNoiseSource.clip = whiteNoise;
-		print (whiteNoise);
 		whiteNoiseSource.Play ();
 	}
 }

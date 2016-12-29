@@ -11,6 +11,21 @@ public class TherapistUI : MonoBehaviour {
 	public float rectHeight = Screen.height / 8;
 	private AudioSource whiteNoiseSource;
 
+	public int prevSelGridInt = 0;
+	public int selGridInt = 0;
+	public Object[] clipArray;
+	public List<string> clipNames = new List<string>();
+	public string[] clipNamesArray;
+
+	void Start()
+	{
+		clipArray = Resources.LoadAll ("Audio");
+		foreach (AudioClip clip in clipArray) {
+			clipNames.Add (clip.name);
+		}
+		clipNamesArray = clipNames.ToArray();
+	}
+
 	void OnGUI()
 	{
 		if (SceneManager.GetActiveScene ().name == "RelaxingEnv1") {
@@ -27,6 +42,7 @@ public class TherapistUI : MonoBehaviour {
 	{
 		//GUI.Box (new Rect (0, 0, Screen.width - 260, Screen.height - 20), "");
 
+
 		if (GUILayout.Button ("Phase Ganzfeld")) 
 		{
 			GetComponent<NetworkManagerCustom> ().ServerChangeScene ("Ganzfeld");
@@ -36,16 +52,25 @@ public class TherapistUI : MonoBehaviour {
 
 	void WhiteNoiseWindow(int id)
 	{
+		
 		//GUI.Box (new Rect (0, 0, Screen.width - 260, Screen.height - 20), "");
 		GUILayout.Label("Choix du bruit blanc");
-		if (GUILayout.Button ("Bruit 1")) 
+		selGridInt = GUILayout.SelectionGrid (selGridInt, clipNamesArray, 2);
+
+		if (prevSelGridInt != selGridInt) {
+			prevSelGridInt = selGridInt;
+			whiteNoiseSource.GetComponent<AudioController> ().RpcPlaySoundFromButton (selGridInt);
+		}
+
+		/*if (GUILayout.Button ("Bruit 1")) 
 		{
 			print ("Got a click");
 			whiteNoiseSource.GetComponent<AudioController>().RpcPlaySound("15 Highway to Hell");
 		}
 		if (GUILayout.Button ("Bruit 2")) {
 			whiteNoiseSource.GetComponent<AudioController>().RpcPlaySound("Make It Bun Dem - Skrillex _ Damian Jr. Gong Marley");
-		}
+		}*/
+
 	}
 		
 
