@@ -56,17 +56,20 @@ public class NetworkManagerCustom : NetworkManager {
 		var player = conn.playerControllers [0].gameObject;
 		//VoiceChatNetworkProxy.OnManagerClientConnect(conn);
 
+
+
 		if (player.tag == "Therapist") 
 		{
 			player.GetComponent<TherapistController> ().OnStartLocalPlayer ();
 		}
 		else if (player.tag == "Patient") {
 			player.GetComponent<PatientController> ().OnStartLocalPlayer ();
-            /*if(sceneName == "RelaxingEnv1")
-            {
-                player.GetComponent<MapBehaviour>().enabled = true;
-            }*/
 		}
+		if (!ClientScene.ready) {
+			ClientScene.Ready(conn);
+		}
+
+		print(ClientScene.ready);
 	
 	}
 

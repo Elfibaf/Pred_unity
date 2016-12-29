@@ -53,7 +53,7 @@ public class HandleOK : MonoBehaviour
     private void action()
     {
         GameObject.Find("NetworkManager").GetComponent<NetworkManagerCustom>().ServerChangeScene("RelaxingEnv1");
-        GameObject.FindGameObjectWithTag("Patient").GetComponent<MapBehaviour>().enabled = true; // <<< inutile, ne marche pas
+        //GameObject.FindGameObjectWithTag("Patient").GetComponent<MapBehaviour>().enabled = true; // <<< inutile, ne marche pas
     }
 
     // Update is called once per frame
