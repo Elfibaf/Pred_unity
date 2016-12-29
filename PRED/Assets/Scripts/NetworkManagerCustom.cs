@@ -56,8 +56,6 @@ public class NetworkManagerCustom : NetworkManager {
 		var player = conn.playerControllers [0].gameObject;
 		//VoiceChatNetworkProxy.OnManagerClientConnect(conn);
 
-
-
 		if (player.tag == "Therapist") 
 		{
 			player.GetComponent<TherapistController> ().OnStartLocalPlayer ();
