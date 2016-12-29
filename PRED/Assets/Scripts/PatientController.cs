@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 
 public class PatientController : NetworkBehaviour {
 
@@ -38,7 +39,7 @@ public class PatientController : NetworkBehaviour {
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
 			CmdChangeAgitation();
-			print (GetComponent<MapBehaviour> ().Agitation);
+			print (GetComponent<MapBehaviour> ().agitation);
 		}
 	}
 
@@ -46,9 +47,10 @@ public class PatientController : NetworkBehaviour {
 	public void CmdChangeAgitation()
 	{
 		Debug.Log ("coucouuuuu");
-		if (GetComponent<MapBehaviour> ().Agitation < 0.5f) {
-			GetComponent<MapBehaviour> ().setAgitation (0.5f);
-		} else if (GetComponent<MapBehaviour> ().Agitation == 0.5f) {
+		if (GetComponent<MapBehaviour> ().agitation < 0.5f) {
+			//GetComponent<MapBehaviour> ().setAgitation (0.5f);
+			GetComponent<MapBehaviour> ().agitation = 0.5f;
+		} else if (GetComponent<MapBehaviour> ().agitation == 0.5f) {
 			GetComponent<MapBehaviour> ().setAgitation (1.0f);
 		} else 
 		{
@@ -63,6 +65,12 @@ public class PatientController : NetworkBehaviour {
         gameObject.transform.position = new Vector3(-115.7f, 26.5f, 113.63f);
 
 		Camera.main.GetComponent<CameraFollow>().setTarget(gameObject.transform);
+
+		print (SceneManager.GetActiveScene ().name);
+
+		if (SceneManager.GetActiveScene ().name == "RelaxingEnv1") {
+			GetComponent<MapBehaviour>().enabled = true;
+		}
 
         //gameObject.GetComponent<MapBehaviour>().enabled = false;
 

@@ -62,11 +62,12 @@ public class NetworkManagerCustom : NetworkManager {
 		}
 		else if (player.tag == "Patient") {
 			player.GetComponent<PatientController> ().OnStartLocalPlayer ();
-            /*if(sceneName == "RelaxingEnv1")
-            {
-                player.GetComponent<MapBehaviour>().enabled = true;
-            }*/
 		}
+		if (!ClientScene.ready) {
+			ClientScene.Ready(conn);
+		}
+
+		print(ClientScene.ready);
 	
 	}
 

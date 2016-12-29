@@ -7,12 +7,8 @@ using UnityEngine.Networking;
 public class MapBehaviour : NetworkBehaviour {
 
     [SyncVar(hook = "OnChangeAgitation")]
-	private float agitation;
+	public float agitation;
 
-	public float Agitation {
-		get { return agitation; }
-		private set { agitation = value; }
-	}
 		
 
     public RectTransform agitationBar;
@@ -44,7 +40,7 @@ public class MapBehaviour : NetworkBehaviour {
 		}*/
 
 
-        Agitation = a;
+        agitation = a;
         if (agitation > 1.0f) agitation = 1.0f;
         if (agitation < 0.0f) agitation = 0.0f;
 
@@ -70,7 +66,7 @@ public class MapBehaviour : NetworkBehaviour {
         
     }
 
-    void OnChangeAgitation(float newAgitation) // called on client
+    void OnChangeAgitation(float newAgitation) // called on clients
     {
         print("ONCHANGEAGITATION (" + newAgitation + ")");
         // update the agitation value on the UI
