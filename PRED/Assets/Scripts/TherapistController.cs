@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
+using UnityEngine.VR;
 
 public class TherapistController : NetworkBehaviour {
 
@@ -41,6 +43,7 @@ public class TherapistController : NetworkBehaviour {
             patientDetected = true;
             Camera.main.GetComponent<CameraFollow>().setTarget(GameObject.FindGameObjectWithTag("Patient").transform);
             GameObject.FindGameObjectWithTag("Patient").GetComponent<GyroControl>().enabled = false; // we disable the gyroControl component on the host (therapist)
+            GameObject.FindGameObjectWithTag("Patient").GetComponent<CameraFollow>().enabled = false;
         }
 
 	}
@@ -49,7 +52,31 @@ public class TherapistController : NetworkBehaviour {
 	{
         gameObject.transform.position = new Vector3(-115.7f, 26.5f, 113.63f);
 		patientDetected = false;
+
+        // On therapist side : the main camera follows the Patient Prefab
+        Camera.main.GetComponent<CameraFollow>().enabled = true;
+        Camera.main.GetComponent<CameraFollow>().setTarget(gameObject.transform);
+        Camera.main.GetComponent<GvrHead>().enabled = false;
+
+        if (GameObject.Find("GvrViewerMain") != null)
+        {
+            GameObject.Find("GvrViewerMain").GetComponent<GvrViewer>().VRModeEnabled = false;
+        }
+        VRSettings.enabled = false;
        
-		Camera.main.GetComponent<CameraFollow>().setTarget(gameObject.transform);    
+        if (SceneManager.GetActiveScene().name == "RelaxingEnv1")
+        {
+            if (GameObject.FindGameObjectWithTag("Patient") != null)
+            {
+                GameObject.FindGameObjectWithTag("Patient").GetComponent<MapBehaviour>().enabled = true;
+            }
+        }
+        else
+        {
+            if (GameObject.FindGameObjectWithTag("Patient") != null)
+            {
+                GameObject.FindGameObjectWithTag("Patient").GetComponent<MapBehaviour>().enabled = false;
+            }
+        }
 	}
 }

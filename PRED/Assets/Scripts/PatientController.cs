@@ -12,6 +12,8 @@ public class PatientController : NetworkBehaviour {
     private float yaw = -100.5f;
 	private float pitch = 0.0f;
 
+    public bool MouseControl = true;
+
 
 	void Awake()
 	{
@@ -28,14 +30,15 @@ public class PatientController : NetworkBehaviour {
 
 		//var x = Input.GetAxis("Horizontal") * Time.deltaTime * 3.0f;
 		//var z = Input.GetAxis("Vertical") * Time.deltaTime * 3.0f;
+        yaw += h_speed * Input.GetAxis("Mouse X");
+        pitch -= v_speed * Input.GetAxis("Mouse Y");
 
-		yaw += h_speed * Input.GetAxis("Mouse X");
-		pitch -= v_speed * Input.GetAxis("Mouse Y");
-
-		transform.eulerAngles = new Vector3(pitch, yaw, 0.0f);
-		//transform.Translate(0, x, z);
-	
-
+        if(MouseControl)
+        {
+            transform.eulerAngles = new Vector3(pitch, yaw, 0.0f);
+            //transform.Translate(0, x, z);
+        }
+		
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
 			CmdChangeAgitation();
@@ -46,7 +49,6 @@ public class PatientController : NetworkBehaviour {
 	[Command] // calls the function only server-side
 	public void CmdChangeAgitation()
 	{
-		Debug.Log ("coucouuuuu");
 		if (GetComponent<MapBehaviour> ().agitation < 0.5f) {
 			//GetComponent<MapBehaviour> ().setAgitation (0.5f);
 			GetComponent<MapBehaviour> ().agitation = 0.5f;
@@ -64,13 +66,17 @@ public class PatientController : NetworkBehaviour {
 
         gameObject.transform.position = new Vector3(-115.7f, 26.5f, 113.63f);
 
-		Camera.main.GetComponent<CameraFollow>().setTarget(gameObject.transform);
+		GetComponent<CameraFollow>().setTarget(Camera.main.transform);
 
 		print (SceneManager.GetActiveScene ().name);
 
 		if (SceneManager.GetActiveScene ().name == "RelaxingEnv1") {
 			GetComponent<MapBehaviour>().enabled = true;
 		}
+        else
+        {
+            GetComponent<MapBehaviour>().enabled = false;
+        }
 
         //gameObject.GetComponent<MapBehaviour>().enabled = false;
 

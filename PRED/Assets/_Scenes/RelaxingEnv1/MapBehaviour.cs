@@ -79,11 +79,14 @@ public class MapBehaviour : NetworkBehaviour {
         setAgitation(newAgitation);
     }
 	
-	// Update is called once per frame
+	// Update is called once per frame (when a script component is disabled, only the update function is disabled)
 	void Update () {
 
-        GameObject.FindGameObjectWithTag("DirectionalLight").GetComponent<Light>().intensity = Mathf.Lerp(lastIntensity, (0.35f + (1.0f - agitation) * 0.65f), t);
-        GameObject.FindGameObjectWithTag("DayNight").GetComponent<DayNightController>().cloudRotationSpeed = Mathf.Lerp(lastCloudRotationSpeed, (10.0f + agitation * 100.0f), t);
-        t += Time.deltaTime / duration; 
+        if(this.enabled) // only if component is enabled
+        {
+            GameObject.FindGameObjectWithTag("DirectionalLight").GetComponent<Light>().intensity = Mathf.Lerp(lastIntensity, (0.35f + (1.0f - agitation) * 0.65f), t);
+            GameObject.FindGameObjectWithTag("DayNight").GetComponent<DayNightController>().cloudRotationSpeed = Mathf.Lerp(lastCloudRotationSpeed, (10.0f + agitation * 100.0f), t);
+            t += Time.deltaTime / duration;
+        }
 	}
 }
