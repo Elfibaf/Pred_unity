@@ -1,6 +1,9 @@
 C:\Users\fabien\Documents\Pred_unity\PRED\Temp\bin\Debug\Assembly-CSharp-firstpass.dll
 C:\Users\fabien\Documents\Pred_unity\PRED\Temp\bin\Debug\Assembly-CSharp-firstpass.pdb
+C:\Users\fabien\Documents\Pred_unity\PRED\Temp\bin\Debug\Ionic.Zlib.dll
 C:\Users\fabien\Documents\Pred_unity\PRED\Temp\bin\Debug\Mono.Cecil.dll
+C:\Users\fabien\Documents\Pred_unity\PRED\Temp\bin\Debug\Newtonsoft.Json.dll
+C:\Users\fabien\Documents\Pred_unity\PRED\Temp\bin\Debug\NSpeex.dll
 C:\Users\fabien\Documents\Pred_unity\PRED\Temp\bin\Debug\UnityEditor.dll
 C:\Users\fabien\Documents\Pred_unity\PRED\Temp\bin\Debug\UnityEditor.iOS.Extensions.Common.dll
 C:\Users\fabien\Documents\Pred_unity\PRED\Temp\bin\Debug\UnityEditor.iOS.Extensions.Xcode.dll
@@ -26,6 +29,7 @@ C:\Users\fabien\Documents\Pred_unity\PRED\Temp\bin\Debug\UnityEngine.PlaymodeTes
 C:\Users\fabien\Documents\Pred_unity\PRED\Temp\bin\Debug\UnityEngine.Analytics.xml
 C:\Users\fabien\Documents\Pred_unity\PRED\Temp\bin\Debug\UnityEngine.HoloLens.xml
 C:\Users\fabien\Documents\Pred_unity\PRED\Temp\bin\Debug\UnityEngine.VR.xml
+C:\Users\fabien\Documents\Pred_unity\PRED\Temp\bin\Debug\Newtonsoft.Json.xml
 C:\Users\fabien\Documents\Pred_unity\PRED\obj\Debug\Assembly-CSharp-firstpass.csprojResolveAssemblyReference.cache
 C:\Users\fabien\Documents\Pred_unity\PRED\obj\Debug\Assembly-CSharp-firstpass.dll
 C:\Users\fabien\Documents\Pred_unity\PRED\obj\Debug\Assembly-CSharp-firstpass.pdb

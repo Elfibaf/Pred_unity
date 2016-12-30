@@ -1,15 +1,17 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\AudioController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ReceiveSpire.cs">
     <Files>
       <File FileName="Assets\Scripts\CameraController.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\CameraFollow.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\PatientController.cs" Line="65" Column="63" />
+      <File FileName="Assets\Scripts\PatientController.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\TherapistController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\NetworkManagerCustom.cs" Line="57" Column="56" />
-      <File FileName="Assets\VoiceChat\Scripts\Demo\VoiceChatUi.cs" Line="39" Column="5" />
-      <File FileName="Assets\Scripts\TherapistUI.cs" Line="47" Column="20" />
-      <File FileName="Assets\Scripts\AudioController.cs" Line="15" Column="8" />
+      <File FileName="Assets\Scripts\NetworkManagerCustom.cs" Line="1" Column="1" />
+      <File FileName="Assets\VoiceChat\Scripts\Demo\VoiceChatUi.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\TherapistUI.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\AudioController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\ReceiveSpire.cs" Line="21" Column="100" />
+      <File FileName="c:\Users\fabien\Documents\Pred_unity\PRED\Assets\Day Night Cycle\Editor\DayNightControllerEditor.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
