@@ -323,14 +323,14 @@
  <Reference Include="Google.ProtocolBuffers">
  <HintPath>D:/Etudes/5A/PRED/Pred_unity/PRED/Assets/Plugins/Google.ProtocolBuffers.dll</HintPath>
  </Reference>
+ <Reference Include="Newtonsoft.Json">
+ <HintPath>D:/Etudes/5A/PRED/Pred_unity/PRED/Assets/Plugins/net35/Newtonsoft.Json.dll</HintPath>
+ </Reference>
  <Reference Include="Ionic.Zlib">
  <HintPath>D:/Etudes/5A/PRED/Pred_unity/PRED/Assets/VoiceChat/Assemblies/Ionic.Zlib.dll</HintPath>
  </Reference>
  <Reference Include="NSpeex">
  <HintPath>D:/Etudes/5A/PRED/Pred_unity/PRED/Assets/VoiceChat/Assemblies/NSpeex.dll</HintPath>
- </Reference>
- <Reference Include="Newtonsoft.Json">
- <HintPath>D:/Etudes/5A/PRED/Pred_unity/PRED/Assets/Plugins/net35/Newtonsoft.Json.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>
