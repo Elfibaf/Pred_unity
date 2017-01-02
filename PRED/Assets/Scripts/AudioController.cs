@@ -22,8 +22,17 @@ public class AudioController : NetworkBehaviour {
 	[ClientRpc]
 	public void RpcPlaySoundFromButton(int soundNum)
 	{
+		print ("RPC appelé");
 		whiteNoise = (AudioClip)clipArray [soundNum];
 		whiteNoiseSource.clip = whiteNoise;
 		whiteNoiseSource.Play ();
+
+		print ("Musique changée");
+	}
+
+	[Command]
+	public void CmdPlaySound(int numButton) {
+		print ("CMD appelé");
+		whiteNoiseSource.GetComponent<AudioController> ().RpcPlaySoundFromButton (numButton);
 	}
 }

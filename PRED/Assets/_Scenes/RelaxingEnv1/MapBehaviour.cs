@@ -9,7 +9,6 @@ public class MapBehaviour : NetworkBehaviour {
     [SyncVar(hook = "OnChangeAgitation")]
 	public float agitation;
 
-		
 
     public RectTransform agitationBar;
 
@@ -89,4 +88,5 @@ public class MapBehaviour : NetworkBehaviour {
             t += Time.deltaTime / duration;
         }
 	}
+		
 }

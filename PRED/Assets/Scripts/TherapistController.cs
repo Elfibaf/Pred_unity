@@ -78,5 +78,8 @@ public class TherapistController : NetworkBehaviour {
                 GameObject.FindGameObjectWithTag("Patient").GetComponent<MapBehaviour>().enabled = false;
             }
         }
+
+		print (SceneManager.GetActiveScene ().name);
+
 	}
 }

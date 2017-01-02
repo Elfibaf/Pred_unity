@@ -6,37 +6,32 @@ using UnityEngine;
 using System.Net;
 using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
+using UnityEngine.Networking;
+using UnityEngine.UI;
 
-public class ReceiveSpire : MonoBehaviour {
+
+public class ReceiveSpire : NetworkBehaviour {
 	
 
 	public string accesToken = "41d2fadfdc8bf540f4dfe16f1c15e1ddc8db91b2469aaee5cd95fa550c6e4e5e";
+
+	[SyncVar(hook="OnChangeBreathing")]
 	public float breathingRythm;
+	public float delta = 15.0f;
 
 
 	// Use this for initialization
 	void Start () {
-		using (WebClient wc = new WebClient())
-		{
-			ServicePointManager.ServerCertificateValidationCallback = MyRemoteCertificateValidationCallback;
-			var json = wc.DownloadString("https://app.spire.io/api/v2/streaks?access_token=" + accesToken);
-			//Breathe breathe = JsonConvert.DeserializeObject<Breathe> (json);
-			var objects = JArray.Parse(json); // parse as array
-			foreach (JObject breathe in objects) {
-				string type = breathe.Value<string> ("type");
-				if ((type == "calm") || (type == "sedentary") || (type == "focus")) {
-					breathingRythm = breathe.Value<float> ("sub_value");
-					print (breathingRythm);
-					break;
-				}
-			}
-
+		if (!isLocalPlayer) {
+			return;
 		}
+		InvokeRepeating ("GetBreathingRythm", 0.0f, delta);
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
+
 	}
 
 	public bool MyRemoteCertificateValidationCallback(System.Object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors) {
@@ -57,5 +52,40 @@ public class ReceiveSpire : MonoBehaviour {
 			}
 		}
 		return isOk;
+	}
+
+
+	void GetBreathingRythm() {
+		using (WebClient wc = new WebClient())
+		{
+			ServicePointManager.ServerCertificateValidationCallback = MyRemoteCertificateValidationCallback;
+			var json = wc.DownloadString("https://app.spire.io/api/v2/streaks?access_token=" + accesToken);
+			//Breathe breathe = JsonConvert.DeserializeObject<Breathe> (json);
+			var objects = JArray.Parse(json); // parse as array
+			foreach (JObject breathe in objects) {
+				string type = breathe.Value<string> ("type");
+				if ((type == "calm") || (type == "sedentary") || (type == "focus")) {
+					CmdChangeBreathing(breathe.Value<float> ("sub_value")+ UnityEngine.Random.Range(0.0f,1.0f));
+					break;
+				}
+			}
+
+		}
+	}
+
+	void OnChangeBreathing(float breathing) {
+
+		breathingRythm = breathing;
+		// updating breathing value on the UI
+		if (GameObject.Find ("Breathing") != null) {
+			GameObject.Find("Breathing").GetComponent<Text>().text = breathing.ToString();
+		}
+		print (breathingRythm);
+	}
+
+	[Command]
+	void CmdChangeBreathing(float breathing) {
+		breathingRythm = breathing;
+
 	}
 }

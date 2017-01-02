@@ -59,7 +59,11 @@ public class TherapistUI : MonoBehaviour {
 
 		if (prevSelGridInt != selGridInt) {
 			prevSelGridInt = selGridInt;
+			print("Changement de musique " + clipNamesArray[selGridInt]);
 			whiteNoiseSource.GetComponent<AudioController> ().RpcPlaySoundFromButton (selGridInt);
+			PlaySoundFromButton(selGridInt);
+			//whiteNoiseSource.GetComponent<AudioController> ().CmdPlaySound (selGridInt);
+
 		}
 
 		/*if (GUILayout.Button ("Bruit 1")) 
@@ -72,7 +76,12 @@ public class TherapistUI : MonoBehaviour {
 		}*/
 
 	}
-		
 
+	// Using this function because RPC won't get called on host (when running in standalone build)
+	void PlaySoundFromButton(int soundNum)
+	{
+		whiteNoiseSource.clip = (AudioClip)clipArray [soundNum];
+		whiteNoiseSource.Play ();
+	}
 
 }
