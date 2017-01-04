@@ -61,6 +61,7 @@ public class NetworkManagerCustom : NetworkManager {
 			player.GetComponent<TherapistController> ().OnStartLocalPlayer ();
 		}
 		else if (player.tag == "Patient") {
+			print ("tag = patient");
 			player.GetComponent<PatientController> ().OnStartLocalPlayer ();
 		}
 		if (!ClientScene.ready) {
@@ -71,9 +72,9 @@ public class NetworkManagerCustom : NetworkManager {
 	
 	}
 
-	public override void OnServerSceneChanged(string sceneName) {
+	/*public override void OnServerSceneChanged(string sceneName) {
 		
-	}
+	}*/
 
 	// Therapist's button
 	public void StartupHost()
