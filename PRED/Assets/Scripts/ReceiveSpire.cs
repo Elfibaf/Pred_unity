@@ -11,12 +11,11 @@ using UnityEngine.UI;
 
 
 public class ReceiveSpire : NetworkBehaviour {
-	
-
-	public string accesToken = "41d2fadfdc8bf540f4dfe16f1c15e1ddc8db91b2469aaee5cd95fa550c6e4e5e";
 
 	[SyncVar(hook="OnChangeBreathing")]
 	public float breathingRythm;
+
+	public string accesToken = "41d2fadfdc8bf540f4dfe16f1c15e1ddc8db91b2469aaee5cd95fa550c6e4e5e";
 	public float delta = 15.0f;
 
 
@@ -26,12 +25,6 @@ public class ReceiveSpire : NetworkBehaviour {
 			return;
 		}
 		InvokeRepeating ("GetBreathingRythm", 0.0f, delta);
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-
 	}
 
 	public bool MyRemoteCertificateValidationCallback(System.Object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors) {
@@ -59,19 +52,31 @@ public class ReceiveSpire : NetworkBehaviour {
 		using (WebClient wc = new WebClient())
 		{
 			ServicePointManager.ServerCertificateValidationCallback = MyRemoteCertificateValidationCallback;
-			var json = wc.DownloadString("https://app.spire.io/api/v2/streaks?access_token=" + accesToken);
-			//Breathe breathe = JsonConvert.DeserializeObject<Breathe> (json);
+			wc.DownloadStringCompleted += new DownloadStringCompletedEventHandler (DownloadStringCallback2);
+			wc.DownloadStringAsync(new Uri("https://app.spire.io/api/v2/streaks?access_token=" + accesToken));
+		}
+	}
+
+	private void DownloadStringCallback2 (object sender, DownloadStringCompletedEventArgs e)
+	{
+		// If the request was not canceled and did not throw
+		// an exception, display the resource.
+		if (!e.Cancelled && e.Error == null)
+		{
+			var json = (string)e.Result;
 			var objects = JArray.Parse(json); // parse as array
 			foreach (JObject breathe in objects) {
 				string type = breathe.Value<string> ("type");
 				if ((type == "calm") || (type == "sedentary") || (type == "focus")) {
-					CmdChangeBreathing(breathe.Value<float> ("sub_value")+ UnityEngine.Random.Range(0.0f,1.0f));
+					CmdChangeBreathing(breathe.Value<float> ("sub_value") + UnityEngine.Random.Range(0.0f,1.0f));
+					//CmdChangeBreathing(UnityEngine.Random.Range(6.0f,24.0f));
+					CmdChangeAgitation (breathingRythm, 6.0f, 24.0f);
 					break;
 				}
 			}
-
 		}
 	}
+
 
 	void OnChangeBreathing(float breathing) {
 
@@ -88,4 +93,20 @@ public class ReceiveSpire : NetworkBehaviour {
 		breathingRythm = breathing;
 
 	}
+
+	// Normalizes the breathing between 0-1 and set new agitation
+	[Command]
+	void CmdChangeAgitation(float value, float min, float max)
+	{
+		float newAgitation = (float)Math.Round(((value - min) / (max - min)),2);
+		//float newAgitation = ((value - min) / (max - min));
+		print ("New Agitation" + newAgitation.ToString());
+		if (GameObject.FindGameObjectWithTag ("Patient") != null) {
+			GameObject.FindGameObjectWithTag ("Patient").GetComponent<MapBehaviour> ().agitation = newAgitation;
+			print (GameObject.FindGameObjectWithTag ("Patient").GetComponent<MapBehaviour> ().agitation);
+		}
+	}
+
+
+
 }
