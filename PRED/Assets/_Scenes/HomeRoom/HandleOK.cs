@@ -16,6 +16,8 @@ public class HandleOK : MonoBehaviour
     private float duration = 5;
     private float t;
 
+	bool stop = false;
+
     // Use this for initialization
     void Start()
     {
@@ -52,8 +54,12 @@ public class HandleOK : MonoBehaviour
 
     private void action()
     {
-        GameObject.Find("NetworkManager").GetComponent<NetworkManagerCustom>().ServerChangeScene("RelaxingEnv1");
-        //GameObject.FindGameObjectWithTag("Patient").GetComponent<MapBehaviour>().enabled = true; // <<< inutile, ne marche pas
+		if (!stop) {
+			GameObject.Find("NetworkManager").GetComponent<NetworkManagerCustom>().ServerChangeScene("RelaxingEnv1");
+			//GameObject.FindGameObjectWithTag("Patient").GetComponent<MapBehaviour>().enabled = true; // <<< inutile, ne marche pas
+			stop = true;
+		}
+        
     }
 
     // Update is called once per frame
