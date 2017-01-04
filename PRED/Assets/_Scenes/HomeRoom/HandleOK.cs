@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HandleOK : MonoBehaviour
 {
@@ -52,8 +53,10 @@ public class HandleOK : MonoBehaviour
 
     private void action()
     {
-        GameObject.Find("NetworkManager").GetComponent<NetworkManagerCustom>().ServerChangeScene("RelaxingEnv1");
-        //GameObject.FindGameObjectWithTag("Patient").GetComponent<MapBehaviour>().enabled = true; // <<< inutile, ne marche pas
+        if (SceneManager.GetActiveScene().name != "RelaxingEnv1")
+        {
+            GameObject.Find("NetworkManager").GetComponent<NetworkManagerCustom>().ServerChangeScene("RelaxingEnv1");
+        }   
     }
 
     // Update is called once per frame

@@ -12,7 +12,7 @@ public class PatientController : NetworkBehaviour {
     private float yaw = -100.5f;
 	private float pitch = 0.0f;
 
-    public bool MouseControl = true;
+    public bool MouseControl = false;
 
 
 	void Awake()
