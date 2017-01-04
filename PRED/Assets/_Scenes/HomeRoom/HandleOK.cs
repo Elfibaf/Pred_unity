@@ -17,8 +17,6 @@ public class HandleOK : MonoBehaviour
     private float duration = 5;
     private float t;
 
-	bool stop = false;
-
     // Use this for initialization
     void Start()
     {
@@ -55,19 +53,12 @@ public class HandleOK : MonoBehaviour
 
     private void action()
     {
-<<<<<<< HEAD
-        if (SceneManager.GetActiveScene().name != "RelaxingEnv1")
-        {
+        // only if Patient prefab contained in the scene is the local player
+        //if (GameObject.FindGameObjectWithTag("Patient").GetComponent<PatientController>().isLocalPlayer) // only triggers scene change on patient side
+        //{
             GameObject.Find("NetworkManager").GetComponent<NetworkManagerCustom>().ServerChangeScene("RelaxingEnv1");
-        }   
-=======
-		if (!stop) {
-			GameObject.Find("NetworkManager").GetComponent<NetworkManagerCustom>().ServerChangeScene("RelaxingEnv1");
-			//GameObject.FindGameObjectWithTag("Patient").GetComponent<MapBehaviour>().enabled = true; // <<< inutile, ne marche pas
-			stop = true;
-		}
-        
->>>>>>> f1a7a6b6487683149a7208722ed3aa4d3612d4ed
+        //}
+		
     }
 
     // Update is called once per frame
@@ -100,7 +91,7 @@ public class HandleOK : MonoBehaviour
                 // check if anim is over
                 Animation anim2 = child.gameObject.GetComponent<Animation>();
                 //print(isActivated);
-                if (anim2[animName].time > anim2[animName].length && !isAnimOver) // animation over (called once)
+                if (anim2[animName].time >= anim2[animName].length && !isAnimOver) // animation over (called once)
                 {
                     isAnimOver = true;
                     child.gameObject.GetComponent<Animation>().Stop();
@@ -109,7 +100,8 @@ public class HandleOK : MonoBehaviour
                     Camera.main.GetComponent<UIRaycast>().activatedButton = transform.gameObject;
                     action();
                 }
-                else
+
+                if (anim2[animName].time < anim2[animName].length)
                 {
                     isAnimOver = false;
                 }

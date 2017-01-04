@@ -55,7 +55,7 @@ public class NetworkManagerCustom : NetworkManager {
 	public override void OnClientSceneChanged(NetworkConnection conn) {
 		var player = conn.playerControllers [0].gameObject;
 		//VoiceChatNetworkProxy.OnManagerClientConnect(conn);
-
+        print("scene changed !");
 		if (player.tag == "Therapist") 
 		{
 			player.GetComponent<TherapistController> ().OnStartLocalPlayer ();
