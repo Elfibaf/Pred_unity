@@ -52,8 +52,19 @@ public class ReceiveSpire : NetworkBehaviour {
 		using (WebClient wc = new WebClient())
 		{
 			ServicePointManager.ServerCertificateValidationCallback = MyRemoteCertificateValidationCallback;
-			wc.DownloadStringCompleted += new DownloadStringCompletedEventHandler (DownloadStringCallback2);
-			wc.DownloadStringAsync(new Uri("https://app.spire.io/api/v2/streaks?access_token=" + accesToken));
+			//wc.DownloadStringCompleted += new DownloadStringCompletedEventHandler (DownloadStringCallback2);
+			//wc.DownloadStringAsync(new Uri("https://app.spire.io/api/v2/streaks?access_token=" + accesToken));
+			var json = wc.DownloadString("https://app.spire.io/api/v2/streaks?access_token=" + accesToken);
+			var objects = JArray.Parse(json); // parse as array
+			foreach (JObject breathe in objects) {
+				string type = breathe.Value<string> ("type");
+				if ((type == "calm") || (type == "sedentary") || (type == "focus")) {
+					CmdChangeBreathing(breathe.Value<float> ("sub_value") + UnityEngine.Random.Range(0.0f,1.0f));
+					//CmdChangeBreathing(UnityEngine.Random.Range(6.0f,24.0f));
+					CmdChangeAgitation (breathingRythm, 6.0f, 24.0f);
+					break;
+				}
+			}
 		}
 	}
 
@@ -91,15 +102,14 @@ public class ReceiveSpire : NetworkBehaviour {
 	[Command]
 	void CmdChangeBreathing(float breathing) {
 		breathingRythm = breathing;
-
 	}
 
 	// Normalizes the breathing between 0-1 and set new agitation
 	[Command]
 	void CmdChangeAgitation(float value, float min, float max)
 	{
-		float newAgitation = (float)Math.Round(((value - min) / (max - min)),2);
-		//float newAgitation = ((value - min) / (max - min));
+		//float newAgitation = (float)Math.Round (((value - min) / (max - min)), 2);
+		float newAgitation = ((value - min) / (max - min));
 		print ("New Agitation" + newAgitation.ToString());
 		if (GameObject.FindGameObjectWithTag ("Patient") != null) {
 			GameObject.FindGameObjectWithTag ("Patient").GetComponent<MapBehaviour> ().agitation = newAgitation;
