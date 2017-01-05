@@ -13,6 +13,7 @@ public class PatientController : NetworkBehaviour {
 	private float pitch = 0.0f;
 
     public bool MouseControl = false;
+    public Color chosenColor = Color.red;
 
 
 	void Awake()
@@ -76,6 +77,11 @@ public class PatientController : NetworkBehaviour {
         else
         {
             GetComponent<MapBehaviour>().enabled = false;
+        }
+
+        if (SceneManager.GetActiveScene().name == "Ganzfeld")
+        {
+            GameObject.Find("Point light").GetComponent<Light>().color = chosenColor;
         }
 
         //gameObject.GetComponent<MapBehaviour>().enabled = false;

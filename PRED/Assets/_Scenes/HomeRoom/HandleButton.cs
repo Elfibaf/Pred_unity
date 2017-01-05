@@ -51,6 +51,10 @@ public class HandleButton : MonoBehaviour {
     private void action()
     {
         lastCol = GameObject.FindGameObjectWithTag("HomeRoomLight").GetComponent<Light>().color;
+        if(GameObject.FindGameObjectWithTag("Patient") != null)
+        {
+            GameObject.FindGameObjectWithTag("Patient").GetComponent<PatientController>().chosenColor = col;
+        }
     }
 	
 	// Update is called once per frame

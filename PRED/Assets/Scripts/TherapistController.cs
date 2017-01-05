@@ -82,6 +82,11 @@ public class TherapistController : NetworkBehaviour {
             }
         }
 
+        if (SceneManager.GetActiveScene().name == "Ganzfeld")
+        {
+            GameObject.Find("Point light").GetComponent<Light>().color = GameObject.FindGameObjectWithTag("Patient").GetComponent<PatientController>().chosenColor;
+        }
+
 		print (SceneManager.GetActiveScene ().name);
 
 	}
