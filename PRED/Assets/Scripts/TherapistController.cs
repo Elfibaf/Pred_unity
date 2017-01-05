@@ -56,14 +56,17 @@ public class TherapistController : NetworkBehaviour {
         // On therapist side : the main camera follows the Patient Prefab
         Camera.main.GetComponent<CameraFollow>().enabled = true;
         Camera.main.GetComponent<CameraFollow>().setTarget(gameObject.transform);
-        Camera.main.GetComponent<GvrHead>().enabled = false;
+        if(Camera.main.GetComponent<GvrHead>() != null)
+        {
+            Camera.main.GetComponent<GvrHead>().enabled = false;
+        }
 
         if (GameObject.Find("GvrViewerMain") != null)
         {
             GameObject.Find("GvrViewerMain").GetComponent<GvrViewer>().VRModeEnabled = false;
         }
         VRSettings.enabled = false;
-       
+
         if (SceneManager.GetActiveScene().name == "RelaxingEnv1")
         {
             if (GameObject.FindGameObjectWithTag("Patient") != null)

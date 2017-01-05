@@ -54,10 +54,10 @@ public class HandleOK : MonoBehaviour
     private void action()
     {
         // only if Patient prefab contained in the scene is the local player
-        //if (GameObject.FindGameObjectWithTag("Patient").GetComponent<PatientController>().isLocalPlayer) // only triggers scene change on patient side
-        //{
+        if (GameObject.FindGameObjectWithTag("Therapist").GetComponent<TherapistController>().isLocalPlayer) // only triggers scene change on patient side
+        {
             GameObject.Find("NetworkManager").GetComponent<NetworkManagerCustom>().ServerChangeScene("RelaxingEnv1");
-        //}
+        }
 		
     }
 
