@@ -10,9 +10,10 @@ public class AudioController : NetworkBehaviour {
 	private Object[] clipArray;
 
 
+
 	void Start()
 	{
-		clipArray = Resources.LoadAll ("Audio");
+		clipArray = GameObject.FindGameObjectWithTag ("Patient").GetComponent<PatientController> ().whiteNoiseArray;
 		whiteNoiseSource = GetComponent<AudioSource> ();
 		whiteNoise = (AudioClip)clipArray [0];
 		whiteNoiseSource.clip = whiteNoise;

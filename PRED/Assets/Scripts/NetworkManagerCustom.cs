@@ -42,7 +42,10 @@ public class NetworkManagerCustom : NetworkManager {
 		// Create message to set the player
 		IntegerMessage msg = new IntegerMessage(chosenCharacter);
 
-        if (chosenCharacter == 1) print("patient connection");
+		if (chosenCharacter == 1) {
+			print ("patient connection");
+			gameObject.AddComponent<VoiceChatUiClient> (); 
+		}
         if (chosenCharacter == 0) print("therapist connection");
 
 		// Call Add player and pass the message
@@ -54,7 +57,7 @@ public class NetworkManagerCustom : NetworkManager {
 
 	public override void OnClientSceneChanged(NetworkConnection conn) {
 		var player = conn.playerControllers [0].gameObject;
-		//VoiceChatNetworkProxy.OnManagerClientConnect(conn);
+
         print("scene changed !");
 		if (player.tag == "Therapist") 
 		{
@@ -64,17 +67,22 @@ public class NetworkManagerCustom : NetworkManager {
 			print ("tag = patient");
 			player.GetComponent<PatientController> ().OnStartLocalPlayer ();
 		}
+		//VoiceChatNetworkProxy.OnManagerServerDisconnect(conn); //
+		//VoiceChatNetworkProxy.OnManagerStopClient(); //
+
 		if (!ClientScene.ready) {
 			ClientScene.Ready(conn);
 		}
-
-		print(ClientScene.ready);
+			
+		//VoiceChatNetworkProxy.OnManagerStartClient (client); //
+		//VoiceChatNetworkProxy.OnManagerClientConnect(conn); //
 	
 	}
 
-	/*public override void OnServerSceneChanged(string sceneName) {
-		
-	}*/
+	public override void OnServerSceneChanged(string sceneName) {
+		//VoiceChatNetworkProxy.OnManagerStopServer(); //
+		//VoiceChatNetworkProxy.OnManagerStartServer(); //
+	}
 
 	// Therapist's button
 	public void StartupHost()
@@ -147,15 +155,15 @@ public class NetworkManagerCustom : NetworkManager {
 	{
 		VoiceChatNetworkProxy.OnManagerStopClient();
 
-		//if (client != null)
-		//	Destroy(GetComponent<VoiceChatUi>());
+		if (client != null)
+			Destroy(GetComponent<VoiceChatUiClient>());
 	}
 
 	public override void OnServerDisconnect(NetworkConnection conn)
 	{
 		base.OnServerDisconnect(conn);
 
-		//VoiceChatNetworkProxy.OnManagerServerDisconnect(conn);
+		VoiceChatNetworkProxy.OnManagerServerDisconnect(conn);
 	}
 
 	public override void OnStartServer()

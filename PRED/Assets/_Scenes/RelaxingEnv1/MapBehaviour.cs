@@ -67,15 +67,16 @@ public class MapBehaviour : NetworkBehaviour {
 
     void OnChangeAgitation(float newAgitation) // called on clients
     {
-        print("ONCHANGEAGITATION (" + newAgitation + ")");
-        // update the agitation value on the UI
-        GameObject.Find("AgitationValue").GetComponent<Text>().text = newAgitation.ToString();
-        if (agitationBar != null)
-        {
-            agitationBar.sizeDelta = new Vector2(newAgitation * 100.0f, agitationBar.sizeDelta.y);
-        }
+		if (this.enabled) {
+			print ("ONCHANGEAGITATION (" + newAgitation + ")");
+			// update the agitation value on the UI
+			GameObject.Find ("AgitationValue").GetComponent<Text> ().text = newAgitation.ToString ();
+			if (agitationBar != null) {
+				agitationBar.sizeDelta = new Vector2 (newAgitation * 100.0f, agitationBar.sizeDelta.y);
+			}
 
-        setAgitation(newAgitation);
+			setAgitation (newAgitation);
+		}
     }
 	
 	// Update is called once per frame (when a script component is disabled, only the update function is disabled)

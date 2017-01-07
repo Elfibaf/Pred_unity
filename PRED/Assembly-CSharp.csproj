@@ -153,6 +153,7 @@
      <Compile Include="Assets\VoiceChat\Scripts\Demo\LegacyNetworking\VoiceChatUnityServer.cs" />
      <Compile Include="Assets\VoiceChat\Scripts\Demo\VoiceChatServerUi.cs" />
      <Compile Include="Assets\VoiceChat\Scripts\Demo\VoiceChatUi.cs" />
+     <Compile Include="Assets\VoiceChat\Scripts\Demo\VoiceChatUiClient.cs" />
      <Compile Include="Assets\VoiceChat\Scripts\Libs\Exocortex.DSP.cs" />
      <Compile Include="Assets\VoiceChat\Scripts\Libs\NAudio.cs" />
      <Compile Include="Assets\VoiceChat\Scripts\Networking\Legacy\VoiceChatExtensions.cs" />
