@@ -12,8 +12,11 @@ public class PatientController : NetworkBehaviour {
     private float yaw = -100.5f;
 	private float pitch = 0.0f;
 
+    public Object[] whiteNoiseArray;
+
     public bool MouseControl = false;
     public Color chosenColor = Color.red;
+
 
     [SyncVar(hook = "OnChangeFadeDir")]
     public int fadeDir = -1;
@@ -28,10 +31,15 @@ public class PatientController : NetworkBehaviour {
         print("ONCHANGEFADEDIR: " + direction);
     }
 
-
 	void Awake()
 	{
 		DontDestroyOnLoad (this);
+	}
+
+	void Start () {
+		// Loading resources in advance to prevent lag in Ganzfeld phase
+		whiteNoiseArray = Resources.LoadAll ("Audio");
+		print ("Audio chargé");
 	}
 	
 	// Update is called once per frame
@@ -74,6 +82,7 @@ public class PatientController : NetworkBehaviour {
 		}
 
 	}
+		
 
 	public override void OnStartLocalPlayer()
 	{
@@ -86,10 +95,12 @@ public class PatientController : NetworkBehaviour {
 
 		if (SceneManager.GetActiveScene ().name == "RelaxingEnv1") {
 			GetComponent<MapBehaviour>().enabled = true;
+			print ("Mapbehaviour active");
 		}
         else
         {
             GetComponent<MapBehaviour>().enabled = false;
+			print ("Mapbehaviour desactive");
         }
 
         if (SceneManager.GetActiveScene().name == "Ganzfeld")

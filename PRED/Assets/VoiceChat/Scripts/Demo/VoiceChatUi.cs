@@ -49,9 +49,9 @@ namespace VoiceChat.Demo
 
             if (VoiceChatRecorder.Instance.Device != null)
             {
-                GUILayout.Label("Appuyez pour parler: " + VoiceChatRecorder.Instance.PushToTalkKey);
+                //GUILayout.Label("Appuyez pour parler: " + VoiceChatRecorder.Instance.PushToTalkKey);
                 //GUILayout.Label("Toggle-to-talk key: " + VoiceChatRecorder.Instance.ToggleToTalkKey);
-                //GUILayout.Label("Auto detect speech: " + (VoiceChatRecorder.Instance.AutoDetectSpeech ? "On" : "Off"));
+                GUILayout.Label("Auto detect speech: " + (VoiceChatRecorder.Instance.AutoDetectSpeech ? "On" : "Off"));
 
                 /*if (GUILayout.Button("Toggle Auto Detect"))
                 {

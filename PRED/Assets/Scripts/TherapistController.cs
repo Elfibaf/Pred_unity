@@ -72,6 +72,7 @@ public class TherapistController : NetworkBehaviour {
             if (GameObject.FindGameObjectWithTag("Patient") != null)
             {
                 GameObject.FindGameObjectWithTag("Patient").GetComponent<MapBehaviour>().enabled = true;
+				print ("Mapbehaviour active");
             }
         }
         else
@@ -79,6 +80,7 @@ public class TherapistController : NetworkBehaviour {
             if (GameObject.FindGameObjectWithTag("Patient") != null)
             {
                 GameObject.FindGameObjectWithTag("Patient").GetComponent<MapBehaviour>().enabled = false;
+				print ("MapBehaviour desactive");
             }
         }
 
