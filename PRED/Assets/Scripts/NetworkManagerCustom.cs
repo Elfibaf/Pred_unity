@@ -6,6 +6,7 @@ using UnityEngine.Networking.NetworkSystem;
 using UnityEngine.UI;
 using VoiceChat.Networking;
 using VoiceChat.Demo;
+using UnityEngine.SceneManagement;
 
 
 public class NetworkManagerCustom : NetworkManager {

@@ -15,6 +15,19 @@ public class PatientController : NetworkBehaviour {
     public bool MouseControl = false;
     public Color chosenColor = Color.red;
 
+    [SyncVar(hook = "OnChangeFadeDir")]
+    public int fadeDir = -1;
+
+    void OnChangeFadeDir(int direction)
+    {
+        fadeDir = direction;
+        if(Camera.main.GetComponent<Fading>() != null)
+        {
+            Camera.main.GetComponent<Fading>().BeginFade(direction);
+        }
+        print("ONCHANGEFADEDIR: " + direction);
+    }
+
 
 	void Awake()
 	{

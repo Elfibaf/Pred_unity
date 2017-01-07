@@ -45,10 +45,21 @@ public class TherapistUI : MonoBehaviour {
 
 		if (GUILayout.Button ("Phase Ganzfeld")) 
 		{
-			GetComponent<NetworkManagerCustom> ().ServerChangeScene ("Ganzfeld");
-            GameObject.FindGameObjectWithTag("Patient").GetComponent<MapBehaviour>().enabled = false;
+            StartCoroutine(Fading(1));
 		}
 	}
+
+    IEnumerator Fading(int direction)
+    {
+        // fade in
+        //Camera.main.GetComponent<Fading>().fadingColor = GameObject.FindGameObjectWithTag("Patient").GetComponent<PatientController>().chosenColor;
+        GameObject.FindGameObjectWithTag("Patient").GetComponent<PatientController>().fadeDir = direction;
+        float fadeTime = Camera.main.GetComponent<Fading>().BeginFade(direction);
+        yield return new WaitForSeconds(1.0f / fadeTime);
+
+        GetComponent<NetworkManagerCustom>().ServerChangeScene("Ganzfeld");
+        GameObject.FindGameObjectWithTag("Patient").GetComponent<MapBehaviour>().enabled = false;
+    }
 
 	void WhiteNoiseWindow(int id)
 	{
