@@ -145,7 +145,7 @@ public class NetworkManagerCustom : NetworkManager {
 
 	public override void OnStopClient()
 	{
-		//VoiceChatNetworkProxy.OnManagerStopClient();
+		VoiceChatNetworkProxy.OnManagerStopClient();
 
 		//if (client != null)
 		//	Destroy(GetComponent<VoiceChatUi>());
