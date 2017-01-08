@@ -47,8 +47,22 @@ public class Fading : MonoBehaviour {
         return (fadeSpeed);
     }
 
-    void OnLevelWasLoaded()
+    public void FadeIn()
+    {
+        print("fadeIn");
+        alpha = 0.0f;
+        fadeDir = 1;
+    }
+
+    public void FadeOut()
+    {
+        print("fadeOut");
+        alpha = 1.0f;
+        fadeDir = -1;
+    }
+
+    /*void OnLevelWasLoaded()
     {
         BeginFade(-1);
-    }
+    }*/
 }

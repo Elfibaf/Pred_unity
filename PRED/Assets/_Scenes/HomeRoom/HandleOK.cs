@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 public class HandleOK : MonoBehaviour
 {
 
+    private GameObject buttons_colors;
+    private GameObject buttons_sounds;
+    
     private bool state;
     private bool isAnimOver;
     private bool isAnimAtStart;
@@ -13,9 +16,7 @@ public class HandleOK : MonoBehaviour
     private bool isActivated;
 
     public Color col;
-    private Color lastCol;
-    private float duration = 5;
-    private float t;
+
 
 
     // Use this for initialization
@@ -35,6 +36,10 @@ public class HandleOK : MonoBehaviour
                 child.GetComponent<SpriteRenderer>().color = col;
             }
         }
+
+        buttons_colors = GameObject.Find("buttons_colors");
+        buttons_sounds = GameObject.Find("buttons_sounds");
+        buttons_sounds.SetActive(false);
     }
 
     public void setState(bool b)
@@ -55,10 +60,25 @@ public class HandleOK : MonoBehaviour
     private void action()
     {
         // only if Patient prefab contained in the scene is the local player
-        if (GameObject.FindGameObjectWithTag("Therapist").GetComponent<TherapistController>().isLocalPlayer) // only triggers scene change on patient side
+        print("action");
+
+        if (GameObject.FindGameObjectWithTag("Patient") != null)
         {
-            GameObject.Find("NetworkManager").GetComponent<NetworkManagerCustom>().ServerChangeScene("RelaxingEnv1");
+            if(GameObject.FindGameObjectWithTag("Patient").GetComponent<PatientController>().chosenColor != Color.red && GameObject.FindGameObjectWithTag("Patient").GetComponent<PatientController>().chosenSound == -1)
+            {
+                buttons_colors.SetActive(false);
+                buttons_sounds.SetActive(true);
+            }
+            else if(GameObject.FindGameObjectWithTag("Patient").GetComponent<PatientController>().chosenColor != Color.red && GameObject.FindGameObjectWithTag("Patient").GetComponent<PatientController>().chosenSound != -1)
+            {
+                if (GameObject.FindGameObjectWithTag("Therapist") != null && GameObject.FindGameObjectWithTag("Therapist").GetComponent<TherapistController>().isLocalPlayer) // only triggers scene change on patient side
+                {
+                    GameObject.Find("NetworkManager").GetComponent<NetworkManagerCustom>().ServerChangeScene("RelaxingEnv1");
+                }
+            }
         }
+
+        
 		
     }
 
@@ -81,7 +101,7 @@ public class HandleOK : MonoBehaviour
                         child.gameObject.GetComponent<Animation>().Play();
                     }
                 }
-                else if (!isActivated)
+                else if (!isActivated || !state)
                 {
                     Animation anim = child.gameObject.GetComponent<Animation>();
                     anim[animName].speed = -1f;
@@ -98,7 +118,7 @@ public class HandleOK : MonoBehaviour
                     child.gameObject.GetComponent<Animation>().Stop();
                     anim2[animName].time = anim2[animName].length;
                     isActivated = true;
-                    Camera.main.GetComponent<UIRaycast>().activatedButton = transform.gameObject;
+                    //Camera.main.GetComponent<UIRaycast>().activatedButton = transform.gameObject;
                     action();
                 }
 
@@ -112,7 +132,6 @@ public class HandleOK : MonoBehaviour
                     isAnimAtStart = true;
                     child.gameObject.GetComponent<Animation>().Stop();
                     anim2[animName].time = 0;
-                    t = 0;
                 }
 
                 if (isActivated) // If isActivated

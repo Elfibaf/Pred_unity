@@ -57,8 +57,10 @@ public class TherapistUI : MonoBehaviour {
         float fadeTime = Camera.main.GetComponent<Fading>().BeginFade(direction);
         yield return new WaitForSeconds(1.0f / fadeTime);
 
+        //GameObject.FindGameObjectWithTag("Patient").GetComponent<MapBehaviour>().enabled = false;
+       
         GetComponent<NetworkManagerCustom>().ServerChangeScene("Ganzfeld");
-        GameObject.FindGameObjectWithTag("Patient").GetComponent<MapBehaviour>().enabled = false;
+        
     }
 
 	void WhiteNoiseWindow(int id)

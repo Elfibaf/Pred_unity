@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class UIRaycast : MonoBehaviour {
 
-    private GameObject[] circle_buttons;
-    public GameObject activatedButton;
+    private GameObject[] buttons_col;
+    private GameObject[] buttons_sound;
+    public GameObject activatedButtonCol;
+    public GameObject activatedButtonSound;
 
 	// Use this for initialization
 	void Start () {
-        circle_buttons = GameObject.FindGameObjectsWithTag("circle_button");
-        activatedButton = null;
+        buttons_col = GameObject.FindGameObjectsWithTag("button_col");
+        buttons_sound = GameObject.FindGameObjectsWithTag("button_sound");
+        activatedButtonCol = null;
+        activatedButtonSound = null;
 	}
 	
 	// Update is called once per frame
@@ -22,28 +26,47 @@ public class UIRaycast : MonoBehaviour {
     {
         RaycastHit hit;
         Vector3 fwd = transform.TransformDirection(Vector3.forward);
-
         if (Physics.Raycast(transform.position, fwd, out hit, 10))
-        {
-            if (hit.collider.tag == "circle_button")
+        {        
+            
+            if (hit.collider.tag == "button_col")
             {
-                //print("button0 is hit!");
-                foreach(GameObject button in circle_buttons)
+                foreach(GameObject button in buttons_col)
                 {
                     if(button.GetInstanceID() == hit.transform.gameObject.GetInstanceID())
                     {
-                        button.GetComponent<HandleButton>().setState(true);
+                        button.GetComponent<HandleButtonCol>().setState(true);
                     }
                     else
                     {
-                        button.GetComponent<HandleButton>().setState(false);
+                        button.GetComponent<HandleButtonCol>().setState(false);
                     }
 
-                    if(activatedButton != null && (button.GetInstanceID() != activatedButton.GetInstanceID())) // if it's not the last activated button, we deactivate it
+                    if(activatedButtonCol != null && (button.GetInstanceID() != activatedButtonCol.GetInstanceID())) // if it's not the last activated button, we deactivate it
                     {
-                        button.GetComponent<HandleButton>().setActivated(false);
+                        button.GetComponent<HandleButtonCol>().setActivated(false);
                     }
                 }  
+            }
+            else if (hit.collider.tag == "button_sound")
+            {
+
+                foreach (GameObject button in buttons_sound)
+                {
+                    if (button.GetInstanceID() == hit.transform.gameObject.GetInstanceID())
+                    {
+                        button.GetComponent<HandleButtonSound>().setState(true);
+                    }
+                    else
+                    {
+                        button.GetComponent<HandleButtonSound>().setState(false);
+                    }
+
+                    if (activatedButtonSound != null && (button.GetInstanceID() != activatedButtonSound.GetInstanceID())) // if it's not the last activated button, we deactivate it
+                    {
+                        button.GetComponent<HandleButtonSound>().setActivated(false);
+                    }
+                }
             }
             else if(hit.collider.name == "button_OK")
             {
@@ -51,21 +74,27 @@ public class UIRaycast : MonoBehaviour {
             }
             else // hit but not on a circle_button
             {
-                foreach (GameObject button in circle_buttons)
+                foreach (GameObject button in buttons_col)
                 {
-                    button.GetComponent<HandleButton>().setState(false);
+                    button.GetComponent<HandleButtonCol>().setState(false);
                 }
-
+                foreach (GameObject button in buttons_sound)
+                {
+                    button.GetComponent<HandleButtonSound>().setState(false);
+                }
                 GameObject.Find("button_OK").GetComponent<HandleOK>().setState(false);
             }
         }
         else // no collision
         {
-            foreach (GameObject button in circle_buttons)
+            foreach (GameObject button in buttons_col)
             {
-                button.GetComponent<HandleButton>().setState(false);
+                button.GetComponent<HandleButtonCol>().setState(false);
             }
-
+            foreach (GameObject button in buttons_sound)
+            {
+                button.GetComponent<HandleButtonSound>().setState(false);
+            }
             GameObject.Find("button_OK").GetComponent<HandleOK>().setState(false);
         }
 

@@ -173,7 +173,8 @@
      <Compile Include="Assets\VoiceChat\Scripts\VoiceChatSettings.cs" />
      <Compile Include="Assets\VoiceChat\Scripts\VoiceChatUtils.cs" />
      <Compile Include="Assets\_Scenes\HomeRoom\Billboard.cs" />
-     <Compile Include="Assets\_Scenes\HomeRoom\HandleButton.cs" />
+     <Compile Include="Assets\_Scenes\HomeRoom\HandleButtonCol.cs" />
+     <Compile Include="Assets\_Scenes\HomeRoom\HandleButtonSound.cs" />
      <Compile Include="Assets\_Scenes\HomeRoom\HandleOK.cs" />
      <Compile Include="Assets\_Scenes\HomeRoom\Standard Assets\CrossPlatformInput\Scripts\AxisTouchButton.cs" />
      <Compile Include="Assets\_Scenes\HomeRoom\Standard Assets\CrossPlatformInput\Scripts\ButtonHandler.cs" />

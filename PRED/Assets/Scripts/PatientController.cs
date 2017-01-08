@@ -16,17 +16,25 @@ public class PatientController : NetworkBehaviour {
 
     public bool MouseControl = false;
     public Color chosenColor = Color.red;
+    public int chosenSound = -1;
 
 
     [SyncVar(hook = "OnChangeFadeDir")]
-    public int fadeDir = -1;
+    public int fadeDir = 0;
 
     void OnChangeFadeDir(int direction)
     {
         fadeDir = direction;
         if(Camera.main.GetComponent<Fading>() != null)
         {
-            Camera.main.GetComponent<Fading>().BeginFade(direction);
+            if (direction == 1)
+            {
+                Camera.main.GetComponent<Fading>().FadeIn();
+            }
+            else if (direction == -1)
+            {
+                Camera.main.GetComponent<Fading>().FadeOut();
+            }
         }
         print("ONCHANGEFADEDIR: " + direction);
     }
@@ -105,6 +113,7 @@ public class PatientController : NetworkBehaviour {
 
         if (SceneManager.GetActiveScene().name == "Ganzfeld")
         {
+            OnChangeFadeDir(-1); // start fadeOut after loading Ganzfeld scene
             GameObject.Find("Point light").GetComponent<Light>().color = chosenColor;
         }
 
