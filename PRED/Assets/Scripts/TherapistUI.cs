@@ -17,6 +17,9 @@ public class TherapistUI : MonoBehaviour {
 	public List<string> clipNames = new List<string>();
 	public string[] clipNamesArray;
 
+	public float agitation = 0;
+	public float breathing = 0;
+
 	void Start()
 	{
 		clipArray = Resources.LoadAll ("Audio");
@@ -28,6 +31,8 @@ public class TherapistUI : MonoBehaviour {
 
 	void OnGUI()
 	{
+		GUILayout.Window(4, new Rect(Screen.width - Screen.width/8 - 10, Screen.height/16 + 10, Screen.width/8, Screen.height/16), BiofeedbackWindow, "", GUIStyle.none);
+
 		if (SceneManager.GetActiveScene ().name == "RelaxingEnv1") {
 			GUILayout.Window(2, new Rect(Screen.width - Screen.width/8 - 10, Screen.height - Screen.height/16 - 10, Screen.width/8, Screen.height/16), Window, "", GUIStyle.none);
 		}
@@ -62,6 +67,12 @@ public class TherapistUI : MonoBehaviour {
         GetComponent<NetworkManagerCustom>().ServerChangeScene("Ganzfeld");
         
     }
+
+	void BiofeedbackWindow(int id)
+	{
+		GUILayout.Label ("Breathing : " + breathing);
+		GUILayout.Label("Agitation : " + agitation);
+	}
 
 	void WhiteNoiseWindow(int id)
 	{
