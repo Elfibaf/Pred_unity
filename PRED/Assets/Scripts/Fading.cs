@@ -34,7 +34,7 @@ public class Fading : MonoBehaviour {
         alpha += fadeDir * fadeSpeed * Time.deltaTime;
         // clamp between 0 and 1
         alpha = Mathf.Clamp01(alpha);
-        print("alpha: " + alpha);
+        //print("alpha: " + alpha);
         // set Color of GUI
         GUI.color = new Color(GUI.color.r, GUI.color.g, GUI.color.b, alpha);
         GUI.depth = drawDepth;

@@ -96,6 +96,9 @@ public class ReceiveSpire : NetworkBehaviour {
 		if (GameObject.Find ("Breathing") != null) {
 			GameObject.Find("Breathing").GetComponent<Text>().text = breathing.ToString();
 		}
+		if (isServer) {
+			GameObject.Find ("NetworkManager").GetComponent<TherapistUI> ().breathing = breathing;
+		}
 		print (breathingRythm);
 	}
 

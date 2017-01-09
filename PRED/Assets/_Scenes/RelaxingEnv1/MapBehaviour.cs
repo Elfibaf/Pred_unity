@@ -74,7 +74,9 @@ public class MapBehaviour : NetworkBehaviour {
 			if (agitationBar != null) {
 				agitationBar.sizeDelta = new Vector2 (newAgitation * 100.0f, agitationBar.sizeDelta.y);
 			}
-
+			if (isServer) {
+				GameObject.Find ("NetworkManager").GetComponent<TherapistUI> ().agitation = newAgitation;
+			}
 			setAgitation (newAgitation);
 		}
     }

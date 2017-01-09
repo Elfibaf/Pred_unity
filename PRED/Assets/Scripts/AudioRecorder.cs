@@ -8,7 +8,7 @@ public class AudioRecorder : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		myAudioClip = Microphone.Start (null, false, 60, 44100);
+		//myAudioClip = Microphone.Start (null, false, 60, 44100);
 		//EncodeMP3.convert (myAudioClip, "Enregistrement", 128);
 	}
 	
