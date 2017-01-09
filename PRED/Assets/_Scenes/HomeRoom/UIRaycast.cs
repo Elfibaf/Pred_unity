@@ -91,8 +91,6 @@ public class UIRaycast : MonoBehaviour {
                     button.GetComponent<HandleButtonSound>().setState(false);
                 }
                 //GameObject.Find("button_OK").GetComponent<HandleOK>().setState(false);
-                //GameObject.Find("button_plus").GetComponent<HandleVolume>().setState(false);
-                //GameObject.Find("button_minus").GetComponent<HandleVolume>().setState(false);
             }
         }
         else // no collision
@@ -107,8 +105,11 @@ public class UIRaycast : MonoBehaviour {
             }
             GameObject.Find("button_OK").GetComponent<HandleOK>().setState(false);
 
-            GameObject.Find("button_plus").GetComponent<HandleVolume>().setState(false);
-            GameObject.Find("button_minus").GetComponent<HandleVolume>().setState(false); ;
+            if(GameObject.Find("buttons_sounds") != null)
+            {
+                GameObject.Find("button_plus").GetComponent<HandleVolume>().setState(false);
+                GameObject.Find("button_minus").GetComponent<HandleVolume>().setState(false);
+            }
         }
 
 
