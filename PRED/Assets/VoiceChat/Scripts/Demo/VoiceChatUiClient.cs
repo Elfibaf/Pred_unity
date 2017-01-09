@@ -6,6 +6,7 @@ namespace VoiceChat.Demo
 {
 	public class VoiceChatUiClient : MonoBehaviour
 	{
+		bool recording = false;
 		void Awake()
 		{
 			DontDestroyOnLoad (this);
@@ -47,8 +48,12 @@ namespace VoiceChat.Demo
 				}
 			}*/
 
-			VoiceChatRecorder.Instance.Device = VoiceChatRecorder.Instance.AvailableDevices [0]; // Assignation du premier micro de la liste
-			VoiceChatRecorder.Instance.StartRecording(); //
+			if (!recording) {
+				VoiceChatRecorder.Instance.Device = VoiceChatRecorder.Instance.AvailableDevices [0]; // Assignation du premier micro de la liste
+				VoiceChatRecorder.Instance.StartRecording(); //
+				recording = true;
+			}
+
 
 			/*if (VoiceChatRecorder.Instance.Device != null)
 			{

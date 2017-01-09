@@ -39,15 +39,31 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="UnityEngine">
-      <HintPath>D:/Logiciels/Unity5/Editor/Data/Managed/UnityEngine.dll</HintPath>
+      <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
-      <HintPath>D:/Logiciels/Unity5/Editor/Data/Managed/UnityEditor.dll</HintPath>
+      <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Day Night Cycle\Scripts\DayNightController.cs" />
      <Compile Include="Assets\Day Night Cycle\Scripts\DemoScripts\RoatateCamera.cs" />
+     <Compile Include="Assets\Encoder\CopyTo.cs" />
+     <Compile Include="Assets\Encoder\EncodeMP3.cs" />
+     <Compile Include="Assets\Encoder\IWaveProvider.cs" />
+     <Compile Include="Assets\Encoder\LibMp3Lame.cs" />
+     <Compile Include="Assets\Encoder\MP3FileWriter.cs" />
+     <Compile Include="Assets\Encoder\Naudio_Utils\ByteEncoding.cs" />
+     <Compile Include="Assets\Encoder\Naudio_Utils\Decibels.cs" />
+     <Compile Include="Assets\Encoder\Naudio_Utils\HResult.cs" />
+     <Compile Include="Assets\Encoder\Naudio_Utils\MarshalHelpers.cs" />
+     <Compile Include="Assets\Encoder\RawSourceWaveStream.cs" />
+     <Compile Include="Assets\Encoder\WaveFormat.cs" />
+     <Compile Include="Assets\Encoder\WaveFormatEncoding.cs" />
+     <Compile Include="Assets\Encoder\WaveFormatExtensible.cs" />
+     <Compile Include="Assets\Encoder\WaveFormatExtraData.cs" />
+     <Compile Include="Assets\Encoder\WaveStream.cs" />
+     <Compile Include="Assets\ExampleConvert.cs" />
      <Compile Include="Assets\GoogleVR\Demos\Scripts\DemoInputManager.cs" />
      <Compile Include="Assets\GoogleVR\Demos\Scripts\GVRDemo\Teleport.cs" />
      <Compile Include="Assets\GoogleVR\Demos\Scripts\PermissionsDemo\PermissionsFlowManager.cs" />
@@ -137,6 +153,7 @@
      <Compile Include="Assets\GoogleVR\Scripts\Utilities\GvrIntent.cs" />
      <Compile Include="Assets\GoogleVR\Scripts\Video\GvrVideoPlayerTexture.cs" />
      <Compile Include="Assets\Scripts\AudioController.cs" />
+     <Compile Include="Assets\Scripts\AudioRecorder.cs" />
      <Compile Include="Assets\Scripts\CameraController.cs" />
      <Compile Include="Assets\Scripts\CameraFollow.cs" />
      <Compile Include="Assets\Scripts\Fading.cs" />
@@ -305,41 +322,44 @@
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlurAndFlares.shader" />
      <None Include="Assets\GoogleVR\Demos\Shaders\VideoDemo\VideoDemoStereoShader.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendForBloom.shader" />
- <Reference Include="UnityEngine.Advertisements">
- <HintPath>D:/Logiciels/Unity5/Editor/Data/UnityExtensions/Unity/Advertisements/UnityEngine.Advertisements.dll</HintPath>
- </Reference>
  <Reference Include="UnityEngine.UI">
- <HintPath>D:/Logiciels/Unity5/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
- <HintPath>D:/Logiciels/Unity5/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.PlaymodeTestsRunner">
- <HintPath>D:/Logiciels/Unity5/Editor/Data/UnityExtensions/Unity/PlaymodeTestsRunner/UnityEngine.PlaymodeTestsRunner.dll</HintPath>
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/PlaymodeTestsRunner/UnityEngine.PlaymodeTestsRunner.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Analytics">
- <HintPath>D:/Logiciels/Unity5/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.HoloLens">
- <HintPath>D:/Logiciels/Unity5/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.Purchasing">
- <HintPath>D:/Logiciels/Unity5/Editor/Data/UnityExtensions/Unity/UnityPurchasing/UnityEngine.Purchasing.dll</HintPath>
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.VR">
- <HintPath>D:/Logiciels/Unity5/Editor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
  </Reference>
  <Reference Include="Google.ProtocolBuffers">
- <HintPath>D:/Etudes/5A/PRED/Pred_unity/PRED/Assets/Plugins/Google.ProtocolBuffers.dll</HintPath>
+ <HintPath>C:/Users/fabien/Documents/Pred_unity/PRED/Assets/Plugins/Google.ProtocolBuffers.dll</HintPath>
  </Reference>
  <Reference Include="Newtonsoft.Json">
- <HintPath>D:/Etudes/5A/PRED/Pred_unity/PRED/Assets/Plugins/net35/Newtonsoft.Json.dll</HintPath>
+ <HintPath>C:/Users/fabien/Documents/Pred_unity/PRED/Assets/Plugins/net35/Newtonsoft.Json.dll</HintPath>
  </Reference>
  <Reference Include="Ionic.Zlib">
- <HintPath>D:/Etudes/5A/PRED/Pred_unity/PRED/Assets/VoiceChat/Assemblies/Ionic.Zlib.dll</HintPath>
+ <HintPath>C:/Users/fabien/Documents/Pred_unity/PRED/Assets/VoiceChat/Assemblies/Ionic.Zlib.dll</HintPath>
  </Reference>
  <Reference Include="NSpeex">
- <HintPath>D:/Etudes/5A/PRED/Pred_unity/PRED/Assets/VoiceChat/Assemblies/NSpeex.dll</HintPath>
+ <HintPath>C:/Users/fabien/Documents/Pred_unity/PRED/Assets/VoiceChat/Assemblies/NSpeex.dll</HintPath>
+ </Reference>
+ <Reference Include="Mono.Cecil">
+ <HintPath>C:/Program Files/Unity/Editor/Data/Managed/Mono.Cecil.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.iOS.Extensions.Xcode">
+ <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.iOS.Extensions.Common">
+ <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Common.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>
