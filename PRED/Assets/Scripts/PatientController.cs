@@ -17,6 +17,7 @@ public class PatientController : NetworkBehaviour {
     public bool MouseControl = false;
     public Color chosenColor = Color.red;
     public int chosenSound = -1;
+    public float chosenVolume = 0.5f;
 
 
     [SyncVar(hook = "OnChangeFadeDir")]
@@ -115,13 +116,6 @@ public class PatientController : NetworkBehaviour {
         {
             OnChangeFadeDir(-1); // start fadeOut after loading Ganzfeld scene
             GameObject.Find("Point light").GetComponent<Light>().color = chosenColor;
-        }
-
-        //gameObject.GetComponent<MapBehaviour>().enabled = false;
-
-        //GameObject.Find("MapBehaviour").GetComponent<MapBehaviour>().setAgitation(0.0f);
-        
+        }      
 	}
-
-
 }

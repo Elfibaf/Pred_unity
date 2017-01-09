@@ -72,6 +72,14 @@ public class UIRaycast : MonoBehaviour {
             {
                 hit.transform.gameObject.GetComponent<HandleOK>().setState(true);
             }
+            else if(hit.collider.name == "button_plus")
+            {
+                hit.transform.gameObject.GetComponent<HandleVolume>().setState(true);
+            }
+            else if(hit.collider.name == "button_minus")
+            {
+                hit.transform.gameObject.GetComponent<HandleVolume>().setState(true);
+            }
             else // hit but not on a circle_button
             {
                 foreach (GameObject button in buttons_col)
@@ -82,7 +90,9 @@ public class UIRaycast : MonoBehaviour {
                 {
                     button.GetComponent<HandleButtonSound>().setState(false);
                 }
-                GameObject.Find("button_OK").GetComponent<HandleOK>().setState(false);
+                //GameObject.Find("button_OK").GetComponent<HandleOK>().setState(false);
+                //GameObject.Find("button_plus").GetComponent<HandleVolume>().setState(false);
+                //GameObject.Find("button_minus").GetComponent<HandleVolume>().setState(false);
             }
         }
         else // no collision
@@ -96,6 +106,9 @@ public class UIRaycast : MonoBehaviour {
                 button.GetComponent<HandleButtonSound>().setState(false);
             }
             GameObject.Find("button_OK").GetComponent<HandleOK>().setState(false);
+
+            GameObject.Find("button_plus").GetComponent<HandleVolume>().setState(false);
+            GameObject.Find("button_minus").GetComponent<HandleVolume>().setState(false); ;
         }
 
 
