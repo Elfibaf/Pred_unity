@@ -57,7 +57,9 @@ public class MapBehaviour : NetworkBehaviour {
         lastCloudRotationSpeed = GameObject.FindGameObjectWithTag("DayNight").GetComponent<DayNightController>().cloudRotationSpeed;
 
         // update the agitation value on the UI
-        GameObject.Find("AgitationValue").GetComponent<Text>().text = agitation.ToString();
+		if (GameObject.Find ("AgitationValue") != null) {
+			GameObject.Find ("AgitationValue").GetComponent<Text> ().text = a.ToString ();
+		}
         if(agitationBar != null)
         {
             agitationBar.sizeDelta = new Vector2(agitation*100.0f, agitationBar.sizeDelta.y);
@@ -69,11 +71,6 @@ public class MapBehaviour : NetworkBehaviour {
     {
 		if (this.enabled) {
 			print ("ONCHANGEAGITATION (" + newAgitation + ")");
-			// update the agitation value on the UI
-			GameObject.Find ("AgitationValue").GetComponent<Text> ().text = newAgitation.ToString ();
-			if (agitationBar != null) {
-				agitationBar.sizeDelta = new Vector2 (newAgitation * 100.0f, agitationBar.sizeDelta.y);
-			}
 			if (isServer) {
 				GameObject.Find ("NetworkManager").GetComponent<TherapistUI> ().agitation = newAgitation;
 			}
@@ -91,5 +88,24 @@ public class MapBehaviour : NetworkBehaviour {
             t += Time.deltaTime / duration;
         }
 	}
-		
+
+	/// <summary>
+	/// Adds a value to the agitation.
+	/// </summary>
+	/// <param name="value">Value to add to the agitation.</param>
+	[Command]
+	public void CmdAgitationUp (float value){
+		setAgitation (agitation + value);
+	}
+
+	/// <summary>
+	/// Substract value from the agitation
+	/// </summary>
+	/// <param name="value">Value to substract from the agitation.</param>
+	[Command]
+	public void CmdAgitationDown(float value){
+		setAgitation (agitation - value);
+	}
+
+
 }

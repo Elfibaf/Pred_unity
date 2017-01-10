@@ -80,7 +80,6 @@ public class ReceiveSpire : NetworkBehaviour {
 				string type = breathe.Value<string> ("type");
 				if ((type == "calm") || (type == "sedentary") || (type == "focus")) {
 					CmdChangeBreathing(breathe.Value<float> ("sub_value") + UnityEngine.Random.Range(0.0f,1.0f));
-					//CmdChangeBreathing(UnityEngine.Random.Range(6.0f,24.0f));
 					CmdChangeAgitation (breathingRythm, 6.0f, 24.0f);
 					break;
 				}
@@ -88,7 +87,10 @@ public class ReceiveSpire : NetworkBehaviour {
 		}
 	}
 
-
+	/// <summary>
+	/// Raises the change breathing event, to update and display the breathing value.
+	/// </summary>
+	/// <param name="breathing">New breathing value</param>
 	void OnChangeBreathing(float breathing) {
 
 		breathingRythm = breathing;
@@ -112,9 +114,10 @@ public class ReceiveSpire : NetworkBehaviour {
 	void CmdChangeAgitation(float value, float min, float max)
 	{
 		//float newAgitation = (float)Math.Round (((value - min) / (max - min)), 2);
-		float newAgitation = ((value - min) / (max - min));
-		print ("New Agitation" + newAgitation.ToString());
-		if (GameObject.FindGameObjectWithTag ("Patient") != null) {
+		// If there is a patient and the therapist doesn't want to control the agitation :
+		if ((GameObject.FindGameObjectWithTag ("Patient") != null) && (!GameObject.Find ("NetworkManager").GetComponent<TherapistUI> ().toggleAgitation)) {
+			float newAgitation = ((value - min) / (max - min));
+			print ("New Agitation" + newAgitation.ToString());
 			GameObject.FindGameObjectWithTag ("Patient").GetComponent<MapBehaviour> ().agitation = newAgitation;
 			print (GameObject.FindGameObjectWithTag ("Patient").GetComponent<MapBehaviour> ().agitation);
 		}

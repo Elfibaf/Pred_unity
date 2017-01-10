@@ -19,6 +19,7 @@ public class TherapistUI : MonoBehaviour {
 
 	public float agitation = 0;
 	public float breathing = 0;
+	public bool toggleAgitation = false;
 
 	void Start()
 	{
@@ -68,16 +69,29 @@ public class TherapistUI : MonoBehaviour {
         
     }
 
+
 	void BiofeedbackWindow(int id)
 	{
 		GUILayout.Label ("Breathing : " + breathing);
 		GUILayout.Label("Agitation : " + agitation);
+		if (SceneManager.GetActiveScene ().name == "RelaxingEnv1") {
+			toggleAgitation = GUILayout.Toggle (toggleAgitation, "Contrôle manuel de l'agitation");
+			if (toggleAgitation) {
+				if (GUILayout.Button ("+", GUILayout.MaxWidth(50))) {
+					print ("+ clicked");
+					GameObject.FindGameObjectWithTag ("Patient").GetComponent<MapBehaviour> ().CmdAgitationUp (0.05f);
+				}
+				if (GUILayout.Button ("-", GUILayout.MaxWidth(50))) {
+					print ("- clicked");
+					GameObject.FindGameObjectWithTag ("Patient").GetComponent<MapBehaviour> ().CmdAgitationDown (0.05f);
+				}
+			}
+		}
+
 	}
 
 	void WhiteNoiseWindow(int id)
 	{
-		
-		//GUI.Box (new Rect (0, 0, Screen.width - 260, Screen.height - 20), "");
 		GUILayout.Label("Choix du bruit blanc");
 		selGridInt = GUILayout.SelectionGrid (selGridInt, clipNamesArray, 2);
 
