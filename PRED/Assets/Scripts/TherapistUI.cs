@@ -9,7 +9,7 @@ public class TherapistUI : MonoBehaviour {
 
 	public float rectWidth = Screen.width / 2;
 	public float rectHeight = Screen.height / 8;
-	private AudioSource whiteNoiseSource;
+	//private AudioSource whiteNoiseSource;
 
 	public int prevSelGridInt = 0;
 	public int selGridInt = 0;
@@ -39,8 +39,8 @@ public class TherapistUI : MonoBehaviour {
 		}
 
 		if (SceneManager.GetActiveScene ().name == "Ganzfeld") {
-			GUILayout.Window(3, new Rect(rectWidth/2, Screen.height - rectHeight - 10, rectWidth, rectHeight), WhiteNoiseWindow, "", GUIStyle.none);
-			whiteNoiseSource = GameObject.Find ("Audio Source").GetComponent<AudioSource> ();
+			//GUILayout.Window(3, new Rect(rectWidth/2, Screen.height - rectHeight - 10, rectWidth, rectHeight), WhiteNoiseWindow, "", GUIStyle.none);
+			//whiteNoiseSource = GameObject.Find ("Audio Source").GetComponent<AudioSource> ();
 		}
 	}
 
@@ -90,7 +90,7 @@ public class TherapistUI : MonoBehaviour {
 
 	}
 
-	void WhiteNoiseWindow(int id)
+	/*void WhiteNoiseWindow(int id)
 	{
 		GUILayout.Label("Choix du bruit blanc");
 		selGridInt = GUILayout.SelectionGrid (selGridInt, clipNamesArray, 2);
@@ -111,15 +111,15 @@ public class TherapistUI : MonoBehaviour {
 		}
 		if (GUILayout.Button ("Bruit 2")) {
 			whiteNoiseSource.GetComponent<AudioController>().RpcPlaySound("Make It Bun Dem - Skrillex _ Damian Jr. Gong Marley");
-		}*/
+		}
 
-	}
+	}*/
 
 	// Using this function because RPC won't get called on host (when running in standalone build)
-	void PlaySoundFromButton(int soundNum)
+	/*void PlaySoundFromButton(int soundNum)
 	{
 		whiteNoiseSource.clip = (AudioClip)clipArray [soundNum];
 		whiteNoiseSource.Play ();
-	}
+	}*/
 
 }

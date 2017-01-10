@@ -54,6 +54,7 @@ public class HandleButtonSound : MonoBehaviour
         if (GameObject.FindGameObjectWithTag("Patient") != null)
         {
             GameObject.FindGameObjectWithTag("Patient").GetComponent<PatientController>().chosenSound = soundNum;
+			GameObject.Find ("Audio Source").GetComponent<AudioController> ().PlaySoundFromButton (soundNum, GameObject.FindGameObjectWithTag("Patient").GetComponent<PatientController>().chosenVolume);
         }
     }
 
@@ -95,7 +96,7 @@ public class HandleButtonSound : MonoBehaviour
                     Camera.main.GetComponent<UIRaycast>().activatedButtonSound = transform.gameObject;
                     action();
                 }
-                else
+				if (anim2[animName].time < anim2[animName].length)
                 {
                     isAnimOver = false;
                 }

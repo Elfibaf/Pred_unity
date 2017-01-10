@@ -8,16 +8,27 @@ public class AudioController : NetworkBehaviour {
 	private AudioSource whiteNoiseSource;
 	private AudioClip whiteNoise;
 	private Object[] clipArray;
+	private GameObject patient;
 
 
 
 	void Start()
 	{
-		clipArray = GameObject.FindGameObjectWithTag ("Patient").GetComponent<PatientController> ().whiteNoiseArray;
+		patient = GameObject.FindGameObjectWithTag ("Patient");
 		whiteNoiseSource = GetComponent<AudioSource> ();
-		whiteNoise = (AudioClip)clipArray [0];
-		whiteNoiseSource.clip = whiteNoise;
-		whiteNoiseSource.Play ();
+		whiteNoiseSource.volume = patient.GetComponent<PatientController> ().chosenVolume;
+		clipArray = patient.GetComponent<PatientController> ().whiteNoiseArray;
+		// Triggers the chosen white noise when entering Ganzfeld phase
+		if (patient.GetComponent<PatientController> ().chosenSound != -1) {
+			whiteNoise = (AudioClip)clipArray [patient.GetComponent<PatientController>().chosenSound];
+			whiteNoiseSource.clip = whiteNoise;
+			whiteNoiseSource.Play ();
+		}
+	}
+
+	// Called by the patientController when audio is loaded
+	public void SetClipArray(Object[] patientClipArray){
+		clipArray = patientClipArray;
 	}
 
 	[ClientRpc]
@@ -35,5 +46,18 @@ public class AudioController : NetworkBehaviour {
 	public void CmdPlaySound(int numButton) {
 		print ("CMD appelé");
 		whiteNoiseSource.GetComponent<AudioController> ().RpcPlaySoundFromButton (numButton);
+	}
+
+	public void PlaySoundFromButton(int soundNum, float vol)
+	{
+		whiteNoiseSource.volume = vol;
+		whiteNoise = (AudioClip)clipArray [soundNum];
+		whiteNoiseSource.clip = whiteNoise;
+		whiteNoiseSource.Play ();
+	}
+
+	public void changeVolume(float vol){
+		whiteNoiseSource.volume = vol;
+		print (vol);
 	}
 }

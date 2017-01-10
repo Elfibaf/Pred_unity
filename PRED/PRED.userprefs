@@ -1,20 +1,19 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ReceiveSpire.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\AudioController.cs">
     <Files>
       <File FileName="Assets\Scripts\CameraController.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\CameraFollow.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\NetworkManagerCustom.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\ReceiveSpire.cs" Line="61" Column="74" />
-      <File FileName="Assets\Scripts\TherapistUI.cs" Line="73" Column="32" />
-      <File FileName="Assets\_Scenes\RelaxingEnv1\MapBehaviour.cs" Line="73" Column="55" />
+      <File FileName="Assets\Scripts\ReceiveSpire.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\TherapistUI.cs" Line="116" Column="5" />
+      <File FileName="Assets\_Scenes\RelaxingEnv1\MapBehaviour.cs" Line="1" Column="1" />
       <File FileName="Assets\VoiceChat\Scripts\Demo\VoiceChatUiClient.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\AudioController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\PatientController.cs" Line="1" Column="1" />
-      <File FileName="Assets\_Scenes\HomeRoom\HandleOK.cs" Line="1" Column="1" />
-      <File FileName="Assets\VoiceChat\Scripts\Demo\VoiceChatUi.cs" Line="1" Column="1" />
-      <File FileName="Assets\VoiceChat\Scripts\VoiceChatRecorder.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\AudioRecorder.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\AudioController.cs" Line="19" Column="85" />
+      <File FileName="Assets\Scripts\PatientController.cs" Line="37" Column="4" />
+      <File FileName="Assets\_Scenes\HomeRoom\HandleOK.cs" Line="125" Column="67" />
+      <File FileName="Assets\_Scenes\HomeRoom\HandleButtonSound.cs" Line="57" Column="191" />
+      <File FileName="Assets\_Scenes\HomeRoom\HandleVolume.cs" Line="19" Column="97" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

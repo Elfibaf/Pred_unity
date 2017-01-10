@@ -23,22 +23,6 @@ public class PatientController : NetworkBehaviour {
     [SyncVar(hook = "OnChangeFadeDir")]
     public int fadeDir = 0;
 
-    void OnChangeFadeDir(int direction)
-    {
-        fadeDir = direction;
-        if(Camera.main.GetComponent<Fading>() != null)
-        {
-            if (direction == 1)
-            {
-                Camera.main.GetComponent<Fading>().FadeIn();
-            }
-            else if (direction == -1)
-            {
-                Camera.main.GetComponent<Fading>().FadeOut();
-            }
-        }
-        print("ONCHANGEFADEDIR: " + direction);
-    }
 
 	void Awake()
 	{
@@ -48,6 +32,9 @@ public class PatientController : NetworkBehaviour {
 	void Start () {
 		// Loading resources in advance to prevent lag in Ganzfeld phase
 		whiteNoiseArray = Resources.LoadAll ("Audio");
+		if (GameObject.Find ("Audio Source") != null) {
+			GameObject.Find ("Audio Source").GetComponent<AudioController> ().SetClipArray (whiteNoiseArray);
+		}
 		print ("Audio chargé");
 	}
 	
@@ -92,6 +79,22 @@ public class PatientController : NetworkBehaviour {
 
 	}
 		
+	void OnChangeFadeDir(int direction)
+	{
+		fadeDir = direction;
+		if(Camera.main.GetComponent<Fading>() != null)
+		{
+			if (direction == 1)
+			{
+				Camera.main.GetComponent<Fading>().FadeIn();
+			}
+			else if (direction == -1)
+			{
+				Camera.main.GetComponent<Fading>().FadeOut();
+			}
+		}
+		print("ONCHANGEFADEDIR: " + direction);
+	}
 
 	public override void OnStartLocalPlayer()
 	{
