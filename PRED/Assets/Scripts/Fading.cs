@@ -1,18 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Fading : MonoBehaviour {
 
     private Texture2D fadeOutTexture;
-    public float fadeSpeed = 0.1f;
+    public float fadeSpeed = 0.05f;
+	public float audioFadeSpeed;
     private int drawDepth = -1000;
     private float alpha = 0.0f;
     private int fadeDir = -1;
     public Color fadingColor = Color.black;
+	public AudioSource audioSource;
+	private float volume;
 
     void Start()
     {
+		fadeSpeed = 0.05f;
+
         //fadeOutTexture = new Texture2D(2, 2);
         fadingColor = GameObject.FindGameObjectWithTag("Patient").GetComponent<PatientController>().chosenColor;
 
@@ -27,11 +33,23 @@ public class Fading : MonoBehaviour {
 
         // Apply all SetPixel calls
         fadeOutTexture.Apply();
+
+		// Setting fade speed for audio fading
+		if (SceneManager.GetActiveScene ().name == "RelaxingEnv1") {
+			audioFadeSpeed = audioSource.volume * fadeSpeed;
+		} else {
+			audioFadeSpeed = GameObject.FindGameObjectWithTag ("Patient").GetComponent<PatientController> ().chosenVolume * fadeSpeed;
+		}
     }
 
     void OnGUI()
     {
         alpha += fadeDir * fadeSpeed * Time.deltaTime;
+		// Fading volume
+		volume -= fadeDir * audioFadeSpeed * Time.deltaTime;
+		volume = Mathf.Clamp (volume, 0, audioFadeSpeed / fadeSpeed);
+		audioSource.volume = volume;
+
         // clamp between 0 and 1
         alpha = Mathf.Clamp01(alpha);
         //print("alpha: " + alpha);
