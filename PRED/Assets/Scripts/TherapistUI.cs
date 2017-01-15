@@ -23,11 +23,11 @@ public class TherapistUI : MonoBehaviour {
 
 	void Start()
 	{
-		clipArray = Resources.LoadAll ("Audio");
+		/*clipArray = Resources.LoadAll ("Audio");
 		foreach (AudioClip clip in clipArray) {
 			clipNames.Add (clip.name);
 		}
-		clipNamesArray = clipNames.ToArray();
+		clipNamesArray = clipNames.ToArray();*/
 	}
 
 	void OnGUI()

@@ -68,21 +68,14 @@ public class NetworkManagerCustom : NetworkManager {
 			print ("tag = patient");
 			player.GetComponent<PatientController> ().OnStartLocalPlayer ();
 		}
-		//VoiceChatNetworkProxy.OnManagerServerDisconnect(conn); //
-		//VoiceChatNetworkProxy.OnManagerStopClient(); //
 
 		if (!ClientScene.ready) {
 			ClientScene.Ready(conn);
 		}
-			
-		//VoiceChatNetworkProxy.OnManagerStartClient (client); //
-		//VoiceChatNetworkProxy.OnManagerClientConnect(conn); //
 	
 	}
 
 	public override void OnServerSceneChanged(string sceneName) {
-		//VoiceChatNetworkProxy.OnManagerStopServer(); //
-		//VoiceChatNetworkProxy.OnManagerStartServer(); //
 	}
 
 	// Therapist's button
