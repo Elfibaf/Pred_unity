@@ -1,8 +1,4 @@
 sceneSetups:
-<<<<<<< HEAD
-- path: Assets/_Scenes/RelaxingEnv1/RelaxingEnv1.unity
-=======
-- path: Assets/_Scenes/HomeRoom/HomeRoom.unity
->>>>>>> b2348b7fa9ce30b3c7c4e4721c204255defd3c9e
+- path: Assets/_Scenes/Menu.unity
   isLoaded: 1
   isActive: 1

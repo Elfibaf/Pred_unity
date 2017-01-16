@@ -49,8 +49,8 @@ public class MapBehaviour : NetworkBehaviour {
             anim.speed = 0.8f + agitation * 2.0f;
         }
 
-        Animator anim_s = GameObject.FindGameObjectWithTag("sea").GetComponent<Animator>();
-        anim_s.speed = 0.2f + agitation * 0.5f;
+        /*Animator anim_s = GameObject.FindGameObjectWithTag("sea").GetComponent<Animator>();
+        anim_s.speed = 0.2f + agitation * 0.5f;*/
 
         t = 0.0f;
         lastIntensity = GameObject.FindGameObjectWithTag("DirectionalLight").GetComponent<Light>().intensity;
