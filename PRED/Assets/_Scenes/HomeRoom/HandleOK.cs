@@ -8,12 +8,14 @@ public class HandleOK : MonoBehaviour
 
     private GameObject buttons_colors;
     private GameObject buttons_sounds;
+	private GameObject instructions_depart;
     
     private bool state;
     private bool isAnimOver;
     private bool isAnimAtStart;
     private string animName;
     private bool isActivated;
+	private bool isDepart;
 
     public Color col;
 
@@ -22,6 +24,7 @@ public class HandleOK : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+		isDepart = true;
         state = false;
         isAnimOver = false;
         isActivated = false;
@@ -39,7 +42,9 @@ public class HandleOK : MonoBehaviour
 
         buttons_colors = GameObject.Find("buttons_colors");
         buttons_sounds = GameObject.Find("buttons_sounds");
+		instructions_depart = GameObject.Find ("Instructions depart");
         buttons_sounds.SetActive(false);
+		buttons_colors.SetActive (false);
     }
 
     public void setState(bool b)
@@ -64,12 +69,18 @@ public class HandleOK : MonoBehaviour
 
         if (GameObject.FindGameObjectWithTag("Patient") != null)
         {
-            if(GameObject.FindGameObjectWithTag("Patient").GetComponent<PatientController>().chosenColor != Color.red && GameObject.FindGameObjectWithTag("Patient").GetComponent<PatientController>().chosenSound == -1)
+			if (isDepart) 
+			{
+				instructions_depart.SetActive (false);
+				buttons_colors.SetActive (true);
+				isDepart = false;
+			}
+            else if(GameObject.FindGameObjectWithTag("Patient").GetComponent<PatientController>().chosenColor != Color.red && GameObject.FindGameObjectWithTag("Patient").GetComponent<PatientController>().chosenSound == -1 && !isDepart)
             {
                 buttons_colors.SetActive(false);
                 buttons_sounds.SetActive(true);
             }
-            else if(GameObject.FindGameObjectWithTag("Patient").GetComponent<PatientController>().chosenColor != Color.red && GameObject.FindGameObjectWithTag("Patient").GetComponent<PatientController>().chosenSound != -1)
+            else if(GameObject.FindGameObjectWithTag("Patient").GetComponent<PatientController>().chosenColor != Color.red && GameObject.FindGameObjectWithTag("Patient").GetComponent<PatientController>().chosenSound != -1 && !isDepart)
             {
                 if (GameObject.FindGameObjectWithTag("Therapist") != null && GameObject.FindGameObjectWithTag("Therapist").GetComponent<TherapistController>().isLocalPlayer) // only triggers scene change on patient side
                 {
