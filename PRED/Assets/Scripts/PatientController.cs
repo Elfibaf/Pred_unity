@@ -110,9 +110,9 @@ public class PatientController : NetworkBehaviour {
             OnChangeFadeDir(-1);
             Camera.main.GetComponent<Fading>().setFadingColor(chosenColor);
             StartCoroutine(SwitchFadingTex(1));
-           
+            StartCoroutine(rotatingCam(-90.0f));
 
-            Camera.main.transform.rotation = new Quaternion(0, 1, 0, 90);  // <----- camera is not willing to rotate
+            
             print("camera trans : " + Camera.main.transform.rotation);
 			GetComponent<MapBehaviour>().enabled = true;
 
@@ -133,6 +133,15 @@ public class PatientController : NetworkBehaviour {
             GameObject.Find("Point light").GetComponent<Light>().color = chosenColor;
         }      
 	}
+
+    //not working
+    IEnumerator rotatingCam(float angle)
+    {
+        Camera.main.GetComponent<GvrHead>().trackRotation = false;
+        Camera.main.transform.eulerAngles = new Vector3(0, angle, 0);  // <----- camera is not willing to rotate
+        Camera.main.GetComponent<GvrHead>().trackRotation = true;
+        yield return new WaitForSeconds(2.5f);
+    }
 
     IEnumerator SwitchFadingTex(int index)
     {
