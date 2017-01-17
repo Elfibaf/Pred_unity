@@ -9,11 +9,11 @@
       <File FileName="Assets\_Scenes\RelaxingEnv1\MapBehaviour.cs" Line="1" Column="1" />
       <File FileName="Assets\VoiceChat\Scripts\Demo\VoiceChatUiClient.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\AudioController.cs" Line="1" Column="1" />
-      <File FileName="Assets\_Scenes\HomeRoom\HandleOK.cs" Line="75" Column="37" />
+      <File FileName="Assets\_Scenes\HomeRoom\HandleOK.cs" Line="46" Column="9" />
       <File FileName="Assets\_Scenes\HomeRoom\HandleButtonSound.cs" Line="1" Column="1" />
       <File FileName="Assets\_Scenes\HomeRoom\HandleVolume.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\TherapistUI.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Fading.cs" Line="8" Column="38" />
+      <File FileName="Assets\Scripts\Fading.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\PatientController.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\TherapistController.cs" Line="1" Column="1" />
       <File FileName="Assets\_Scenes\HomeRoom\Billboard.cs" Line="1" Column="1" />
