@@ -20,6 +20,7 @@ public class TherapistUI : MonoBehaviour {
 	public float agitation = 0;
 	public float breathing = 0;
 	public bool toggleAgitation = false;
+	public float vSliderValue = 0.0f;
 
 	void Start()
 	{
@@ -77,14 +78,20 @@ public class TherapistUI : MonoBehaviour {
 		if (SceneManager.GetActiveScene ().name == "RelaxingEnv1") {
 			toggleAgitation = GUILayout.Toggle (toggleAgitation, "Contrôle manuel de l'agitation");
 			if (toggleAgitation) {
+				vSliderValue = GameObject.FindGameObjectWithTag ("Patient").GetComponent<MapBehaviour> ().agitation;
 				if (GUILayout.Button ("+", GUILayout.MaxWidth(50))) {
 					print ("+ clicked");
-					GameObject.FindGameObjectWithTag ("Patient").GetComponent<MapBehaviour> ().CmdAgitationUp (0.05f);
+					//GameObject.FindGameObjectWithTag ("Patient").GetComponent<MapBehaviour> ().CmdAgitationUp (0.05f);
+					vSliderValue += 0.05f;
 				}
 				if (GUILayout.Button ("-", GUILayout.MaxWidth(50))) {
 					print ("- clicked");
-					GameObject.FindGameObjectWithTag ("Patient").GetComponent<MapBehaviour> ().CmdAgitationDown (0.05f);
+					//GameObject.FindGameObjectWithTag ("Patient").GetComponent<MapBehaviour> ().CmdAgitationDown (0.05f);
+					vSliderValue -= 0.05f;
 				}
+				vSliderValue = GUILayout.VerticalSlider (vSliderValue, 1.0f, 0.0f);
+				GameObject.FindGameObjectWithTag ("Patient").GetComponent<MapBehaviour> ().agitation = vSliderValue;
+
 			}
 		}
 
