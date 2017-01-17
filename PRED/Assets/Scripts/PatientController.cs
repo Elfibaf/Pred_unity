@@ -99,13 +99,15 @@ public class PatientController : NetworkBehaviour {
 	public override void OnStartLocalPlayer()
 	{
 
-        gameObject.transform.position = new Vector3(-115.7f, 26.5f, 113.63f);
+        gameObject.transform.position = new Vector3(0, 0, 0);
 
 		GetComponent<CameraFollow>().setTarget(Camera.main.transform);
 
 		print (SceneManager.GetActiveScene ().name);
 
 		if (SceneManager.GetActiveScene ().name == "RelaxingEnv1") {
+            Camera.main.transform.rotation = new Quaternion(0, 1, 0, 90);  // <----- camera is not willing to rotate
+            print("camera trans : " + Camera.main.transform.rotation);
 			GetComponent<MapBehaviour>().enabled = true;
 			print ("Mapbehaviour active");
 		}
