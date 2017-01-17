@@ -69,6 +69,7 @@ public class TherapistController : NetworkBehaviour {
 
         if (SceneManager.GetActiveScene().name == "RelaxingEnv1")
         {
+            GameObject.FindGameObjectWithTag("Patient").GetComponent<PatientController>().fadeDir = -1;
             if (GameObject.FindGameObjectWithTag("Patient") != null)
             {
                 GameObject.FindGameObjectWithTag("Patient").GetComponent<MapBehaviour>().enabled = true;
