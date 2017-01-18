@@ -79,18 +79,18 @@ public class PatientController : NetworkBehaviour {
 
 	}
 		
-	void OnChangeFadeDir(int direction)
+	public void OnChangeFadeDir(int direction)
 	{
 		fadeDir = direction;
 		if(Camera.main.GetComponent<Fading>() != null)
 		{
 			if (direction == 1)
 			{
-				Camera.main.GetComponent<Fading>().FadeIn();
+				Camera.main.GetComponent<Fading>().FadeOut();
 			}
 			else if (direction == -1)
 			{
-				Camera.main.GetComponent<Fading>().FadeOut();
+				Camera.main.GetComponent<Fading>().FadeIn();
 			}
 		}
 		print("ONCHANGEFADEDIR: " + direction);
@@ -106,9 +106,16 @@ public class PatientController : NetworkBehaviour {
 		print (SceneManager.GetActiveScene ().name);
 
 		if (SceneManager.GetActiveScene ().name == "RelaxingEnv1") {
-            Camera.main.transform.rotation = new Quaternion(0, 1, 0, 90);  // <----- camera is not willing to rotate
+            // setting up fading tex
+            OnChangeFadeDir(-1);
+            Camera.main.GetComponent<Fading>().setFadingColor(chosenColor);
+            StartCoroutine(SwitchFadingTex(1));
+            StartCoroutine(rotatingCam(-90.0f));
+
+            
             print("camera trans : " + Camera.main.transform.rotation);
 			GetComponent<MapBehaviour>().enabled = true;
+
 			print ("Mapbehaviour active");
 		}
         else
@@ -119,8 +126,27 @@ public class PatientController : NetworkBehaviour {
 
         if (SceneManager.GetActiveScene().name == "Ganzfeld")
         {
+            Camera.main.GetComponent<Fading>().setFadingColor(chosenColor);
+            Camera.main.GetComponent<Fading>().setCurrentFadingTex(1);
             OnChangeFadeDir(-1); // start fadeOut after loading Ganzfeld scene
+
             GameObject.Find("Point light").GetComponent<Light>().color = chosenColor;
         }      
 	}
+
+    //not working
+    IEnumerator rotatingCam(float angle)
+    {
+        Camera.main.GetComponent<GvrHead>().trackRotation = false;
+        Camera.main.transform.eulerAngles = new Vector3(0, angle, 0);  // <----- camera is not willing to rotate
+        Camera.main.GetComponent<GvrHead>().trackRotation = true;
+        yield return new WaitForSeconds(2.5f);
+    }
+
+    IEnumerator SwitchFadingTex(int index)
+    {
+        yield return new WaitForSeconds(10.0f);
+        Camera.main.GetComponent<Fading>().setCurrentFadingTex(index);
+        fadeDir = -1; // car fadeDir est reset à 1 (au lieu d'être -1) à la transition vers  RelaxationEnv1
+    }
 }

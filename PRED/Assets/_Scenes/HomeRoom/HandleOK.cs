@@ -69,28 +69,34 @@ public class HandleOK : MonoBehaviour
 
         if (GameObject.FindGameObjectWithTag("Patient") != null)
         {
-			if (isDepart) 
-			{
-				instructions_depart.SetActive (false);
-				buttons_colors.SetActive (true);
-				isDepart = false;
-			}
-            else if(GameObject.FindGameObjectWithTag("Patient").GetComponent<PatientController>().chosenColor != Color.red && GameObject.FindGameObjectWithTag("Patient").GetComponent<PatientController>().chosenSound == -1 && !isDepart)
+            if (isDepart)
+            {
+                instructions_depart.SetActive(false);
+                buttons_colors.SetActive(true);
+                isDepart = false;
+            }
+            else if (GameObject.FindGameObjectWithTag("Patient").GetComponent<PatientController>().chosenColor != Color.red && GameObject.FindGameObjectWithTag("Patient").GetComponent<PatientController>().chosenSound == -1 && !isDepart)
             {
                 buttons_colors.SetActive(false);
                 buttons_sounds.SetActive(true);
             }
-            else if(GameObject.FindGameObjectWithTag("Patient").GetComponent<PatientController>().chosenColor != Color.red && GameObject.FindGameObjectWithTag("Patient").GetComponent<PatientController>().chosenSound != -1 && !isDepart)
+            else if (GameObject.FindGameObjectWithTag("Patient").GetComponent<PatientController>().chosenColor != Color.red && GameObject.FindGameObjectWithTag("Patient").GetComponent<PatientController>().chosenSound != -1 && !isDepart)
             {
                 if (GameObject.FindGameObjectWithTag("Therapist") != null && GameObject.FindGameObjectWithTag("Therapist").GetComponent<TherapistController>().isLocalPlayer) // only triggers scene change on patient side
                 {
-                    GameObject.Find("NetworkManager").GetComponent<NetworkManagerCustom>().ServerChangeScene("RelaxingEnv1");
+                    StartCoroutine(FadingWhite(1)); // scene transition
+
                 }
             }
-        }
+        }	
+    }
 
-        
-		
+
+    IEnumerator FadingWhite(int dir)
+    {
+        GameObject.FindGameObjectWithTag("Patient").GetComponent<PatientController>().fadeDir = dir;
+        yield return new WaitForSeconds(1.0f / 0.05f);
+        GameObject.Find("NetworkManager").GetComponent<NetworkManagerCustom>().ServerChangeScene("RelaxingEnv1");
     }
 
     // Update is called once per frame

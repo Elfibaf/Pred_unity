@@ -22,6 +22,7 @@ public class TherapistUI : MonoBehaviour {
 	public bool toggleAgitation = false;
 	public float vSliderValue = 0.0f;
 
+
 	void Start()
 	{
 		/*clipArray = Resources.LoadAll ("Audio");
@@ -30,6 +31,11 @@ public class TherapistUI : MonoBehaviour {
 		}
 		clipNamesArray = clipNames.ToArray();*/
 	}
+
+    void Update()
+    {
+
+    }
 
 	void OnGUI()
 	{
@@ -52,22 +58,27 @@ public class TherapistUI : MonoBehaviour {
 
 		if (GUILayout.Button ("Phase Ganzfeld")) 
 		{
-            StartCoroutine(Fading(1));
+            Camera.main.GetComponent<Fading>().setFadingColor(GameObject.FindGameObjectWithTag("Patient").GetComponent<PatientController>().chosenColor);
+            Camera.main.GetComponent<Fading>().setCurrentFadingTex(1);
+            StartCoroutine(Fading(1, "Ganzfeld"));
 		}
 	}
 
-    IEnumerator Fading(int direction)
+    IEnumerator Fading(int direction, string sceneName)
     {
         // fade in
-        //Camera.main.GetComponent<Fading>().fadingColor = GameObject.FindGameObjectWithTag("Patient").GetComponent<PatientController>().chosenColor;
+        print("fade " + direction + " " + sceneName);
+        
         GameObject.FindGameObjectWithTag("Patient").GetComponent<PatientController>().fadeDir = direction;
         float fadeTime = Camera.main.GetComponent<Fading>().BeginFade(direction);
-        yield return new WaitForSeconds(1.0f / fadeTime);
+        
 
         //GameObject.FindGameObjectWithTag("Patient").GetComponent<MapBehaviour>().enabled = false;
-       
-        GetComponent<NetworkManagerCustom>().ServerChangeScene("Ganzfeld");
-        
+        if(sceneName != "")
+        {
+            yield return new WaitForSeconds(1.0f / fadeTime);
+            GetComponent<NetworkManagerCustom>().ServerChangeScene(sceneName);
+        }  
     }
 
 
