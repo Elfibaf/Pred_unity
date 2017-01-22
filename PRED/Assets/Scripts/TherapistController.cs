@@ -14,6 +14,9 @@ public class TherapistController : NetworkBehaviour {
 	private float pitch = 0.0f;
     private bool patientDetected = false;
 
+	[SyncVar(hook = "OnChangeFromGanzfeld")]
+	public bool fromGanzfeld = false;
+
 	void Awake()
 	{
 		DontDestroyOnLoad (this);
@@ -48,6 +51,10 @@ public class TherapistController : NetworkBehaviour {
 
 	}
 
+	public void OnChangeFromGanzfeld(bool fG) {
+		fromGanzfeld = fG;
+	}
+
 	public override void OnStartLocalPlayer()
 	{
         gameObject.transform.position = new Vector3(-115.7f, 26.5f, 113.63f);
@@ -75,7 +82,10 @@ public class TherapistController : NetworkBehaviour {
                 GameObject.FindGameObjectWithTag("Patient").GetComponent<MapBehaviour>().enabled = true;
 				print ("Mapbehaviour active");
             }
-        }
+			if (fromGanzfeld) {
+				Camera.main.GetComponent<Fading> ().setCurrentFadingTex (1);
+			}
+		}
         else
         {
             if (GameObject.FindGameObjectWithTag("Patient") != null)
@@ -87,6 +97,8 @@ public class TherapistController : NetworkBehaviour {
 
         if (SceneManager.GetActiveScene().name == "Ganzfeld")
         {
+			GameObject.FindGameObjectWithTag("Patient").GetComponent<PatientController>().fadeDir = -1;
+			Camera.main.GetComponent<Fading>().setCurrentFadingTex(1);
             GameObject.Find("Point light").GetComponent<Light>().color = GameObject.FindGameObjectWithTag("Patient").GetComponent<PatientController>().chosenColor;
         }
 

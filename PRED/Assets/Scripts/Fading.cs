@@ -80,11 +80,14 @@ public class Fading : MonoBehaviour {
 
         createWhiteTexture();
         setCurrentFadingTex(0);
-    
+
 		// Setting fade speed for audio fading
 		if (SceneManager.GetActiveScene ().name == "RelaxingEnv1") {
 			audioFadeSpeed = audioSource.volume * fadeSpeed;
-		} else {
+		} else if (SceneManager.GetActiveScene ().name == "HomeRoom") {
+			audioFadeSpeed = 0.5f * fadeSpeed;
+		}
+		else {
 			audioFadeSpeed = GameObject.FindGameObjectWithTag ("Patient").GetComponent<PatientController> ().chosenVolume * fadeSpeed;
 		}
     }
@@ -104,12 +107,9 @@ public class Fading : MonoBehaviour {
     {
         alpha += fadeDir * fadeSpeed * Time.deltaTime;
 		// Fading volume
-        if(SceneManager.GetActiveScene().name != "HomeRoom")
-        {
-            volume -= fadeDir * audioFadeSpeed * Time.deltaTime;
-            volume = Mathf.Clamp(volume, 0, audioFadeSpeed / fadeSpeed);
-            audioSource.volume = volume;
-        }
+        volume -= fadeDir * audioFadeSpeed * Time.deltaTime;
+        volume = Mathf.Clamp(volume, 0, audioFadeSpeed / fadeSpeed);
+        audioSource.volume = volume;
         // clamp between 0 and 1
         alpha = Mathf.Clamp01(alpha);
         //print("alpha: " + alpha);

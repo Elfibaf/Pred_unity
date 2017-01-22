@@ -111,6 +111,9 @@ public class PatientController : NetworkBehaviour {
             Camera.main.GetComponent<Fading>().setFadingColor(chosenColor);
             StartCoroutine(SwitchFadingTex(1));
 
+			if (GameObject.FindGameObjectWithTag ("Therapist").GetComponent<TherapistController> ().fromGanzfeld) {
+				Camera.main.GetComponent<Fading>().setCurrentFadingTex(1);
+			}
             
             print("camera trans : " + Camera.main.transform.rotation);
 			GetComponent<MapBehaviour>().enabled = true;
@@ -127,6 +130,7 @@ public class PatientController : NetworkBehaviour {
         {
             Camera.main.GetComponent<Fading>().setFadingColor(chosenColor);
             Camera.main.GetComponent<Fading>().setCurrentFadingTex(1);
+			//StartCoroutine(SwitchFadingTex(1));
             OnChangeFadeDir(-1); // start fadeOut after loading Ganzfeld scene
 
             GameObject.Find("Point light").GetComponent<Light>().color = chosenColor;

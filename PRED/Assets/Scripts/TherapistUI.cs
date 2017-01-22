@@ -46,8 +46,7 @@ public class TherapistUI : MonoBehaviour {
 		}
 
 		if (SceneManager.GetActiveScene ().name == "Ganzfeld") {
-			//GUILayout.Window(3, new Rect(rectWidth/2, Screen.height - rectHeight - 10, rectWidth, rectHeight), WhiteNoiseWindow, "", GUIStyle.none);
-			//whiteNoiseSource = GameObject.Find ("Audio Source").GetComponent<AudioSource> ();
+			GUILayout.Window(2, new Rect(Screen.width - Screen.width/8 - 10, Screen.height - Screen.height/16 - 10, Screen.width/8, Screen.height/16), GanzfeldWindow, "", GUIStyle.none);
 		}
 	}
 
@@ -106,6 +105,16 @@ public class TherapistUI : MonoBehaviour {
 			}
 		}
 
+	}
+
+	void GanzfeldWindow(int id) {
+		if (GUILayout.Button ("Phase Relaxation")) 
+		{
+			Camera.main.GetComponent<Fading>().setFadingColor(GameObject.FindGameObjectWithTag("Patient").GetComponent<PatientController>().chosenColor);
+			Camera.main.GetComponent<Fading>().setCurrentFadingTex(1);
+			StartCoroutine(Fading(1, "RelaxingEnv1"));
+			GameObject.FindGameObjectWithTag ("Therapist").GetComponent<TherapistController> ().fromGanzfeld = true;
+		}
 	}
 
 	/*void WhiteNoiseWindow(int id)
