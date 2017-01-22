@@ -95,7 +95,8 @@ public class HandleOK : MonoBehaviour
     IEnumerator FadingWhite(int dir)
     {
         GameObject.FindGameObjectWithTag("Patient").GetComponent<PatientController>().fadeDir = dir;
-        yield return new WaitForSeconds(1.0f / 0.05f);
+        yield return new WaitForSeconds(1.0f / Camera.main.GetComponent<Fading>().fadeSpeed);
+        GameObject.FindGameObjectWithTag("Patient").GetComponent<PatientController>().fadeDir = -1;
         GameObject.Find("NetworkManager").GetComponent<NetworkManagerCustom>().ServerChangeScene("RelaxingEnv1");
     }
 

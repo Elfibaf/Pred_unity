@@ -108,6 +108,12 @@ public class PatientController : NetworkBehaviour {
 		if (SceneManager.GetActiveScene ().name == "RelaxingEnv1") {
             // setting up fading tex
             //OnChangeFadeDir(-1);
+            if (isLocalPlayer)
+            {
+                Camera.main.GetComponent<Fading>().FadeIn();
+            }
+           
+            //fadeDir = -1;
             Camera.main.GetComponent<Fading>().setFadingColor(chosenColor);
             StartCoroutine(SwitchFadingTex(1));
 
@@ -115,7 +121,6 @@ public class PatientController : NetworkBehaviour {
 				Camera.main.GetComponent<Fading>().setCurrentFadingTex(1);
 			}
             
-            print("camera trans : " + Camera.main.transform.rotation);
 			GetComponent<MapBehaviour>().enabled = true;
 
 			print ("Mapbehaviour active");
