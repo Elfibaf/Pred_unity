@@ -29,16 +29,8 @@ public class TherapistController : NetworkBehaviour {
 		{
 			return;
 		}
-
-		/*var x = Input.GetAxis("Horizontal") * Time.deltaTime * 150.0f;
-		var z = Input.GetAxis("Vertical") * Time.deltaTime * 150.0f;*/
-
 		yaw += h_speed * Input.GetAxis("Mouse X");
 		pitch -= v_speed * Input.GetAxis("Mouse Y");
-
-
-		//transform.eulerAngles = new Vector3(pitch, yaw, 0.0f);
-		//transform.Translate(x, 0, z);
 
         if(GameObject.FindGameObjectWithTag("Patient") != null && !patientDetected)
         {
@@ -48,11 +40,24 @@ public class TherapistController : NetworkBehaviour {
             GameObject.FindGameObjectWithTag("Patient").GetComponent<GyroControl>().enabled = false; // we disable the gyroControl component on the host (therapist)
             GameObject.FindGameObjectWithTag("Patient").GetComponent<CameraFollow>().enabled = false;
         }
-
 	}
 
 	public void OnChangeFromGanzfeld(bool fG) {
 		fromGanzfeld = fG;
+	}
+
+	[ClientRpc]
+	public void RpcRecenter() {
+		if (isServer){
+			return;
+		}
+		UnityEngine.Object.FindObjectOfType<GvrViewer> ().Recenter ();
+		print ("RECENTER");
+	}
+
+	[Command]
+	public void CmdRecenter() {
+		RpcRecenter ();
 	}
 
 	public override void OnStartLocalPlayer()

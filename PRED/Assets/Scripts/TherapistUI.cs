@@ -40,13 +40,14 @@ public class TherapistUI : MonoBehaviour {
 	void OnGUI()
 	{
 		GUILayout.Window(4, new Rect(Screen.width - Screen.width/8 - 10, Screen.height/16 + 10, Screen.width/8, Screen.height/16), BiofeedbackWindow, "", GUIStyle.none);
+		GUILayout.Window(3, new Rect(rectWidth/2, Screen.height - rectHeight - 10, rectWidth, rectHeight), RecenterWindow, "", GUIStyle.none);
 
 		if (SceneManager.GetActiveScene ().name == "RelaxingEnv1") {
 			GUILayout.Window(2, new Rect(Screen.width - Screen.width/8 - 10, Screen.height - Screen.height/16 - 10, Screen.width/8, Screen.height/16), Window, "", GUIStyle.none);
 		}
 
 		if (SceneManager.GetActiveScene ().name == "Ganzfeld") {
-			GUILayout.Window(2, new Rect(Screen.width - Screen.width/8 - 10, Screen.height - Screen.height/16 - 10, Screen.width/8, Screen.height/16), GanzfeldWindow, "", GUIStyle.none);
+			GUILayout.Window(5, new Rect(Screen.width - Screen.width/8 - 10, Screen.height - Screen.height/16 - 10, Screen.width/8, Screen.height/16), GanzfeldWindow, "", GUIStyle.none);
 		}
 	}
 
@@ -117,6 +118,11 @@ public class TherapistUI : MonoBehaviour {
 		}
 	}
 
+	void RecenterWindow(int id) {
+		if (GUILayout.Button ("Recentrer caméra")) {
+			GameObject.FindGameObjectWithTag ("Therapist").GetComponent<TherapistController> ().CmdRecenter ();
+		}
+	}
 	/*void WhiteNoiseWindow(int id)
 	{
 		GUILayout.Label("Choix du bruit blanc");

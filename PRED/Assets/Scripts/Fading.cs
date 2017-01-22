@@ -96,9 +96,10 @@ public class Fading : MonoBehaviour {
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
+			
             //UnityEngine.Object.FindObjectOfType<GvrViewer>().Recenter(); 
-            Camera.main.GetComponent<GvrHead>().trackRotation = false;
-            Camera.main.transform.rotation = new Quaternion(0, 1.0f, 0, 70.0f);
+            //Camera.main.GetComponent<GvrHead>().trackRotation = false;
+            //Camera.main.transform.rotation = new Quaternion(0, 1.0f, 0, 70.0f);
             //Camera.main.GetComponent<GvrHead>().trackRotation = true;
         }
     }
