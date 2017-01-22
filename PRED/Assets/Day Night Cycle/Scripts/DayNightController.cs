@@ -65,7 +65,7 @@ public class DayNightController : MonoBehaviour {
 	void ControlLight() {
 		//Rotate light
 		xValueOfSun = -(90.0f+currentTime*15.0f);
-		sunLight.transform.eulerAngles = sunLight.transform.right*xValueOfSun;
+		//sunLight.transform.eulerAngles = sunLight.transform.right*xValueOfSun; //spins the sun at a tremendous speed for some reason...
 		//reset angle
 		if (xValueOfSun >= 360.0f) {
 			xValueOfSun = 0.0f;
