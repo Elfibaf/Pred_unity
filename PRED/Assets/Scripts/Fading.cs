@@ -17,6 +17,9 @@ public class Fading : MonoBehaviour {
 	public AudioSource audioSource;
 	private float volume;
 
+	public bool exitingHomeRoom;
+	private bool isFadeSpeedSet; // To set the AudioFadeSpeed right before exiting HomeRoom
+
     public float getAlpha()
     {
         return (alpha);
@@ -76,6 +79,8 @@ public class Fading : MonoBehaviour {
 
     void Start()
     {
+		exitingHomeRoom = false;
+		isFadeSpeedSet = false;
         if (SceneManager.GetActiveScene().name == "HomeRoom")
         {
             fadeSpeed = 0.1f;
@@ -107,9 +112,20 @@ public class Fading : MonoBehaviour {
     {
         alpha += fadeDir * fadeSpeed * Time.deltaTime;
 		// Fading volume
-        volume -= fadeDir * audioFadeSpeed * Time.deltaTime;
-        volume = Mathf.Clamp(volume, 0, audioFadeSpeed / fadeSpeed);
-        audioSource.volume = volume;
+		if (SceneManager.GetActiveScene ().name == "HomeRoom" && exitingHomeRoom) {
+			if (!isFadeSpeedSet) {
+				audioFadeSpeed = audioSource.volume * fadeSpeed;
+				isFadeSpeedSet = true;
+				volume = audioSource.volume;
+			}
+			volume -= fadeDir * audioFadeSpeed * Time.deltaTime;
+			volume = Mathf.Clamp (volume, 0, audioFadeSpeed/fadeSpeed);
+			audioSource.volume = volume;
+		} else if (SceneManager.GetActiveScene ().name != "HomeRoom") {
+			volume -= fadeDir * audioFadeSpeed * Time.deltaTime;
+			volume = Mathf.Clamp(volume, 0, audioFadeSpeed / fadeSpeed);
+			audioSource.volume = volume;
+		}
         // clamp between 0 and 1
         alpha = Mathf.Clamp01(alpha);
         //print("alpha: " + alpha);

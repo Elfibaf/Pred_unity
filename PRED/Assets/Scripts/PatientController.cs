@@ -94,6 +94,9 @@ public class PatientController : NetworkBehaviour {
 			}
 		}
 		print("ONCHANGEFADEDIR: " + direction);
+		if (SceneManager.GetActiveScene ().name == "HomeRoom") {
+			Camera.main.GetComponent<Fading> ().exitingHomeRoom = true;
+		}
 	}
 
 	public override void OnStartLocalPlayer()
