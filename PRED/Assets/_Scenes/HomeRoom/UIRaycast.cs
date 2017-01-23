@@ -74,11 +74,19 @@ public class UIRaycast : MonoBehaviour {
             }
             else if(hit.collider.name == "button_plus")
             {
-                hit.transform.gameObject.GetComponent<HandleVolume>().setState(true);
+                if (hit.transform.gameObject.GetComponent<HandleVolume>() != null)
+                    hit.transform.gameObject.GetComponent<HandleVolume>().setState(true);
+
+                if(hit.transform.gameObject.GetComponent<HandleLight>() != null)
+                    hit.transform.gameObject.GetComponent<HandleLight>().setState(true);
             }
             else if(hit.collider.name == "button_minus")
             {
-                hit.transform.gameObject.GetComponent<HandleVolume>().setState(true);
+                if (hit.transform.gameObject.GetComponent<HandleVolume>() != null)
+                    hit.transform.gameObject.GetComponent<HandleVolume>().setState(true);
+
+                if (hit.transform.gameObject.GetComponent<HandleLight>() != null)
+                    hit.transform.gameObject.GetComponent<HandleLight>().setState(true);
             }
             else // hit but not on a circle_button
             {
@@ -109,6 +117,12 @@ public class UIRaycast : MonoBehaviour {
             {
                 GameObject.Find("button_plus").GetComponent<HandleVolume>().setState(false);
                 GameObject.Find("button_minus").GetComponent<HandleVolume>().setState(false);
+            }
+
+            if (GameObject.Find("buttons_light") != null)
+            {
+                GameObject.Find("button_plus").GetComponent<HandleLight>().setState(false);
+                GameObject.Find("button_minus").GetComponent<HandleLight>().setState(false);
             }
         }
 

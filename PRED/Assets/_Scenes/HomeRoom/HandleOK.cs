@@ -7,6 +7,7 @@ public class HandleOK : MonoBehaviour
 {
 
     private GameObject buttons_colors;
+    private GameObject buttons_light;
     private GameObject buttons_sounds;
 	private GameObject instructions_depart;
 	private GameObject ganzfeld_sphere;
@@ -51,9 +52,11 @@ public class HandleOK : MonoBehaviour
 		point_light = GameObject.Find ("Point light");
 		homeroom_light = GameObject.Find ("HomeRoomLight");
         buttons_colors = GameObject.Find("buttons_colors");
+        buttons_light = GameObject.Find("buttons_light");
         buttons_sounds = GameObject.Find("buttons_sounds");
 		instructions_depart = GameObject.Find ("Instructions depart");
         buttons_sounds.SetActive(false);
+        buttons_light.SetActive(false);
 		buttons_colors.SetActive (false);
 		ganzfeld_sphere.SetActive (false);
 		point_light.SetActive (false);
@@ -93,6 +96,7 @@ public class HandleOK : MonoBehaviour
 				buttons_colors.SetActive (false);
 				ganzfeld_sphere.SetActive (true);
 				point_light.SetActive (true);
+                buttons_light.SetActive(true);
 				point_light.GetComponent<Light> ().color = GameObject.FindGameObjectWithTag ("Patient").GetComponent<PatientController> ().chosenColor;
 				isRangeChosen = true;
 			// Loading sound selection
@@ -101,7 +105,8 @@ public class HandleOK : MonoBehaviour
 				homeroom_light.SetActive (true);
 				ganzfeld_sphere.SetActive (false);
 				point_light.SetActive (false);
-				buttons_sounds.SetActive(true);
+                buttons_light.SetActive(false);
+                buttons_sounds.SetActive(true);
 			}
 			// Loading Relaxing Environment
 			else if (GameObject.FindGameObjectWithTag("Patient").GetComponent<PatientController>().chosenColor != Color.red && GameObject.FindGameObjectWithTag("Patient").GetComponent<PatientController>().chosenSound != -1 && !isDepart && isRangeChosen)

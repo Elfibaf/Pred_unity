@@ -12,7 +12,7 @@ public class HandleButtonCol : MonoBehaviour {
 
     public Color col;
     private Color lastCol;
-    private float duration = 5;
+    private float duration = 2.0f;
     private float t;
 
 	// Use this for initialization

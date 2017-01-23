@@ -18,7 +18,7 @@ public class PatientController : NetworkBehaviour {
     public Color chosenColor = Color.red;
     public int chosenSound = -1;
     public float chosenVolume = 0.5f;
-	public float chosenRange = 13.85f;
+	public float chosenIntensity = 0.75f;
 
 
     [SyncVar(hook = "OnChangeFadeDir")]
@@ -64,11 +64,11 @@ public class PatientController : NetworkBehaviour {
 			print (GetComponent<MapBehaviour> ().agitation);
 		}*/
 		if (Input.GetKeyDown (KeyCode.A)) {
-			chosenRange -= 0.5f;
+			//chosenRange -= 0.5f;
 			GameObject.Find ("Point light").GetComponent<Light> ().range -= 0.5f;
 		}
 		if (Input.GetKeyDown (KeyCode.E)) {
-			chosenRange += 0.5f;
+			//chosenRange += 0.5f;
 			GameObject.Find ("Point light").GetComponent<Light> ().range += 0.5f;
 		}
 		if (Input.GetKeyDown (KeyCode.Q)) {
