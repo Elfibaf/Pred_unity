@@ -259,10 +259,10 @@ public class GvrPostRender : MonoBehaviour {
       ComputeUIMatrix();
     }
     uiMaterial.SetPass(0);
-    DrawSettingsButton();
-    DrawAlignmentMarker();
+    //DrawSettingsButton();    // <--------------------- Disabling UI
+    //DrawAlignmentMarker();   // <--------------------- Disabling UI
     if (vrMode) {
-      DrawVRBackButton();
+        //DrawVRBackButton();    // <--------------------- Disabling UI
     }
   }
 
