@@ -9,6 +9,10 @@ public class HandleOK : MonoBehaviour
     private GameObject buttons_colors;
     private GameObject buttons_sounds;
 	private GameObject instructions_depart;
+	private GameObject ganzfeld_sphere;
+	private GameObject homeroom_sphere;
+	private GameObject point_light;
+	private GameObject homeroom_light;
     
     private bool state;
     private bool isAnimOver;
@@ -16,6 +20,7 @@ public class HandleOK : MonoBehaviour
     private string animName;
     private bool isActivated;
 	private bool isDepart;
+	public bool isRangeChosen;
 
     public Color col;
 
@@ -25,6 +30,7 @@ public class HandleOK : MonoBehaviour
     void Start()
     {
 		isDepart = true;
+		isRangeChosen = false;
         state = false;
         isAnimOver = false;
         isActivated = false;
@@ -40,11 +46,17 @@ public class HandleOK : MonoBehaviour
             }
         }
 
+		ganzfeld_sphere = GameObject.Find ("Sphere");
+		homeroom_sphere = GameObject.Find ("Sph_re");
+		point_light = GameObject.Find ("Point light");
+		homeroom_light = GameObject.Find ("HomeRoomLight");
         buttons_colors = GameObject.Find("buttons_colors");
         buttons_sounds = GameObject.Find("buttons_sounds");
 		instructions_depart = GameObject.Find ("Instructions depart");
         buttons_sounds.SetActive(false);
 		buttons_colors.SetActive (false);
+		ganzfeld_sphere.SetActive (false);
+		point_light.SetActive (false);
     }
 
     public void setState(bool b)
@@ -69,18 +81,30 @@ public class HandleOK : MonoBehaviour
 
         if (GameObject.FindGameObjectWithTag("Patient") != null)
         {
-            if (isDepart)
-            {
-                instructions_depart.SetActive(false);
-                buttons_colors.SetActive(true);
-                isDepart = false;
-            }
-            else if (GameObject.FindGameObjectWithTag("Patient").GetComponent<PatientController>().chosenColor != Color.red && GameObject.FindGameObjectWithTag("Patient").GetComponent<PatientController>().chosenSound == -1 && !isDepart)
-            {
-                buttons_colors.SetActive(false);
-                buttons_sounds.SetActive(true);
-            }
-            else if (GameObject.FindGameObjectWithTag("Patient").GetComponent<PatientController>().chosenColor != Color.red && GameObject.FindGameObjectWithTag("Patient").GetComponent<PatientController>().chosenSound != -1 && !isDepart)
+			//Loading color selection
+			if (isDepart) {
+				instructions_depart.SetActive (false);
+				buttons_colors.SetActive (true);
+				isDepart = false;
+			// Loading Light range selection
+			} else if (GameObject.FindGameObjectWithTag ("Patient").GetComponent<PatientController> ().chosenColor != Color.red && GameObject.FindGameObjectWithTag ("Patient").GetComponent<PatientController> ().chosenSound == -1 && !isDepart && !isRangeChosen) {
+				homeroom_sphere.SetActive (false);
+				homeroom_light.SetActive (false);
+				buttons_colors.SetActive (false);
+				ganzfeld_sphere.SetActive (true);
+				point_light.SetActive (true);
+				point_light.GetComponent<Light> ().color = GameObject.FindGameObjectWithTag ("Patient").GetComponent<PatientController> ().chosenColor;
+				isRangeChosen = true;
+			// Loading sound selection
+			} else if (GameObject.FindGameObjectWithTag ("Patient").GetComponent<PatientController> ().chosenColor != Color.red && GameObject.FindGameObjectWithTag ("Patient").GetComponent<PatientController> ().chosenSound == -1 && !isDepart && isRangeChosen) {
+				homeroom_sphere.SetActive (true);
+				homeroom_light.SetActive (true);
+				ganzfeld_sphere.SetActive (false);
+				point_light.SetActive (false);
+				buttons_sounds.SetActive(true);
+			}
+			// Loading Relaxing Environment
+			else if (GameObject.FindGameObjectWithTag("Patient").GetComponent<PatientController>().chosenColor != Color.red && GameObject.FindGameObjectWithTag("Patient").GetComponent<PatientController>().chosenSound != -1 && !isDepart && isRangeChosen)
             {
                 if (GameObject.FindGameObjectWithTag("Therapist") != null && GameObject.FindGameObjectWithTag("Therapist").GetComponent<TherapistController>().isLocalPlayer) // only triggers scene change on patient side
                 {

@@ -18,6 +18,7 @@ public class PatientController : NetworkBehaviour {
     public Color chosenColor = Color.red;
     public int chosenSound = -1;
     public float chosenVolume = 0.5f;
+	public float chosenRange = 13.85f;
 
 
     [SyncVar(hook = "OnChangeFadeDir")]
@@ -57,14 +58,28 @@ public class PatientController : NetworkBehaviour {
             //transform.Translate(0, x, z);
         }
 		
-		if (Input.GetKeyDown(KeyCode.Space))
+		/*if (Input.GetKeyDown(KeyCode.Space))
 		{
 			CmdChangeAgitation();
 			print (GetComponent<MapBehaviour> ().agitation);
+		}*/
+		if (Input.GetKeyDown (KeyCode.A)) {
+			chosenRange -= 0.5f;
+			GameObject.Find ("Point light").GetComponent<Light> ().range -= 0.5f;
+		}
+		if (Input.GetKeyDown (KeyCode.E)) {
+			chosenRange += 0.5f;
+			GameObject.Find ("Point light").GetComponent<Light> ().range += 0.5f;
+		}
+		if (Input.GetKeyDown (KeyCode.Q)) {
+			GameObject.Find ("Point light").GetComponent<Light> ().intensity -= 0.1f;
+		}
+		if (Input.GetKeyDown (KeyCode.D)) {
+			GameObject.Find ("Point light").GetComponent<Light> ().intensity += 0.1f;
 		}
 	}
 
-	[Command] // calls the function only server-side
+	/*[Command] // calls the function only server-side
 	public void CmdChangeAgitation()
 	{
 		if (GetComponent<MapBehaviour> ().agitation < 0.5f) {
@@ -77,7 +92,7 @@ public class PatientController : NetworkBehaviour {
 			GetComponent<MapBehaviour> ().setAgitation (0.0f);
 		}
 
-	}
+	}*/
 		
 	public void OnChangeFadeDir(int direction)
 	{
