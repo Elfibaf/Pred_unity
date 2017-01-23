@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class HandleOK : MonoBehaviour
 {
-
+    private GameObject Start_screen;
     private GameObject buttons_colors;
     private GameObject buttons_light;
     private GameObject buttons_sounds;
@@ -47,6 +47,7 @@ public class HandleOK : MonoBehaviour
             }
         }
 
+        Start_screen = GameObject.Find("Start_screen");
 		ganzfeld_sphere = GameObject.Find ("Sphere");
 		homeroom_sphere = GameObject.Find ("Sph_re");
 		point_light = GameObject.Find ("Point light");
@@ -55,6 +56,7 @@ public class HandleOK : MonoBehaviour
         buttons_light = GameObject.Find("buttons_light");
         buttons_sounds = GameObject.Find("buttons_sounds");
 		instructions_depart = GameObject.Find ("Instructions depart");
+        Start_screen.SetActive(false);
         buttons_sounds.SetActive(false);
         buttons_light.SetActive(false);
 		buttons_colors.SetActive (false);
