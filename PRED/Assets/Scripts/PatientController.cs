@@ -114,7 +114,7 @@ public class PatientController : NetworkBehaviour {
 		}
 	}
 
-	public override void OnStartLocalPlayer()
+	public override void OnStartLocalPlayer() // ONLY CLIENT SIDE
 	{
 
         gameObject.transform.position = new Vector3(0, 0, 0);
@@ -137,6 +137,7 @@ public class PatientController : NetworkBehaviour {
 
 			if (GameObject.FindGameObjectWithTag ("Therapist").GetComponent<TherapistController> ().fromGanzfeld) {
 				Camera.main.GetComponent<Fading>().setCurrentFadingTex(1);
+                StartCoroutine(SwitchFadingTex(0));
 			}
             
 			GetComponent<MapBehaviour>().enabled = true;
@@ -149,6 +150,11 @@ public class PatientController : NetworkBehaviour {
 			print ("Mapbehaviour desactive");
         }
 
+        if (SceneManager.GetActiveScene().name == "HomeRoom")
+        {
+            Camera.main.GetComponent<Fading>().FadeIn();
+        }
+
         if (SceneManager.GetActiveScene().name == "Ganzfeld")
         {
             Camera.main.GetComponent<Fading>().setFadingColor(chosenColor);
@@ -157,6 +163,7 @@ public class PatientController : NetworkBehaviour {
             OnChangeFadeDir(-1); // start fadeOut after loading Ganzfeld scene
 
             GameObject.Find("Point light").GetComponent<Light>().color = chosenColor;
+            GameObject.Find("Point light").GetComponent<Light>().intensity = chosenIntensity*8.0f;
         }      
 	}
 

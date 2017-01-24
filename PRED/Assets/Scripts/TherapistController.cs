@@ -60,7 +60,7 @@ public class TherapistController : NetworkBehaviour {
 		RpcRecenter ();
 	}
 
-	public override void OnStartLocalPlayer()
+    public override void OnStartLocalPlayer() // ONLY SERVER SIDE
 	{
         gameObject.transform.position = new Vector3(-115.7f, 26.5f, 113.63f);
 		patientDetected = false;
@@ -106,6 +106,7 @@ public class TherapistController : NetworkBehaviour {
 			GameObject.FindGameObjectWithTag("Patient").GetComponent<PatientController>().fadeDir = -1;
 			Camera.main.GetComponent<Fading>().setCurrentFadingTex(1);
             GameObject.Find("Point light").GetComponent<Light>().color = GameObject.FindGameObjectWithTag("Patient").GetComponent<PatientController>().chosenColor;
+            GameObject.Find("Point light").GetComponent<Light>().intensity = GameObject.FindGameObjectWithTag("Patient").GetComponent<PatientController>().chosenIntensity*8.0f;
         }
 
 		print (SceneManager.GetActiveScene ().name);

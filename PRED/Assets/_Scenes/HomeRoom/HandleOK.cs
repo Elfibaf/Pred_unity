@@ -56,7 +56,7 @@ public class HandleOK : MonoBehaviour
         buttons_light = GameObject.Find("buttons_light");
         buttons_sounds = GameObject.Find("buttons_sounds");
 		instructions_depart = GameObject.Find ("Instructions depart");
-        Start_screen.SetActive(false);
+        //Start_screen.SetActive(false);
         buttons_sounds.SetActive(false);
         buttons_light.SetActive(false);
 		buttons_colors.SetActive (false);

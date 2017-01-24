@@ -56,13 +56,23 @@ public class TherapistUI : MonoBehaviour {
 	{
 		//GUI.Box (new Rect (0, 0, Screen.width - 260, Screen.height - 20), "");
 
-
-		if (GUILayout.Button ("Phase Ganzfeld")) 
-		{
-            Camera.main.GetComponent<Fading>().setFadingColor(GameObject.FindGameObjectWithTag("Patient").GetComponent<PatientController>().chosenColor);
-            Camera.main.GetComponent<Fading>().setCurrentFadingTex(1);
-            StartCoroutine(Fading(1, "Ganzfeld"));
-		}
+        if(!GameObject.FindGameObjectWithTag("Therapist").GetComponent<TherapistController>().fromGanzfeld)
+        {
+            if (GUILayout.Button("Phase Ganzfeld"))
+            {
+                Camera.main.GetComponent<Fading>().setFadingColor(GameObject.FindGameObjectWithTag("Patient").GetComponent<PatientController>().chosenColor);
+                Camera.main.GetComponent<Fading>().setCurrentFadingTex(1);
+                StartCoroutine(Fading(1, "Ganzfeld"));
+            }
+        }
+        else
+        {
+            if (GUILayout.Button("Retour Accueil"))
+            {
+                Camera.main.GetComponent<Fading>().setCurrentFadingTex(0);
+                StartCoroutine(Fading(1, "HomeRoom"));
+            }
+        }  
 	}
 
     IEnumerator Fading(int direction, string sceneName)
