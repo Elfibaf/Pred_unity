@@ -61,7 +61,7 @@ public class ReceiveSpire : NetworkBehaviour {
 				if ((type == "calm") || (type == "sedentary") || (type == "focus")) {
 					CmdChangeBreathing(breathe.Value<float> ("sub_value") + UnityEngine.Random.Range(0.0f,1.0f));
 					//CmdChangeBreathing(UnityEngine.Random.Range(6.0f,24.0f));
-					CmdChangeAgitation (breathingRythm, 6.0f, 24.0f);
+					CmdChangeAgitation (breathingRythm, 7.0f, 18.0f);
 					break;
 				}
 			}
@@ -80,7 +80,7 @@ public class ReceiveSpire : NetworkBehaviour {
 				string type = breathe.Value<string> ("type");
 				if ((type == "calm") || (type == "sedentary") || (type == "focus")) {
 					CmdChangeBreathing(breathe.Value<float> ("sub_value") + UnityEngine.Random.Range(0.0f,1.0f));
-					CmdChangeAgitation (breathingRythm, 6.0f, 24.0f);
+					CmdChangeAgitation (breathingRythm, 7.0f, 18.0f);
 					break;
 				}
 			}
@@ -94,11 +94,13 @@ public class ReceiveSpire : NetworkBehaviour {
 	void OnChangeBreathing(float breathing) {
 
 		breathingRythm = breathing;
+
 		// updating breathing value on the UI
 		if (GameObject.Find ("Breathing") != null) {
 			GameObject.Find("Breathing").GetComponent<Text>().text = breathing.ToString();
 		}
 		if (isServer) {
+			breathing = (float)Math.Round (breathing, 2);
 			GameObject.Find ("NetworkManager").GetComponent<TherapistUI> ().breathing = breathing;
 		}
 		print (breathingRythm);
@@ -116,7 +118,7 @@ public class ReceiveSpire : NetworkBehaviour {
 		//float newAgitation = (float)Math.Round (((value - min) / (max - min)), 2);
 		// If there is a patient and the therapist doesn't want to control the agitation :
 		if ((GameObject.FindGameObjectWithTag ("Patient") != null) && (!GameObject.Find ("NetworkManager").GetComponent<TherapistUI> ().toggleAgitation)) {
-			float newAgitation = ((value - min) / (max - min));
+			float newAgitation = (float)Math.Round (((value - min) / (max - min)), 2);
 			print ("New Agitation" + newAgitation.ToString());
 			GameObject.FindGameObjectWithTag ("Patient").GetComponent<MapBehaviour> ().agitation = newAgitation;
 			print (GameObject.FindGameObjectWithTag ("Patient").GetComponent<MapBehaviour> ().agitation);

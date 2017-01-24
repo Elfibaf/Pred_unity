@@ -7,9 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class TherapistUI : MonoBehaviour {
 
-	public float rectWidth = Screen.width / 2;
+	public float rectWidth = Screen.width / 4;
 	public float rectHeight = Screen.height / 8;
-	//private AudioSource whiteNoiseSource;
 
 	public int prevSelGridInt = 0;
 	public int selGridInt = 0;
@@ -34,13 +33,15 @@ public class TherapistUI : MonoBehaviour {
 
     void Update()
     {
-
+		
     }
 
 	void OnGUI()
 	{
-		GUILayout.Window(4, new Rect(Screen.width - Screen.width/8 - 10, Screen.height/16 + 10, Screen.width/8, Screen.height/16), BiofeedbackWindow, "", GUIStyle.none);
-		GUILayout.Window(3, new Rect(rectWidth/2, Screen.height - rectHeight - 10, rectWidth, rectHeight), RecenterWindow, "", GUIStyle.none);
+		GUI.skin.toggle.wordWrap = true;
+		//GUILayout.Window(4, new Rect(Screen.currentResolution.width - Screen.currentResolution.width/7 - 10, Screen.currentResolution.height/16 + 10, Screen.currentResolution.width/8, Screen.currentResolution.height/2), BiofeedbackWindow, "", GUIStyle.none);
+		GUILayout.Window(4, new Rect(Screen.width - Screen.width/7 - 10, Screen.height/16 + 10, Screen.width/6, Screen.height/3), BiofeedbackWindow, "", GUIStyle.none);
+		GUILayout.Window(3, new Rect(Screen.width/2 - rectWidth/2, Screen.height - rectHeight - 10, rectWidth, rectHeight), RecenterWindow, "", GUIStyle.none); 
 
 		if (SceneManager.GetActiveScene ().name == "RelaxingEnv1") {
 			GUILayout.Window(2, new Rect(Screen.width - Screen.width/8 - 10, Screen.height - Screen.height/16 - 10, Screen.width/8, Screen.height/16), Window, "", GUIStyle.none);

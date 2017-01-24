@@ -25,7 +25,9 @@ public class MapBehaviour : NetworkBehaviour {
             tree.GetComponent<Animator>().ForceStateNormalizedTime(UnityEngine.Random.Range(0.0f, 1.0f));
 			agitation = 0.0f;
         }
-
+		if (!isServer) {
+			GameObject.Find ("Background").SetActive (false);
+		}
         agitationBar = GameObject.Find("Foreground").GetComponent<RectTransform>();
 
         //setAgitation(0.5f);
@@ -63,7 +65,7 @@ public class MapBehaviour : NetworkBehaviour {
 		if (GameObject.Find ("AgitationValue") != null) {
 			GameObject.Find ("AgitationValue").GetComponent<Text> ().text = a.ToString ();
 		}
-        if(agitationBar != null)
+		if(agitationBar != null && isServer)
         {
             agitationBar.sizeDelta = new Vector2(agitation*100.0f, agitationBar.sizeDelta.y);
         }
