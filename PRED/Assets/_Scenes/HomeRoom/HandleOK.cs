@@ -37,7 +37,7 @@ public class HandleOK : MonoBehaviour
         isActivated = false;
         animName = "circle_button";
 
-        //transform.gameObject.GetComponentInChildren<SpriteRenderer>().color = col;
+        //transform.gameObject.GetComponentInChildren<SpriteRenderer>().color = col; 
 
         foreach (Transform child in transform)
         {
