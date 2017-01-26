@@ -59,7 +59,7 @@ public class ReceiveSpire : NetworkBehaviour {
 			foreach (JObject breathe in objects) {
 				string type = breathe.Value<string> ("type");
 				if ((type == "calm") || (type == "sedentary") || (type == "focus")) {
-					CmdChangeBreathing(breathe.Value<float> ("sub_value") + UnityEngine.Random.Range(0.0f,1.0f));
+					CmdChangeBreathing(breathe.Value<float> ("sub_value"));
 					//CmdChangeBreathing(UnityEngine.Random.Range(6.0f,24.0f));
 					CmdChangeAgitation (breathingRythm, 7.0f, 18.0f);
 					break;
@@ -79,7 +79,7 @@ public class ReceiveSpire : NetworkBehaviour {
 			foreach (JObject breathe in objects) {
 				string type = breathe.Value<string> ("type");
 				if ((type == "calm") || (type == "sedentary") || (type == "focus")) {
-					CmdChangeBreathing(breathe.Value<float> ("sub_value") + UnityEngine.Random.Range(0.0f,1.0f));
+					CmdChangeBreathing(breathe.Value<float> ("sub_value"));
 					CmdChangeAgitation (breathingRythm, 7.0f, 18.0f);
 					break;
 				}
