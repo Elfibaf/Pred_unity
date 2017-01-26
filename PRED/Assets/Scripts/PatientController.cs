@@ -63,7 +63,7 @@ public class PatientController : NetworkBehaviour {
 			CmdChangeAgitation();
 			print (GetComponent<MapBehaviour> ().agitation);
 		}*/
-		if (Input.GetKeyDown (KeyCode.A)) {
+		/*if (Input.GetKeyDown (KeyCode.A)) {
 			//chosenRange -= 0.5f;
 			GameObject.Find ("Point light").GetComponent<Light> ().range -= 0.5f;
 		}
@@ -76,7 +76,7 @@ public class PatientController : NetworkBehaviour {
 		}
 		if (Input.GetKeyDown (KeyCode.D)) {
 			GameObject.Find ("Point light").GetComponent<Light> ().intensity += 0.1f;
-		}
+		}*/
 	}
 
 	/*[Command] // calls the function only server-side
@@ -136,6 +136,7 @@ public class PatientController : NetworkBehaviour {
             StartCoroutine(SwitchFadingTex(1));
 
 			if (GameObject.FindGameObjectWithTag ("Therapist").GetComponent<TherapistController> ().fromGanzfeld) {
+                GameObject.Find("Background").SetActive(false);
 				Camera.main.GetComponent<Fading>().setCurrentFadingTex(1);
                 StartCoroutine(SwitchFadingTex(0));
 			}
@@ -153,6 +154,10 @@ public class PatientController : NetworkBehaviour {
         if (SceneManager.GetActiveScene().name == "HomeRoom")
         {
             Camera.main.GetComponent<Fading>().FadeIn();
+
+            if (GameObject.FindGameObjectWithTag ("Therapist").GetComponent<TherapistController> ().fromGanzfeld) {
+                
+            }
         }
 
         if (SceneManager.GetActiveScene().name == "Ganzfeld")
@@ -172,5 +177,12 @@ public class PatientController : NetworkBehaviour {
         yield return new WaitForSeconds(10.0f);
         Camera.main.GetComponent<Fading>().setCurrentFadingTex(index);
         fadeDir = -1; // car fadeDir est reset à 1 (au lieu d'être -1) à la transition vers  RelaxationEnv1
+    }
+
+    IEnumerator delayedDisabling(string name, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        print("source delayed");
+        GameObject.Find(name).SetActive(false);
     }
 }

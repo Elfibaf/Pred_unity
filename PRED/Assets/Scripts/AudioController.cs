@@ -19,7 +19,8 @@ public class AudioController : NetworkBehaviour {
 		//whiteNoiseSource.volume = patient.GetComponent<PatientController> ().chosenVolume;
 		clipArray = patient.GetComponent<PatientController> ().whiteNoiseArray;
 		// Triggers the chosen white noise when entering Ganzfeld phase
-		if (patient.GetComponent<PatientController> ().chosenSound != -1) {
+        if (patient.GetComponent<PatientController>().chosenSound != -1 && !GameObject.FindGameObjectWithTag("Therapist").GetComponent<TherapistController>().fromGanzfeld)
+        {
 			whiteNoise = (AudioClip)clipArray [patient.GetComponent<PatientController>().chosenSound];
 			whiteNoiseSource.clip = whiteNoise;
 			whiteNoiseSource.Play ();
