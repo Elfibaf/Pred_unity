@@ -48,6 +48,7 @@ public class TherapistUI : MonoBehaviour {
 		}
 
 		if (SceneManager.GetActiveScene ().name == "Ganzfeld") {
+			GUILayout.Window(6, new Rect(10, Screen.height - Screen.height/16 - 10, Screen.width/8, Screen.height/16), GanzfeldWindow2, "", GUIStyle.none);
 			GUILayout.Window(5, new Rect(Screen.width - Screen.width/8 - 10, Screen.height - Screen.height/16 - 10, Screen.width/8, Screen.height/16), GanzfeldWindow, "", GUIStyle.none);
 		}
 	}
@@ -125,6 +126,16 @@ public class TherapistUI : MonoBehaviour {
 			Camera.main.GetComponent<Fading>().setFadingColor(GameObject.FindGameObjectWithTag("Patient").GetComponent<PatientController>().chosenColor);
 			Camera.main.GetComponent<Fading>().setCurrentFadingTex(1);
 			StartCoroutine(Fading(1, "RelaxingEnv1"));
+			GameObject.FindGameObjectWithTag ("Therapist").GetComponent<TherapistController> ().fromGanzfeld = true;
+		}
+	}
+
+	void GanzfeldWindow2(int id) {
+		if (GUILayout.Button ("Retour Accueil")) 
+		{
+			Camera.main.GetComponent<Fading>().setFadingColor(GameObject.FindGameObjectWithTag("Patient").GetComponent<PatientController>().chosenColor);
+			Camera.main.GetComponent<Fading>().setCurrentFadingTex(1);
+			StartCoroutine(Fading(1, "HomeRoom"));
 			GameObject.FindGameObjectWithTag ("Therapist").GetComponent<TherapistController> ().fromGanzfeld = true;
 		}
 	}
