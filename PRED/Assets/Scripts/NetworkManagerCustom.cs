@@ -97,7 +97,7 @@ public class NetworkManagerCustom : NetworkManager {
 
 	void SetIPAddress()
 	{
-		string ipAdress = GameObject.Find ("InputFieldIPAddress").transform.FindChild ("Text").GetComponent<Text> ().text;
+		string ipAdress = GameObject.Find ("InputFieldIPAddress").transform.FindChild ("Text2").GetComponent<Text> ().text;
         NetworkManager.singleton.networkAddress = ipAdress;
         print(ipAdress);
 	}
