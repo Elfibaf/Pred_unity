@@ -112,10 +112,6 @@ public class NetworkManagerCustom : NetworkManager {
 		if (level == 0) {
 			SetupMenuSceneButtons ();
 		} 
-		else 
-		{
-			SetupOtherSceneButtons ();
-		}
 	}
 
 	// To recreate button listeners when scene is changed
@@ -128,20 +124,12 @@ public class NetworkManagerCustom : NetworkManager {
 		GameObject.Find ("ButtonJoinGame").GetComponent<Button>().onClick.AddListener (JoinGame);
 	}
 
-	void SetupOtherSceneButtons()
-	{	
-		/*GameObject.Find ("ButtonDisconnect").GetComponent<Button>().onClick.RemoveAllListeners ();
-		GameObject.Find ("ButtonDisconnect").GetComponent<Button>().onClick.AddListener (NetworkManager.singleton.StopHost);*/
-	}
-
 	/***** VOICE CHAT *****/
 
 	public override void OnStartClient(NetworkClient client)
 	{
 
 		VoiceChatNetworkProxy.OnManagerStartClient (client);
-
-		//gameObject.AddComponent<VoiceChatUi> ();
 	
 	}
 

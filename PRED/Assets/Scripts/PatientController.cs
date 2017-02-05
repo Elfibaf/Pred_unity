@@ -31,7 +31,7 @@ public class PatientController : NetworkBehaviour {
 	}
 
 	void Start () {
-		// Loading resources in advance to prevent lag in Ganzfeld phase
+		// Loading resources (white noises) in advance to prevent lag in Ganzfeld phase
 		whiteNoiseArray = Resources.LoadAll ("Audio");
 		if (GameObject.Find ("Audio Source") != null) {
 			GameObject.Find ("Audio Source").GetComponent<AudioController> ().SetClipArray (whiteNoiseArray);
@@ -46,53 +46,15 @@ public class PatientController : NetworkBehaviour {
 		{
 			return;
 		}
-
-		//var x = Input.GetAxis("Horizontal") * Time.deltaTime * 3.0f;
-		//var z = Input.GetAxis("Vertical") * Time.deltaTime * 3.0f;
         yaw += h_speed * Input.GetAxis("Mouse X");
         pitch -= v_speed * Input.GetAxis("Mouse Y");
 
         if(MouseControl)
         {
             transform.eulerAngles = new Vector3(pitch, yaw, 0.0f);
-            //transform.Translate(0, x, z);
         }
-		
-		/*if (Input.GetKeyDown(KeyCode.Space))
-		{
-			CmdChangeAgitation();
-			print (GetComponent<MapBehaviour> ().agitation);
-		}*/
-		/*if (Input.GetKeyDown (KeyCode.A)) {
-			//chosenRange -= 0.5f;
-			GameObject.Find ("Point light").GetComponent<Light> ().range -= 0.5f;
-		}
-		if (Input.GetKeyDown (KeyCode.E)) {
-			//chosenRange += 0.5f;
-			GameObject.Find ("Point light").GetComponent<Light> ().range += 0.5f;
-		}
-		if (Input.GetKeyDown (KeyCode.Q)) {
-			GameObject.Find ("Point light").GetComponent<Light> ().intensity -= 0.1f;
-		}
-		if (Input.GetKeyDown (KeyCode.D)) {
-			GameObject.Find ("Point light").GetComponent<Light> ().intensity += 0.1f;
-		}*/
+
 	}
-
-	/*[Command] // calls the function only server-side
-	public void CmdChangeAgitation()
-	{
-		if (GetComponent<MapBehaviour> ().agitation < 0.5f) {
-			//GetComponent<MapBehaviour> ().setAgitation (0.5f);
-			GetComponent<MapBehaviour> ().agitation = 0.5f;
-		} else if (GetComponent<MapBehaviour> ().agitation == 0.5f) {
-			GetComponent<MapBehaviour> ().setAgitation (1.0f);
-		} else 
-		{
-			GetComponent<MapBehaviour> ().setAgitation (0.0f);
-		}
-
-	}*/
 		
 	public void OnChangeFadeDir(int direction)
 	{
@@ -125,13 +87,11 @@ public class PatientController : NetworkBehaviour {
 
 		if (SceneManager.GetActiveScene ().name == "RelaxingEnv1") {
             // setting up fading tex
-            //OnChangeFadeDir(-1);
             if (isLocalPlayer)
             {
                 Camera.main.GetComponent<Fading>().FadeIn();
             }
            
-            //fadeDir = -1;
             Camera.main.GetComponent<Fading>().setFadingColor(chosenColor);
             StartCoroutine(SwitchFadingTex(1));
 
@@ -164,7 +124,6 @@ public class PatientController : NetworkBehaviour {
         {
             Camera.main.GetComponent<Fading>().setFadingColor(chosenColor);
             Camera.main.GetComponent<Fading>().setCurrentFadingTex(1);
-			//StartCoroutine(SwitchFadingTex(1));
             OnChangeFadeDir(-1); // start fadeOut after loading Ganzfeld scene
 
             GameObject.Find("Point light").GetComponent<Light>().color = chosenColor;

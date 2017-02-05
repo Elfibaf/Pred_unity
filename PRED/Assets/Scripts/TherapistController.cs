@@ -46,13 +46,13 @@ public class TherapistController : NetworkBehaviour {
 		fromGanzfeld = fG;
 	}
 
+	// Recenters both cameras
 	[ClientRpc]
 	public void RpcRecenter() {
 		if (isServer){
 			return;
 		}
 		UnityEngine.Object.FindObjectOfType<GvrViewer> ().Recenter ();
-		print ("RECENTER");
 	}
 
 	[Command]
@@ -81,7 +81,6 @@ public class TherapistController : NetworkBehaviour {
 
         if (SceneManager.GetActiveScene().name == "RelaxingEnv1")
         {
-            //GameObject.FindGameObjectWithTag("Patient").GetComponent<PatientController>().fadeDir = -1;
             if (GameObject.FindGameObjectWithTag("Patient") != null)
             {
                 GameObject.FindGameObjectWithTag("Patient").GetComponent<MapBehaviour>().enabled = true;

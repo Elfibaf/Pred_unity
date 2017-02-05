@@ -16,7 +16,6 @@ public class AudioController : NetworkBehaviour {
 	{
 		patient = GameObject.FindGameObjectWithTag ("Patient");
 		whiteNoiseSource = GetComponent<AudioSource> ();
-		//whiteNoiseSource.volume = patient.GetComponent<PatientController> ().chosenVolume;
 		clipArray = patient.GetComponent<PatientController> ().whiteNoiseArray;
 		// Triggers the chosen white noise when entering Ganzfeld phase
         if (patient.GetComponent<PatientController>().chosenSound != -1 && !GameObject.FindGameObjectWithTag("Therapist").GetComponent<TherapistController>().fromGanzfeld)
@@ -35,17 +34,13 @@ public class AudioController : NetworkBehaviour {
 	[ClientRpc]
 	public void RpcPlaySoundFromButton(int soundNum)
 	{
-		print ("RPC appelé");
 		whiteNoise = (AudioClip)clipArray [soundNum];
 		whiteNoiseSource.clip = whiteNoise;
 		whiteNoiseSource.Play ();
-
-		print ("Musique changée");
 	}
 
 	[Command]
 	public void CmdPlaySound(int numButton) {
-		print ("CMD appelé");
 		whiteNoiseSource.GetComponent<AudioController> ().RpcPlaySoundFromButton (numButton);
 	}
 

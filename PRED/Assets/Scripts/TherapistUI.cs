@@ -24,11 +24,6 @@ public class TherapistUI : MonoBehaviour {
 
 	void Start()
 	{
-		/*clipArray = Resources.LoadAll ("Audio");
-		foreach (AudioClip clip in clipArray) {
-			clipNames.Add (clip.name);
-		}
-		clipNamesArray = clipNames.ToArray();*/
 	}
 
     void Update()
@@ -39,7 +34,6 @@ public class TherapistUI : MonoBehaviour {
 	void OnGUI()
 	{
 		GUI.skin.toggle.wordWrap = true;
-		//GUILayout.Window(4, new Rect(Screen.currentResolution.width - Screen.currentResolution.width/7 - 10, Screen.currentResolution.height/16 + 10, Screen.currentResolution.width/8, Screen.currentResolution.height/2), BiofeedbackWindow, "", GUIStyle.none);
 		GUILayout.Window(4, new Rect(Screen.width - Screen.width/7 - 10, Screen.height/16 + 10, Screen.width/6, Screen.height/3), BiofeedbackWindow, "", GUIStyle.none);
 		GUILayout.Window(3, new Rect(Screen.width/2 - rectWidth/2, Screen.height - rectHeight - 10, rectWidth, rectHeight), RecenterWindow, "", GUIStyle.none); 
 
@@ -53,10 +47,9 @@ public class TherapistUI : MonoBehaviour {
 		}
 	}
 
+	// Displayed in RelaxingEnv1
 	void Window(int id)
 	{
-		//GUI.Box (new Rect (0, 0, Screen.width - 260, Screen.height - 20), "");
-
         if(!GameObject.FindGameObjectWithTag("Therapist").GetComponent<TherapistController>().fromGanzfeld)
         {
             if (GUILayout.Button("Phase Ganzfeld"))
@@ -84,8 +77,6 @@ public class TherapistUI : MonoBehaviour {
         GameObject.FindGameObjectWithTag("Patient").GetComponent<PatientController>().fadeDir = direction;
         float fadeTime = Camera.main.GetComponent<Fading>().BeginFade(direction);
         
-
-        //GameObject.FindGameObjectWithTag("Patient").GetComponent<MapBehaviour>().enabled = false;
         if(sceneName != "")
         {
             yield return new WaitForSeconds(1.0f / fadeTime);
@@ -93,7 +84,7 @@ public class TherapistUI : MonoBehaviour {
         }  
     }
 
-
+	// Displays breathing and agitation + buttons to control the agitation value
 	void BiofeedbackWindow(int id)
 	{
 		GUILayout.Label ("Breathing : " + breathing);
@@ -104,12 +95,10 @@ public class TherapistUI : MonoBehaviour {
 				vSliderValue = GameObject.FindGameObjectWithTag ("Patient").GetComponent<MapBehaviour> ().agitation;
 				if (GUILayout.Button ("+", GUILayout.MaxWidth(50))) {
 					print ("+ clicked");
-					//GameObject.FindGameObjectWithTag ("Patient").GetComponent<MapBehaviour> ().CmdAgitationUp (0.05f);
 					vSliderValue += 0.05f;
 				}
 				if (GUILayout.Button ("-", GUILayout.MaxWidth(50))) {
 					print ("- clicked");
-					//GameObject.FindGameObjectWithTag ("Patient").GetComponent<MapBehaviour> ().CmdAgitationDown (0.05f);
 					vSliderValue -= 0.05f;
 				}
 				vSliderValue = GUILayout.VerticalSlider (vSliderValue, 1.0f, 0.0f);
