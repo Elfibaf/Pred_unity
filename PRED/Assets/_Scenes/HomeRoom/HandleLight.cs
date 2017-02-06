@@ -16,7 +16,7 @@ public class HandleLight : MonoBehaviour
         float chosenIntensity = patient.GetComponent<PatientController>().chosenIntensity;
         chosenIntensity += dir * changeSpeed * Time.deltaTime;
         chosenIntensity = Mathf.Clamp01(chosenIntensity);
-        if (chosenIntensity < 0.2f) chosenIntensity = 0.2f;
+        if (chosenIntensity < 0.35f) chosenIntensity = 0.35f;
         patient.GetComponent<PatientController>().chosenIntensity = chosenIntensity;
         GameObject.Find("Point light").GetComponent<Light>().intensity = chosenIntensity * 8.0f;
         text.GetComponent<TextMesh>().text = Mathf.FloorToInt(chosenIntensity * 100).ToString(); ;

@@ -15,6 +15,7 @@ public class HandleVolume : MonoBehaviour {
         float chosenVolume = patient.GetComponent<PatientController>().chosenVolume;
         chosenVolume += dir * changeSpeed * Time.deltaTime;
         chosenVolume = Mathf.Clamp01(chosenVolume);
+        if (chosenVolume < 0.20f) chosenVolume = 0.20f;
         patient.GetComponent<PatientController>().chosenVolume = chosenVolume;
 		GameObject.Find ("Audio Source").GetComponent<AudioController> ().changeVolume (chosenVolume);
         text.GetComponent<TextMesh>().text = Mathf.FloorToInt(chosenVolume * 100).ToString(); ;

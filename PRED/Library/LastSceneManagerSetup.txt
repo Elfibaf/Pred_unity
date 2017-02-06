@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/_Scenes/RelaxingEnv1/RelaxingEnv1.unity
+- path: Assets/_Scenes/Menu.unity
   isLoaded: 1
   isActive: 1
