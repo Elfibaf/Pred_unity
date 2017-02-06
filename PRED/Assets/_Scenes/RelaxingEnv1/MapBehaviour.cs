@@ -35,8 +35,6 @@ public class MapBehaviour : NetworkBehaviour {
     {
 
         agitation = a;
-        if (agitation > 1.0f) agitation = 1.0f;
-        if (agitation < 0.0f) agitation = 0.0f;
 
         foreach (GameObject tree in GameObject.FindGameObjectsWithTag("tree"))
         {
@@ -70,6 +68,10 @@ public class MapBehaviour : NetworkBehaviour {
 		if (this.enabled) {
 			print ("ONCHANGEAGITATION (" + newAgitation + ")");
 			// Only displaying the value on the host
+			if (newAgitation > 1.0f) newAgitation = 1.0f;
+			if (newAgitation < 0.0f) newAgitation = 0.0f;
+
+			print (newAgitation);
 			if (isServer) {
 				GameObject.Find ("NetworkManager").GetComponent<TherapistUI> ().agitation = newAgitation;
 			}
