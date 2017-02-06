@@ -29,17 +29,10 @@ public class MapBehaviour : NetworkBehaviour {
 			GameObject.Find ("Background").SetActive (false);
 		}
         agitationBar = GameObject.Find("Foreground").GetComponent<RectTransform>();
-
-        //setAgitation(0.5f);
 	}
 
     public void setAgitation(float a)
     {
-		/*if (!isServer)
-		{
-			return;
-		}*/
-
 
         agitation = a;
         if (agitation > 1.0f) agitation = 1.0f;
@@ -76,6 +69,7 @@ public class MapBehaviour : NetworkBehaviour {
     {
 		if (this.enabled) {
 			print ("ONCHANGEAGITATION (" + newAgitation + ")");
+			// Only displaying the value on the host
 			if (isServer) {
 				GameObject.Find ("NetworkManager").GetComponent<TherapistUI> ().agitation = newAgitation;
 			}
@@ -95,7 +89,7 @@ public class MapBehaviour : NetworkBehaviour {
 	}
 
 	/// <summary>
-	/// Adds a value to the agitation.
+	/// Adds value to the agitation.
 	/// </summary>
 	/// <param name="value">Value to add to the agitation.</param>
 	[Command]

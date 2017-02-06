@@ -24,6 +24,7 @@ public class ReceiveSpire : NetworkBehaviour {
 		if (!isLocalPlayer) {
 			return;
 		}
+		// Calls GetBreathingRythm every delta seconds
 		InvokeRepeating ("GetBreathingRythm", 0.0f, delta);
 	}
 
@@ -52,15 +53,12 @@ public class ReceiveSpire : NetworkBehaviour {
 		using (WebClient wc = new WebClient())
 		{
 			ServicePointManager.ServerCertificateValidationCallback = MyRemoteCertificateValidationCallback;
-			//wc.DownloadStringCompleted += new DownloadStringCompletedEventHandler (DownloadStringCallback2);
-			//wc.DownloadStringAsync(new Uri("https://app.spire.io/api/v2/streaks?access_token=" + accesToken));
 			var json = wc.DownloadString("https://app.spire.io/api/v2/streaks?access_token=" + accesToken);
 			var objects = JArray.Parse(json); // parse as array
 			foreach (JObject breathe in objects) {
 				string type = breathe.Value<string> ("type");
 				if ((type == "calm") || (type == "sedentary") || (type == "focus")) {
 					CmdChangeBreathing(breathe.Value<float> ("sub_value"));
-					//CmdChangeBreathing(UnityEngine.Random.Range(6.0f,24.0f));
 					CmdChangeAgitation (breathingRythm, 7.0f, 18.0f);
 					break;
 				}
@@ -99,6 +97,7 @@ public class ReceiveSpire : NetworkBehaviour {
 		if (GameObject.Find ("Breathing") != null) {
 			GameObject.Find("Breathing").GetComponent<Text>().text = breathing.ToString();
 		}
+		// We only change the breathing value on the server to avoid freezing the patient screen, then we pass the new value to the patient
 		if (isServer) {
 			breathing = (float)Math.Round (breathing, 2);
 			GameObject.Find ("NetworkManager").GetComponent<TherapistUI> ().breathing = breathing;
@@ -111,11 +110,10 @@ public class ReceiveSpire : NetworkBehaviour {
 		breathingRythm = breathing;
 	}
 
-	// Normalizes the breathing between 0-1 and set new agitation
+	// Normalizes the breathing value between 0-1 and set new agitation
 	[Command]
 	void CmdChangeAgitation(float value, float min, float max)
 	{
-		//float newAgitation = (float)Math.Round (((value - min) / (max - min)), 2);
 		// If there is a patient and the therapist doesn't want to control the agitation :
 		if ((GameObject.FindGameObjectWithTag ("Patient") != null) && (!GameObject.Find ("NetworkManager").GetComponent<TherapistUI> ().toggleAgitation)) {
 			float newAgitation = (float)Math.Round (((value - min) / (max - min)), 2);

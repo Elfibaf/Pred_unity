@@ -4,6 +4,7 @@ using System.Linq;
 
 namespace VoiceChat.Demo
 {
+	// VoiceChat UI for the client : nothing is displayed, the default microphone is chosen.
 	public class VoiceChatUiClient : MonoBehaviour
 	{
 		bool recording = false;
@@ -24,6 +25,8 @@ namespace VoiceChat.Demo
 		void Window(int id)
 		{
 			GUI.Box(new Rect(0, 0, Screen.width - 260, Screen.height - 20), "");
+
+
 
 			/*if (VoiceChatRecorder.Instance.IsRecording)
 			{
