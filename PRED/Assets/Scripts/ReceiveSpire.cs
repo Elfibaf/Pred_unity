@@ -117,7 +117,7 @@ public class ReceiveSpire : NetworkBehaviour {
 		// If there is a patient and the therapist doesn't want to control the agitation :
 		if ((GameObject.FindGameObjectWithTag ("Patient") != null) && (!GameObject.Find ("NetworkManager").GetComponent<TherapistUI> ().toggleAgitation)) {
 			float newAgitation = (float)Math.Round (((value - min) / (max - min)), 2);
-			print ("New Agitation" + newAgitation.ToString());
+			print ("New Agitation" + newAgitation.ToString());	
 			GameObject.FindGameObjectWithTag ("Patient").GetComponent<MapBehaviour> ().agitation = newAgitation;
 			print (GameObject.FindGameObjectWithTag ("Patient").GetComponent<MapBehaviour> ().agitation);
 		}
