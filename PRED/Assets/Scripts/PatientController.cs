@@ -6,15 +6,18 @@ using UnityEngine.SceneManagement;
 
 public class PatientController : NetworkBehaviour {
 
+	// Attributes for mouse control
 	public float h_speed = 2.0f;
 	public float v_speed = 2.0f;
-
     private float yaw = -100.5f;
 	private float pitch = 0.0f;
 
+	// White noises audioclips
     public Object[] whiteNoiseArray;
 
     public bool MouseControl = false;
+
+	// Ganzfeld settings, chosen by the patient in the HomeRoom scene
     public Color chosenColor = Color.red;
     public int chosenSound = -1;
     public float chosenVolume = 0.5f;
@@ -55,7 +58,8 @@ public class PatientController : NetworkBehaviour {
         }
 
 	}
-		
+
+	// Hook for the fadeDir variable
 	public void OnChangeFadeDir(int direction)
 	{
 		fadeDir = direction;
@@ -85,6 +89,8 @@ public class PatientController : NetworkBehaviour {
 
 		print (SceneManager.GetActiveScene ().name);
 
+
+		// Handling fading
 		if (SceneManager.GetActiveScene ().name == "RelaxingEnv1") {
             // setting up fading tex
             if (isLocalPlayer)
@@ -120,6 +126,7 @@ public class PatientController : NetworkBehaviour {
             }
         }
 
+		// Handling fading and setting the Ganzfeld light
         if (SceneManager.GetActiveScene().name == "Ganzfeld")
         {
             Camera.main.GetComponent<Fading>().setFadingColor(chosenColor);

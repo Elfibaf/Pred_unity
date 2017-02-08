@@ -10,11 +10,11 @@ public class TherapistUI : MonoBehaviour {
 	public float rectWidth = Screen.width / 4;
 	public float rectHeight = Screen.height / 8;
 
-	public int prevSelGridInt = 0;
-	public int selGridInt = 0;
-	public Object[] clipArray;
-	public List<string> clipNames = new List<string>();
-	public string[] clipNamesArray;
+	//public int prevSelGridInt = 0;
+	//public int selGridInt = 0;
+	//public Object[] clipArray;
+	//public List<string> clipNames = new List<string>();
+	//public string[] clipNamesArray;
 
 	public float agitation = 0;
 	public float breathing = 0;
