@@ -15,7 +15,7 @@ public class ReceiveSpire : NetworkBehaviour {
 	[SyncVar(hook="OnChangeBreathing")]
 	public float breathingRythm;
 
-	public string accesToken = "41d2fadfdc8bf540f4dfe16f1c15e1ddc8db91b2469aaee5cd95fa550c6e4e5e";
+	public string accesToken;
 	public float delta = 15.0f;
 
 
@@ -24,6 +24,7 @@ public class ReceiveSpire : NetworkBehaviour {
 		if (!isLocalPlayer) {
 			return;
 		}
+		accesToken = "41d2fadfdc8bf540f4dfe16f1c15e1ddc8db91b2469aaee5cd95fa550c6e4e5e";
 		// Calls GetBreathingRythm every delta seconds
 		InvokeRepeating ("GetBreathingRythm", 0.0f, delta);
 	}

@@ -31,7 +31,7 @@ public class AudioController : NetworkBehaviour {
 		clipArray = patientClipArray;
 	}
 
-	[ClientRpc]
+	/*[ClientRpc]
 	public void RpcPlaySoundFromButton(int soundNum)
 	{
 		whiteNoise = (AudioClip)clipArray [soundNum];
@@ -42,7 +42,7 @@ public class AudioController : NetworkBehaviour {
 	[Command]
 	public void CmdPlaySound(int numButton) {
 		whiteNoiseSource.GetComponent<AudioController> ().RpcPlaySoundFromButton (numButton);
-	}
+	}*/
 
 	public void PlaySoundFromButton(int soundNum, float vol)
 	{
