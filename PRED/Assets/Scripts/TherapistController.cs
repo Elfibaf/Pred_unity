@@ -107,7 +107,7 @@ public class TherapistController : NetworkBehaviour {
 			GameObject.FindGameObjectWithTag("Patient").GetComponent<PatientController>().fadeDir = -1;
 			Camera.main.GetComponent<Fading>().setCurrentFadingTex(1);
             GameObject.Find("Point light").GetComponent<Light>().color = GameObject.FindGameObjectWithTag("Patient").GetComponent<PatientController>().chosenColor;
-            GameObject.Find("Point light").GetComponent<Light>().intensity = GameObject.FindGameObjectWithTag("Patient").GetComponent<PatientController>().chosenIntensity*8.0f;
+            GameObject.Find("Point light").GetComponent<Light>().intensity = (0.35f + (GameObject.FindGameObjectWithTag("Patient").GetComponent<PatientController>().chosenIntensity * (1 - 0.35f))) * 8.0f; // 0.35f is the minimalValue from HandleLight scripts
         }
 
 		print (SceneManager.GetActiveScene ().name);

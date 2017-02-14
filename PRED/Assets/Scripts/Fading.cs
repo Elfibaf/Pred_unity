@@ -101,7 +101,7 @@ public class Fading : MonoBehaviour {
 			audioFadeSpeed = 0.5f * fadeSpeed;
 		}
 		else {
-			audioFadeSpeed = GameObject.FindGameObjectWithTag ("Patient").GetComponent<PatientController> ().chosenVolume * fadeSpeed;
+			audioFadeSpeed = (0.2f+(GameObject.FindGameObjectWithTag ("Patient").GetComponent<PatientController> ().chosenVolume*(1-0.2f))) * fadeSpeed; // 0.2f is the minimumValue from HandleVolume scripts
 		}
     }
 
