@@ -79,6 +79,7 @@ public class TherapistController : NetworkBehaviour {
         }
         VRSettings.enabled = false;
 
+
         if (SceneManager.GetActiveScene().name == "RelaxingEnv1")
         {
             if (GameObject.FindGameObjectWithTag("Patient") != null)
@@ -86,6 +87,7 @@ public class TherapistController : NetworkBehaviour {
                 GameObject.FindGameObjectWithTag("Patient").GetComponent<MapBehaviour>().enabled = true;
 				print ("Mapbehaviour active");
             }
+			// Handling fading
 			if (fromGanzfeld) {
                 GameObject.FindGameObjectWithTag("Patient").GetComponent<PatientController>().fadeDir = -1;
                 Camera.main.GetComponent<Fading>().setCurrentFadingTex(1);
@@ -99,7 +101,7 @@ public class TherapistController : NetworkBehaviour {
 				print ("MapBehaviour desactive");
             }
         }
-
+		// Setting fading + Ganzfeld light
         if (SceneManager.GetActiveScene().name == "Ganzfeld")
         {
 			GameObject.FindGameObjectWithTag("Patient").GetComponent<PatientController>().fadeDir = -1;
