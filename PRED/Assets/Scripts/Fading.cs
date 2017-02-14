@@ -81,11 +81,12 @@ public class Fading : MonoBehaviour {
     {
 		exitingHomeRoom = false;
 		isFadeSpeedSet = false;
+        // fade speed for the homeRoom scene
         if (SceneManager.GetActiveScene().name == "HomeRoom")
         {
             fadeSpeed = 0.1f;
         }
-        else
+        else // fade speed for the rest of the scenes
         {
             fadeSpeed = 0.05f;
         }
