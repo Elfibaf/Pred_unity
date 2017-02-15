@@ -97,8 +97,11 @@ public class TherapistUI : MonoBehaviour {
 					vSliderValue -= 0.05f;
 				}
 				vSliderValue = GUILayout.VerticalSlider (vSliderValue, 1.0f, 0.0f);
-				GameObject.FindGameObjectWithTag ("Patient").GetComponent<MapBehaviour> ().agitation = vSliderValue;
 
+                if (GameObject.FindGameObjectWithTag("Patient").GetComponent<MapBehaviour>().agitation != vSliderValue)
+                {
+                    GameObject.FindGameObjectWithTag("Patient").GetComponent<MapBehaviour>().agitation = vSliderValue;
+                }
 			}
 		}
 

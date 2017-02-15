@@ -81,11 +81,12 @@ public class Fading : MonoBehaviour {
     {
 		exitingHomeRoom = false;
 		isFadeSpeedSet = false;
+        // fade speed for the homeRoom scene
         if (SceneManager.GetActiveScene().name == "HomeRoom")
         {
             fadeSpeed = 0.1f;
         }
-        else
+        else // fade speed for the rest of the scenes
         {
             fadeSpeed = 0.05f;
         }
@@ -100,7 +101,7 @@ public class Fading : MonoBehaviour {
 			audioFadeSpeed = 0.5f * fadeSpeed;
 		}
 		else {
-			audioFadeSpeed = GameObject.FindGameObjectWithTag ("Patient").GetComponent<PatientController> ().chosenVolume * fadeSpeed;
+			audioFadeSpeed = (0.2f+(GameObject.FindGameObjectWithTag ("Patient").GetComponent<PatientController> ().chosenVolume*(1-0.2f))) * fadeSpeed; // 0.2f is the minimumValue from HandleVolume scripts
 		}
     }
 
@@ -110,6 +111,7 @@ public class Fading : MonoBehaviour {
 
     void OnGUI()
     {
+        // computing of the transparency of the fading texture
         alpha += fadeDir * fadeSpeed * Time.deltaTime;
 		// Fading volume
 		if (SceneManager.GetActiveScene ().name == "HomeRoom" && exitingHomeRoom) {
@@ -129,9 +131,9 @@ public class Fading : MonoBehaviour {
         // clamp between 0 and 1
         alpha = Mathf.Clamp01(alpha);
         // set Color of GUI
-        GUI.color = new Color(GUI.color.r, GUI.color.g, GUI.color.b, alpha);
+        GUI.color = new Color(GUI.color.r, GUI.color.g, GUI.color.b, alpha); // transparency of the fadingTexture that will be drawn
         GUI.depth = drawDepth;
-        GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), currentFadingTex);
+        GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), currentFadingTex); // we draw the fading texture on the GUI
     }
 
     public float BeginFade ( int direction )
@@ -153,9 +155,4 @@ public class Fading : MonoBehaviour {
         alpha = 0.0f;
         fadeDir = 1;
     }
-
-    /*void OnLevelWasLoaded()
-    {
-        BeginFade(-1);
-    }*/
 }

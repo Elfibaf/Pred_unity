@@ -66,12 +66,12 @@ public class MapBehaviour : NetworkBehaviour {
     void OnChangeAgitation(float newAgitation) // called on clients
     {
 		if (this.enabled) {
-			print ("ONCHANGEAGITATION (" + newAgitation + ")");
+			
 			// Only displaying the value on the host
 			if (newAgitation > 1.0f) newAgitation = 1.0f;
 			if (newAgitation < 0.0f) newAgitation = 0.0f;
 
-			print (newAgitation);
+            print("ONCHANGEAGITATION (" + newAgitation + ")");
 			if (isServer) {
 				GameObject.Find ("NetworkManager").GetComponent<TherapistUI> ().agitation = newAgitation;
 			}

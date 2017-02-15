@@ -134,7 +134,7 @@ public class PatientController : NetworkBehaviour {
             OnChangeFadeDir(-1); // start fadeOut after loading Ganzfeld scene
 
             GameObject.Find("Point light").GetComponent<Light>().color = chosenColor;
-            GameObject.Find("Point light").GetComponent<Light>().intensity = chosenIntensity*8.0f;
+            GameObject.Find("Point light").GetComponent<Light>().intensity = (0.35f + (chosenIntensity * (1 - 0.35f))) * 8.0f;  // 0.35f is the minimalValue from HandleLight scripts
         }      
 	}
 

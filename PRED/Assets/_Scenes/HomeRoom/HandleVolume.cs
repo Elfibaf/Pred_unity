@@ -9,14 +9,16 @@ public class HandleVolume : MonoBehaviour {
     private GameObject text;
     private bool patientDetected = false;
     public float changeSpeed;
+    public float minimumValue; // minimumValue is the minimum volume that can be reached
 
     public float raiseVolume(int dir)
     {
         float chosenVolume = patient.GetComponent<PatientController>().chosenVolume;
         chosenVolume += dir * changeSpeed * Time.deltaTime;
         chosenVolume = Mathf.Clamp01(chosenVolume);
+        //if (chosenVolume < 0.20f) chosenVolume = 0.20f;
         patient.GetComponent<PatientController>().chosenVolume = chosenVolume;
-		GameObject.Find ("Audio Source").GetComponent<AudioController> ().changeVolume (chosenVolume);
+        GameObject.Find("Audio Source").GetComponent<AudioController>().changeVolume(minimumValue + (chosenVolume * (1 - minimumValue)));
         text.GetComponent<TextMesh>().text = Mathf.FloorToInt(chosenVolume * 100).ToString(); ;
         return (chosenVolume);
     }
