@@ -88,7 +88,7 @@ public class Fading : MonoBehaviour {
         }
         else // fade speed for the rest of the scenes
         {
-            fadeSpeed = 0.05f;
+            fadeSpeed = 0.09f;
         }
 
         createWhiteTexture();

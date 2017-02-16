@@ -18,13 +18,14 @@ public class ReceiveSpire : NetworkBehaviour {
 	public string accesToken;
 	public float delta = 15.0f;
 
+	// Old token : 41d2fadfdc8bf540f4dfe16f1c15e1ddc8db91b2469aaee5cd95fa550c6e4e5e
 
 	// Use this for initialization
 	void Start () {
 		if (!isLocalPlayer) {
 			return;
 		}
-		accesToken = "41d2fadfdc8bf540f4dfe16f1c15e1ddc8db91b2469aaee5cd95fa550c6e4e5e";
+		accesToken = "4de09f4ede615b09d6698f3cf9ab1339dfec2bcc1c5a3b6be82d9bd4842dcbff";
 		// Calls GetBreathingRythm every delta seconds
 		InvokeRepeating ("GetBreathingRythm", 0.0f, delta);
 	}
