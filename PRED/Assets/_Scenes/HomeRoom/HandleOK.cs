@@ -37,16 +37,6 @@ public class HandleOK : MonoBehaviour
         isActivated = false;
         animName = "circle_button";
 
-        //transform.gameObject.GetComponentInChildren<SpriteRenderer>().color = col; 
-
-        foreach (Transform child in transform)
-        {
-            if (child.tag == "circle")
-            {
-                child.GetComponent<SpriteRenderer>().color = col;
-            }
-        }
-
         Start_screen = GameObject.Find("Start_screen");
 		ganzfeld_sphere = GameObject.Find ("Sphere");
 		homeroom_sphere = GameObject.Find ("Sph_re");
@@ -62,6 +52,12 @@ public class HandleOK : MonoBehaviour
 		buttons_colors.SetActive (false);
 		ganzfeld_sphere.SetActive (false);
 		point_light.SetActive (false);
+
+        // if we come back to the home menu after the Ganzfeld
+        if (GameObject.FindGameObjectWithTag("Therapist").GetComponent<TherapistController>().fromGanzfeld)
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     public void setState(bool b)
@@ -154,20 +150,17 @@ public class HandleOK : MonoBehaviour
                 {
                     Animation anim = child.gameObject.GetComponent<Animation>();
                     anim[animName].speed = -1f;
-                    //anim["circle_button"].time = anim["circle_button"].length;
                     child.gameObject.GetComponent<Animation>().Play();
                 }
 
                 // check if anim is over
                 Animation anim2 = child.gameObject.GetComponent<Animation>();
-                //print(isActivated);
                 if (anim2[animName].time >= anim2[animName].length && !isAnimOver) // animation over (called once)
                 {
                     isAnimOver = true;
                     child.gameObject.GetComponent<Animation>().Stop();
                     anim2[animName].time = anim2[animName].length;
                     isActivated = true;
-                    //Camera.main.GetComponent<UIRaycast>().activatedButton = transform.gameObject;
                     action();
                 }
 

@@ -111,7 +111,11 @@ public class UIRaycast : MonoBehaviour {
             {
                 button.GetComponent<HandleButtonSound>().setState(false);
             }
-            GameObject.Find("button_OK").GetComponent<HandleOK>().setState(false);
+
+            if (GameObject.Find("button_OK") != null)
+            {
+                GameObject.Find("button_OK").GetComponent<HandleOK>().setState(false);
+            }
 
             if(GameObject.Find("buttons_sounds") != null)
             {
